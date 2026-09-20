@@ -1,0 +1,4 @@
+allowBuilds:
+  cypress: true
+overrides:
+  'typescript': 'npm:typescript-native-bridge@latest'
