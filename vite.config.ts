@@ -10,7 +10,10 @@ export default defineConfig({
   base: '/mangosteen-fe-0-publish/',
   plugins: [
     vue(),
-    vueJsx(),
+    vueJsx({
+      transformOn: true,
+      mergeProps: true,
+    }),
     vueDevTools(),
   ],
   resolve: {
