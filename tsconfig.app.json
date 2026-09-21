@@ -10,7 +10,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-
     "jsx": "preserve",
     "jsxImportSource": "vue",
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.

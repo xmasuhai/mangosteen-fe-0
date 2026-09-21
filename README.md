@@ -1,4 +1,4 @@
-# mangosteen-fe-0 🚀 项目启动与开发规范
+# 我的 Vue3 + TSX 记账项目 mangosteen-fe-0 🚀 项目启动与开发规范
 
 > 网页预览：http://xmasuhai.github.io/mangosteen-fe-0-publish/
 
