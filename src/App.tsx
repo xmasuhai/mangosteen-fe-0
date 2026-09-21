@@ -2,9 +2,8 @@ import { defineComponent  } from 'vue'
 import {storeToRefs} from 'pinia'
 import {useCounterStore} from '@/stores/counter.ts'
 
-export const AppTsxDemo = defineComponent({
+export const App = defineComponent({
   setup(/*props, ctx*/) {
-
     const { count } = storeToRefs(useCounterStore())
     const { increment } = useCounterStore()
 
@@ -14,5 +13,3 @@ export const AppTsxDemo = defineComponent({
     </>
   },
 })
-
-export default AppTsxDemo
