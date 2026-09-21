@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/mangosteen-fe-0/dist/',
+  base: '/mangosteen-fe-0-publish/',
   plugins: [
     vue(),
     vueJsx(),
