@@ -1,15 +1,18 @@
-import { defineComponent  } from 'vue'
-import {storeToRefs} from 'pinia'
-import {useCounterStore} from '@/stores/counter.ts'
+import {defineComponent} from 'vue'
+import {RouterLink, RouterView,} from 'vue-router'
 
 export const App = defineComponent({
   setup(/*props, ctx*/) {
-    const { count } = storeToRefs(useCounterStore())
-    const { increment } = useCounterStore()
-
     return () => <>
-      <h1>count {count.value}</h1>
-      <button onClick={increment}>+ 1</button>
+      <nav>
+        <ul>
+          <li><RouterLink to="/foo">foo</RouterLink></li>
+          <li><RouterLink to="/bar">bar</RouterLink></li>
+        </ul>
+      </nav>
+      <main>
+        <RouterView/>
+      </main>
     </>
   },
 })
