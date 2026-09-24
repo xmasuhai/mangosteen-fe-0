@@ -1,6 +1,4 @@
 import type {RouteRecordRaw} from 'vue-router'
-import {FooComp} from '@/views/FooComp.tsx'
-import {BarComp} from '@/views/BarComp.tsx'
 import {WelcomeView} from '@/views/WelcomeView.tsx'
 import {WelCome1stPage} from '@/modules/welcome/WelCome1stPage.tsx'
 import {Welcome2ndPage} from '@/modules/welcome/Welcome2ndPage.tsx'
@@ -12,7 +10,7 @@ import {Welcome4thPage} from '@/modules/welcome/Welcome4thPage.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-24 15:55:34
+ * @LastEditTime: 2026-09-24 21:35:32
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
