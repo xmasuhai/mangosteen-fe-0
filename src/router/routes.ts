@@ -12,25 +12,16 @@ import {Welcome4thPage} from '@/modules/welcome/Welcome4thPage.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-24 14:20:36
+ * @LastEditTime: 2026-09-24 15:55:34
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'foo',
-    component: FooComp,
-  },
-  {
-    path: '/about',
-    name: 'bar',
-    component: BarComp,
-  },
   {
     path: '/welcome',
     name: 'welcome',
     component: WelcomeView,
     children: [
+      {path: '', name: 'default', component: WelCome1stPage,},
       {path: '1', component: WelCome1stPage,},
       {path: '2', component: Welcome2ndPage,},
       {path: '3', component: Welcome3rdPage,},
