@@ -1,31 +1,33 @@
 /**
- * @Description: 欢迎页
+ * @Description: 欢迎页-模块样式
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 15:59:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-24 21:46:46
+ * @LastEditTime: 2026-09-25 21:40:01
  * @FilePath: src/modules/welcome/Welcome.module.scss
  */
 .wrapper {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(to bottom, #5d33be 0%, #8F4CD7 100%);
 
   & > .title {
-    color: lightcoral;
-  }
-
-  & > header {
-    flex-shrink: 0;
+    padding-top: 10%;
+    font-size: 2em;
+    color: var(--title-text);
+    flex: 0 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 32px;
   }
 
   & > main {
-    flex-grow: 1;
-    background-color: lightblue;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
   }
 
 }
