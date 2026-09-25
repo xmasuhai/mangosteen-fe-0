@@ -6,7 +6,7 @@ import {presetWind4} from '@unocss/preset-wind4'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 22:27:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-24 22:31:48
+ * @LastEditTime: 2026-09-25 16:09:33
  * @FilePath: uno.config.ts
  */
 export default defineConfig({
@@ -14,4 +14,10 @@ export default defineConfig({
     presetWind4(),
     presetAttributify(),
   ],
+  theme: {
+    colors: {
+      // 绑定你的 CSS 变量
+      welcomeCardBg: 'var(--welcome-card-bg-color)',
+    }
+  }
 })
