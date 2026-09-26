@@ -1,10 +1,12 @@
-import {defineComponent} from 'vue'
-import {RouterView,} from 'vue-router'
+import { defineComponent } from 'vue'
+import { RouterView } from 'vue-router'
 
 export const App = defineComponent({
   setup(/*props, ctx*/) {
-    return () => (<>
-      <RouterView/>
-    </>)
+    return () => (
+      <div class="container">
+        <RouterView />
+      </div>
+    )
   },
 })

@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-26 13:48:53
+ * @LastEditTime: 2026-09-26 23:36:35
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView = defineComponent({
@@ -28,6 +28,7 @@ export const WelcomeView = defineComponent({
           ])}>
           <RouterView />
         </main>
+        <section class={s['to-last-page']}>跳过</section>
       </div>
     )
   },
