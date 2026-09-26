@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import { cn } from 'cn'
-import s from '@/modules/welcome/Welcome.module.scss'
+import s from '@/modules/welcome/WelcomeView.module.scss'
 import logo from '@/assets/icons/mangosteen.svg'
 
 /**
@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-25 21:28:50
+ * @LastEditTime: 2026-09-26 13:48:53
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView = defineComponent({

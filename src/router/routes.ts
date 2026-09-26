@@ -10,7 +10,7 @@ import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-25 21:08:41
+ * @LastEditTime: 2026-09-26 14:52:45
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -23,7 +23,8 @@ export const routes: RouteRecordRaw[] = [
     name: 'welcome',
     component: WelcomeView,
     children: [
-      { path: '', name: 'default', component: WelCome1stPage },
+      // { path: '', name: 'default', component: WelCome1stPage },
+      { path: '', redirect: '/welcome/1' },
       { path: '1', component: WelCome1stPage },
       { path: '2', component: Welcome2ndPage },
       { path: '3', component: Welcome3rdPage },
