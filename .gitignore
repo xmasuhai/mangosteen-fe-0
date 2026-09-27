@@ -39,4 +39,9 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 !.vscode/settings.json
+
+# ai
+.ai
 /.aicodequalityrisk/
+!/.junie/plans/*
+.junie
