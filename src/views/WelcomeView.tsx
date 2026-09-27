@@ -8,7 +8,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:36:01
+ * @LastEditTime: 2026-09-27 22:47:47
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView = () => (
@@ -27,3 +27,5 @@ export const WelcomeView = () => (
     <section class={s['to-last-page']}>跳过</section>
   </div>
 )
+
+WelcomeView.displayName = 'WelcomeView'

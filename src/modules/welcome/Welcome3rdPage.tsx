@@ -7,7 +7,7 @@ import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:13:51
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:42:41
+ * @LastEditTime: 2026-09-27 22:47:30
  * @FilePath: src/modules/welcome/Welcome3rdPage.tsx
  */
 export const Welcome3rdPage = () => (
@@ -24,3 +24,5 @@ export const Welcome3rdPage = () => (
     }}
   </WelcomeLayout>
 )
+
+Welcome3rdPage.displayName = 'Welcome3rdPage'
