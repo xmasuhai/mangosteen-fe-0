@@ -1,20 +1,17 @@
 import { defineComponent } from 'vue'
 
 /**
- * @Description:
+ * @Description: 欢迎页插槽布局模板
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-27 12:33:54
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 14:54:47
- * @FilePath: src/modules/welcome/XxWelcome.tsx
+ * @LastEditTime: 2026-09-27 17:51:16
+ * @FilePath: src/modules/welcome/WelcomeLayout.tsx
  */
-export const XxWelcome = defineComponent({
-  name: 'XxWelcome',
+export const WelcomeLayout = defineComponent({
+  name: 'WelcomeLayout',
   setup(_props, _ctx) {
     const { slots } = _ctx
-    console.log('slots_______________________')
-    console.log(slots)
-    console.log('_______________________slots')
     return () => (
       <>
         {slots?.icon?.()}
