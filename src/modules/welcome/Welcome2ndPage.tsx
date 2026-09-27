@@ -1,3 +1,4 @@
+import type {FunctionalComponent} from 'vue'
 import clock from '@/assets/icons/clock.svg'
 import { RouterLink } from 'vue-router'
 import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
@@ -7,10 +8,10 @@ import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:11:23
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:46:47
+ * @LastEditTime: 2026-09-27 22:56:37
  * @FilePath: src/modules/welcome/Welcome2ndPage.tsx
  */
-export const Welcome2ndPage = () => (
+export const Welcome2ndPage: FunctionalComponent = () => (
   <WelcomeLayout>
     {{
       icon: () => <img src={clock} alt="clock" class="w-128px h-130px mt-25%" />,

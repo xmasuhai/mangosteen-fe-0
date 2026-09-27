@@ -1,3 +1,4 @@
+import type {FunctionalComponent} from 'vue'
 import cloud from '@/assets/icons/cloud.svg'
 import { RouterLink } from 'vue-router'
 import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
@@ -7,10 +8,10 @@ import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:14:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:47:41
+ * @LastEditTime: 2026-09-27 22:56:29
  * @FilePath: src/modules/welcome/Welcome4thPage.tsx
  */
-export const Welcome4thPage = () => (
+export const Welcome4thPage: FunctionalComponent = () => (
   <WelcomeLayout>
     {{
       icon: () => <img src={cloud} alt="cloud" class="w-128px h-130px mt-25%" />,

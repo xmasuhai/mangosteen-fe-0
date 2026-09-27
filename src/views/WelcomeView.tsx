@@ -1,3 +1,4 @@
+import type { FunctionalComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import { cn } from 'cn'
 import s from '@/modules/welcome/WelcomeView.module.scss'
@@ -8,10 +9,10 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:47:47
+ * @LastEditTime: 2026-09-27 22:55:19
  * @FilePath: src/views/WelcomeView.tsx
  */
-export const WelcomeView = () => (
+export const WelcomeView: FunctionalComponent = () => (
   <div class={s.wrapper}>
     <header class={s.title}>
       <img src={logo} alt="logo" />
