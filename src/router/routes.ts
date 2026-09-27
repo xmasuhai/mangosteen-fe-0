@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { WelcomeView } from '@/views/WelcomeView.tsx'
-import { WelCome1stPage } from '@/modules/welcome/WelCome1stPage.tsx'
+import { Welcome1stPage } from '@/modules/welcome/Welcome1stPage.tsx'
 import { Welcome2ndPage } from '@/modules/welcome/Welcome2ndPage.tsx'
 import { Welcome3rdPage } from '@/modules/welcome/Welcome3rdPage.tsx'
 import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
@@ -10,7 +10,7 @@ import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-26 23:14:32
+ * @LastEditTime: 2026-09-27 11:27:18
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -25,7 +25,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       // { path: '', name: 'default', component: WelCome1stPage },
       { path: '', name: 'welcomePig', redirect: '/welcome/1' },
-      { path: '1', component: WelCome1stPage },
+      { path: '1', component: Welcome1stPage },
       { path: '2', component: Welcome2ndPage },
       { path: '3', component: Welcome3rdPage },
       { path: '4', component: Welcome4thPage },

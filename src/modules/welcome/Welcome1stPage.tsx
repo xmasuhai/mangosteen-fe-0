@@ -7,15 +7,15 @@ import { RouterLink } from 'vue-router'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 12:11:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-25 21:44:34
- * @FilePath: src/modules/welcome/WelCome1stPage.tsx
+ * @LastEditTime: 2026-09-27 11:27:17
+ * @FilePath: src/modules/welcome/Welcome1stPage.tsx
  */
-export const WelCome1stPage = defineComponent({
-  name: 'WelCome1stPage',
+export const Welcome1stPage = defineComponent({
+  name: 'Welcome1stPage',
   setup(/*props, ctx*/) {
     return () => (
       <>
-        <img src={pig} alt="icon" class="w-128px h-130px mt-25%" />
+        <img src={pig} alt="pig" class="w-128px h-130px mt-25%" />
         <div class="description flex flex-col items-center text-[2em]">
           <h2>会挣钱</h2>
           <h2>还要会省钱</h2>
