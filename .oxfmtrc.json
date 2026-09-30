@@ -2,5 +2,7 @@
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "semi": false,
   "singleQuote": true,
-  "bracketSameLine": true
+  "bracketSameLine": true,
+  "perfectionist/sort-imports": "false",
+  "style/jsx-closing-bracket-location": ["error", { "location": "after-props" }]
 }

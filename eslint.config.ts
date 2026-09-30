@@ -10,6 +10,15 @@ export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
     files: ['**/*.{vue,ts,mts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+      'perfectionist/sort-named-imports': 'off',
+      'perfectionist/sort-imports': 'off',
+      'style/jsx-closing-bracket-location': ["error", { "location": "after-props" }]
+    },
   },
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
