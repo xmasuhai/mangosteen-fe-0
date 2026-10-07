@@ -10,7 +10,7 @@ import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 11:27:18
+ * @LastEditTime: 2026-10-07 23:22:20
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -25,10 +25,10 @@ export const routes: RouteRecordRaw[] = [
     children: [
       // { path: '', name: 'default', component: WelCome1stPage },
       { path: '', name: 'welcomePig', redirect: '/welcome/1' },
-      { path: '1', component: Welcome1stPage },
-      { path: '2', component: Welcome2ndPage },
-      { path: '3', component: Welcome3rdPage },
-      { path: '4', component: Welcome4thPage },
+      { path: '1', components: { main: Welcome1stPage } },
+      { path: '2', components: { main: Welcome2ndPage } },
+      { path: '3', components: { main: Welcome3rdPage } },
+      { path: '4', components: { main: Welcome4thPage } },
     ],
   },
-] as const
+]

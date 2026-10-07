@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-07 23:12:21
+ * @LastEditTime: 2026-10-07 23:20:12
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView: FunctionalComponent = () => (
@@ -24,7 +24,7 @@ export const WelcomeView: FunctionalComponent = () => (
         'bg-welcomeCardBg mb-62px ml-16px mr-16px rounded-lg',
         'flex flex-col flex-grow items-center justify-around',
       ])}>
-      <RouterView>
+      <RouterView name="main">
         {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) =>
           /* <Component key={route.path} /> */
           Component && cloneVNode(Component, { key: route.path })
