@@ -1,7 +1,7 @@
 import { Transition, type FunctionalComponent, type VNode } from 'vue'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
 import { cn } from 'cn'
-import s from '@/modules/welcome/WelcomeView.module.scss'
+import s from '@/views/WelcomeView.module.scss'
 import logo from '@/assets/icons/mangosteen.svg'
 
 /**
@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-08 17:31:20
+ * @LastEditTime: 2026-10-08 21:32:08
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView: FunctionalComponent = () => (
