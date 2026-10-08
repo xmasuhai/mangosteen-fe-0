@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 15:59:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-08 16:01:29
+ * @LastEditTime: 2026-10-08 17:24:11
  * @FilePath: src/modules/welcome/WelcomeView.module.scss
  */
 .wrapper {
@@ -45,19 +45,17 @@
   }
 }
 
-:global {
-  .slide-fade-enter-active,
-  .slide-fade-leave-active {
-    transition: all .8s ease-out;
-  }
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all .8s ease-out;
+}
 
-  .slide-fade-enter-from {
-    transform: translateX(100vw);
-    //opacity: 0;
-  }
+.slide-fade-enter-from {
+  transform: translateX(100vw);
+  //opacity: 0;
+}
 
-  .slide-fade-leave-to {
-    transform: translateX(-100vw);
-    //opacity: 0;
-  }
+.slide-fade-leave-to {
+  transform: translateX(-100vw);
+  //opacity: 0;
 }

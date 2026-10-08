@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-08 16:13:25
+ * @LastEditTime: 2026-10-08 17:31:20
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView: FunctionalComponent = () => (
@@ -26,7 +26,12 @@ export const WelcomeView: FunctionalComponent = () => (
       ])}>
       <RouterView name="main">
         {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => (
-        <Transition name="slide-fade">
+        <Transition
+          name="slide-fade"
+          enterActiveClass={s['slide-fade-enter-active']}
+          leaveActiveClass={s['slide-fade-leave-active']}
+          enterFromClass={s['slide-fade-enter-from']}
+          leaveToClass={s['slide-fade-leave-to']}>
           <div
             key={route.path}
             class={cn([
