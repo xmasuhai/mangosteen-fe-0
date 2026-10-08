@@ -1,4 +1,4 @@
-import { cloneVNode, type FunctionalComponent, type VNode } from 'vue'
+import { Transition, type FunctionalComponent, type VNode } from 'vue'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
 import { cn } from 'cn'
 import s from '@/modules/welcome/WelcomeView.module.scss'
@@ -9,7 +9,7 @@ import logo from '@/assets/icons/mangosteen.svg'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-07 23:20:12
+ * @LastEditTime: 2026-10-08 16:13:25
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView: FunctionalComponent = () => (
@@ -21,14 +21,23 @@ export const WelcomeView: FunctionalComponent = () => (
     <main
       class={cn([
         s.main,
-        'bg-welcomeCardBg mb-62px ml-16px mr-16px rounded-lg',
-        'flex flex-col flex-grow items-center justify-around',
+        'mb-62px mx-16px',
+        'position-relative'
       ])}>
       <RouterView name="main">
-        {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) =>
-          /* <Component key={route.path} /> */
-          Component && cloneVNode(Component, { key: route.path })
-        }
+        {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => (
+        <Transition name="slide-fade">
+          <div
+            key={route.path}
+            class={cn([
+              'bg-welcomeCardBg rounded-lg',
+              'flex flex-col flex-grow items-center justify-around',
+              'position-absolute top-0 left-0 h-100% w-100%',
+            ])}>
+            {Component}
+          </div>
+        </Transition>
+        )}
       </RouterView>
     </main>
 
