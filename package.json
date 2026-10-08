@@ -25,7 +25,7 @@
     "svgo": "4.1.0",
     "svgstore": "3.0.1",
     "vue": "3.5.43",
-    "vue-router": "5.3.1"
+    "vue-router": "5.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "9.5.1",
@@ -54,7 +54,7 @@
     "oxfmt": "0.72.0",
     "oxlint": "1.87.0",
     "sass-embedded": "1.105.1",
-    "start-server-and-test": "3.0.12",
+    "start-server-and-test": "3.0.13",
     "typescript": "6.0.3",
     "unocss": "66.10.5",
     "vite": "8.3.3",
