@@ -28,6 +28,7 @@
     "vue-router": "5.4.0"
   },
   "devDependencies": {
+    "@10coding/vite-plugin-jsx-scoped": "0.6.0",
     "@antfu/eslint-config": "9.5.1",
     "@tsconfig/node24": "24.0.5",
     "@types/jsdom": "30.0.0",
@@ -57,7 +58,7 @@
     "start-server-and-test": "3.0.13",
     "typescript": "6.0.3",
     "unocss": "66.10.5",
-    "vite": "8.3.3",
+    "vite": "8.3.4",
     "vite-plugin-mkcert": "2.1.0",
     "vite-plugin-vue-devtools": "8.2.1",
     "vitest": "5.0.3",

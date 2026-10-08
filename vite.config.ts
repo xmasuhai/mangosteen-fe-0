@@ -1,9 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import unoCSS from 'unocss/vite'
+import jsxScoped from '@10coding/vite-plugin-jsx-scoped'
 // import mkcert from 'vite-plugin-mkcert'
 // import basicSsl from '@vitejs/plugin-basic-ssl'
 
@@ -12,6 +14,7 @@ export default defineConfig({
   // base: '/mangosteen-fe-0-publish/',
   plugins: [
     unoCSS(),
+    jsxScoped({ warnMultiScopedImport: true }),
     vue(),
     vueJsx({
       transformOn: true,

@@ -21,7 +21,7 @@ minimumReleaseAgeExclude:
   - '@oxfmt/binding-win32-ia32-msvc@0.69.0 || 0.71.0'
   - oxfmt@0.69.0 || 0.71.0
   - eslint-plugin-vue@10.11.1
-  - vite@8.3.1
+  - vite@8.3.1 || 8.3.4
   - '@oxfmt/binding-linux-x64-gnu@0.71.0'
   - '@oxfmt/binding-win32-x64-msvc@0.71.0'
   - '@oxlint/binding-android-arm-eabi@1.86.0'
