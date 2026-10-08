@@ -8,13 +8,13 @@ import { WelcomeLayout } from '@/modules/welcome/WelcomeLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 12:11:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-09-27 22:56:42
+ * @LastEditTime: 2026-10-08 15:18:00
  * @FilePath: src/modules/welcome/Welcome1stPage.tsx
  */
 export const Welcome1stPage: FunctionalComponent = () => (
   <WelcomeLayout
     v-slots={{
-      icon: () => <img src={pig} alt="pig" class="w-128px h-130px mt-25%" />,
+      icon: () => <img src={pig} alt="pig" class="w-128px h-130px mt-25% translate-y-1em" />,
       title: () => (
         <>
           <h2>会挣钱</h2>
