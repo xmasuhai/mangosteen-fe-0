@@ -1,0 +1,26 @@
+/**
+ * @Description: 欢迎页
+ * @Author: xmasuhai <xmasuhai@163.com>
+ * @Date: 2026-10-08 22:16:46
+ * @LastEditors: xmasuhai <xmasuhai@163.com>
+ * @LastEditTime: 2026-10-08 23:37:39
+ * @FilePath: src/modules/welcome/WelcomePage.module.scss
+ */
+.logo {
+  margin-top: 25%;
+  transform: translateY(1em);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+}
+
+.to-next-page {
+  color: var(--welcome-text-primary-color);
+  margin-bottom: 84px;
+  font-size: 2em;
+  font-weight: bold;
+}
