@@ -11,7 +11,6 @@
       "DOM"
     ],
     "types": [
-      "node",
       "vite/client",
       "@10coding/vite-plugin-jsx-scoped/client"
     ],
