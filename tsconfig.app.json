@@ -11,8 +11,8 @@
       "DOM"
     ],
     "types": [
+      "node",
       "vite/client",
-      "unocss/types/global",
       "@10coding/vite-plugin-jsx-scoped/client"
     ],
     "allowArbitraryExtensions": true,
