@@ -1,4 +1,4 @@
-import {createWebHistory} from 'vue-router'
+import { createWebHistory } from 'vue-router'
 
 /**
  * @Description: 路由历史类型

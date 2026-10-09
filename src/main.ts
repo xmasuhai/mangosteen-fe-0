@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import router from '@/router'
-import {App} from '@/App.tsx'
+import { App } from '@/App.tsx'
 import '@/assets/styles/main.scss'
 import 'uno.css'
 // import 'virtual:uno.css'

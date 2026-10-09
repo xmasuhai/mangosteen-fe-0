@@ -1,4 +1,4 @@
-import type {FunctionalComponent} from 'vue'
+import type { FunctionalComponent } from 'vue'
 import clock from '@/assets/icons/clock.svg'
 import { RouterLink } from 'vue-router'
 import wp from '@/modules/welcome/WelcomePage.module.scss'
