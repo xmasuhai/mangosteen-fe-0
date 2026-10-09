@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="@10coding/vite-plugin-jsx-scoped/client" />
 
 declare module 'svgstore' {
   export interface SvgStoreOptions {

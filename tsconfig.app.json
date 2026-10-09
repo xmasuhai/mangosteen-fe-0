@@ -16,6 +16,7 @@
     ],
     "allowArbitraryExtensions": true,
     // Extra safety for array and object lookups, but may have false positives.
+    "noUncheckedSideEffectImports": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
