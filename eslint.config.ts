@@ -11,13 +11,8 @@ export default defineConfigWithVueTs(
     name: 'app/files-to-lint',
     files: ['**/*.{vue,ts,mts,tsx}'],
     rules: {
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
       'perfectionist/sort-named-imports': 'off',
-      'perfectionist/sort-imports': 'off',
-      'style/jsx-closing-bracket-location': ["error", { "location": "after-props" }]
+      'perfectionist/sort-imports': 'off'
     },
   },
 
@@ -25,7 +20,6 @@ export default defineConfigWithVueTs(
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-
   // Cypress
   {
     ...pluginCypress.configs.recommended,
@@ -34,15 +28,12 @@ export default defineConfigWithVueTs(
       'cypress/support/**/*.{js,ts,jsx,tsx}',
     ],
   },
-
   // Vitest
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
-
   // Oxlint
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
-
   skipFormatting,
 )
