@@ -24,7 +24,25 @@ export default defineConfig({
     vueDevTools(),
     // svgoStore(),
     createSvgIconsPlugin({
-      iconDirs: ['src/assets/icons']
+      iconDirs: ['src/assets/icons'],
+      bakerOptions: {
+        svgoOptions: {
+          plugins: [
+            'cleanupAttrs',
+            'removeDoctype',
+            'removeComments',
+            'removeTitle',
+            'removeDesc',
+            'removeEmptyAttrs',
+            {
+              name: 'removeAttrs',
+              params: {
+                attrs: '(data-name|data-xxx)',
+              },
+            },
+          ],
+        },
+      },
     }),
     // 自动启用 TLS + HTTP/2 自动在主机中安装证书
     // mkcert(),
