@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "vite-plugin-svg-icons-ng": {
+      "source": "yangxu52/vite-plugin-svg-icons-ng",
+      "sourceType": "github",
+      "skillPath": "skills/vite-plugin-svg-icons-ng/SKILL.md",
+      "computedHash": "1c33df510ce1f6b8c4c4e51bb32c1b8f79a7ad069cb4c0f1035eae55431e79c9"
+    }
+  }
+}
