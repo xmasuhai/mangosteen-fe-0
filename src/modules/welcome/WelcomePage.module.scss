@@ -3,12 +3,13 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-08 22:16:46
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 15:00:38
+ * @LastEditTime: 2026-10-10 17:06:22
  * @FilePath: src/modules/welcome/WelcomePage.module.scss
  */
 .logo {
   margin-top: 25%;
-  //transform: translateY(1em);
+  width: 108px;
+  height: 108px;
 }
 
 .description {

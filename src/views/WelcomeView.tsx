@@ -2,21 +2,20 @@ import { Transition, type FunctionalComponent, type VNode } from 'vue'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
 import { cn } from 'cn'
 import s from '@/views/WelcomeView.module.scss'
+import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 
 /**
  * @Description: 欢迎页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 15:03:57
+ * @LastEditTime: 2026-10-10 16:24:09
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView: FunctionalComponent = () => (
   <div class={s.wrapper}>
     <header class={s.title}>
-      <svg class={s.logo}>
-        <use xlinkHref="#mangosteen"></use>
-      </svg>
+      <SvgIcon class={s.logo} name="mangosteen"/>
       <h1>山竹记账</h1>
     </header>
     <main class={cn([s.main, 'mb-62px mx-16px', 'position-relative'])}>

@@ -1,20 +1,19 @@
 import type { FunctionalComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import wp from '@/modules/welcome/WelcomePage.module.scss'
+import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 
 /**
  * @Description: 欢迎页：图表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:13:51
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 14:52:54
+ * @LastEditTime: 2026-10-10 17:03:19
  * @FilePath: src/modules/welcome/Welcome3rdPage.tsx
  */
 export const Welcome3rdPage: FunctionalComponent = () => (
   <>
-    <svg class={wp.logo}>
-      <use xlinkHref="#chart"></use>
-    </svg>
+    <SvgIcon class={wp.logo} name="chart"/>
     <div class={wp.description}>
       <h2>数据可视化</h2>
       <h2>收支一目了然</h2>
