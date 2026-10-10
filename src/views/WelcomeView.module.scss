@@ -3,8 +3,8 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 15:59:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-08 17:24:11
- * @FilePath: src/modules/welcome/WelcomeView.module.scss
+ * @LastEditTime: 2026-10-10 15:04:16
+ * @FilePath: src/views/WelcomeView.module.scss
  */
 .wrapper {
   height: 100vh;
@@ -27,6 +27,12 @@
     align-items: center;
     justify-content: center;
     margin: 32px 0;
+
+    > .logo {
+      width: 64px;
+      height: 69px;
+    }
+
   }
 
   & > main.main {

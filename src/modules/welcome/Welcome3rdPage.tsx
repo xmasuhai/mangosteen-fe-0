@@ -1,5 +1,4 @@
 import type { FunctionalComponent } from 'vue'
-import chart from '@/assets/icons/chart.svg'
 import { RouterLink } from 'vue-router'
 import wp from '@/modules/welcome/WelcomePage.module.scss'
 
@@ -8,12 +7,14 @@ import wp from '@/modules/welcome/WelcomePage.module.scss'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:13:51
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-08 23:33:09
+ * @LastEditTime: 2026-10-10 14:52:54
  * @FilePath: src/modules/welcome/Welcome3rdPage.tsx
  */
 export const Welcome3rdPage: FunctionalComponent = () => (
   <>
-    <img src={chart} alt="chart" class={wp.logo} />
+    <svg class={wp.logo}>
+      <use xlinkHref="#chart"></use>
+    </svg>
     <div class={wp.description}>
       <h2>数据可视化</h2>
       <h2>收支一目了然</h2>
