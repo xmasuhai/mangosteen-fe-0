@@ -1,6 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs'
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import svgstore from 'svgstore' // 用于制作 SVG Sprites
 import { optimize, type Config as SvgoConfig } from 'svgo' // 用于优化 SVG 文件
 import type { Plugin } from 'vite'
@@ -35,7 +36,7 @@ export interface SvgoStoreOptions extends SvgStoreOptions {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-08 18:04:16
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 13:09:59
+ * @LastEditTime: 2026-10-10 22:54:57
  * @FilePath: src/plugins/svgoStore.ts
  */
 export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
