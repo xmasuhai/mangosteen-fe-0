@@ -7,22 +7,19 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-10 16:17:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 17:29:55
+ * @LastEditTime: 2026-10-10 23:33:22
  * @FilePath: src/components/icons/SvgIcon.tsx
  */
 export const SvgIcon = defineComponent({
   name: 'SvgIcon',
-  // inheritAttrs: false,
   props: {
     name: { type: String, required: true },
   },
   setup(props, _ctx) {
-    // const { class: parentClass } = _ctx.attrs
     return () => (
       <svg
         class={cn(
-          'h-1em w-1em align-[-0.15em] fill-[currentColor] overflow-clip',
-          // parentClass, // 默认即组件外部样式覆盖内部默认样式
+          'where:(h-1em w-1em align-[-0.15em] fill-[currentColor] overflow-clip)',
         )}
         aria-hidden="true">
         <use xlinkHref={`#icon-${props.name}`}/>
