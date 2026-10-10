@@ -65,5 +65,7 @@ minimumReleaseAgeExclude:
   - sass@1.105.1
   - start-server-and-test@3.0.13
   - vue-router@5.4.0
+  - '@vue/language-core@3.3.13'
+  - vue-tsc@3.3.13
 overrides:
   'typescript': 'npm:typescript-native-bridge@latest'
