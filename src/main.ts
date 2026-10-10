@@ -4,6 +4,8 @@ import router from '@/router'
 import { App } from '@/App.tsx'
 import '@/assets/styles/main.scss'
 import 'uno.css'
+// @ts-ignore
+import '@svgoStore'
 // import 'virtual:uno.css'
 
 const app = createApp(App)

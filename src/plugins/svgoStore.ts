@@ -1,5 +1,6 @@
 import path from 'node:path'
 import fs from 'node:fs'
+// @ts-ignore
 import svgstore from 'svgstore' // 用于制作 SVG Sprites
 import { optimize, type Config as SvgoConfig } from 'svgo' // 用于优化 SVG 文件
 import type { Plugin } from 'vite'
@@ -34,7 +35,7 @@ export interface SvgoStoreOptions extends SvgStoreOptions {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-08 18:04:16
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-09 17:06:50
+ * @LastEditTime: 2026-10-10 13:09:59
  * @FilePath: src/plugins/svgoStore.ts
  */
 export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
@@ -43,12 +44,12 @@ export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
     name: 'svgoStore',
     resolveId(id: string) {
       if (id === '@svgoStore') {
-        return 'svg_bundle.js'
+        return 'svg_bundle.ts'
       }
       return null
     },
     load(id: string) {
-      if (id === 'svg_bundle.js') {
+      if (id === 'svg_bundle.ts') {
         const sprites = svgstore(options)
         const iconsDir = path.resolve(inputFolder)
         for (const file of fs.readdirSync(iconsDir)) {
@@ -57,7 +58,7 @@ export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
           const code = fs.readFileSync(filepath, { encoding: 'utf-8' })
           sprites.add(svgid, code)
         }
-        const svgoConfig: SvgoConfig = options.svgoConfig || {
+        const svgoConfig: SvgoConfig = options.svgoConfig ?? {
           plugins: [
             'cleanupAttrs',
             'removeDoctype',

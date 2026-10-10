@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import unoCSS from 'unocss/vite'
 import jsxScoped from '@10coding/vite-plugin-jsx-scoped'
+import { svgoStore } from './src/plugins/svgoStore.ts'
 // import mkcert from 'vite-plugin-mkcert'
 // import basicSsl from '@vitejs/plugin-basic-ssl'
 
@@ -20,6 +21,7 @@ export default defineConfig({
       mergeProps: true,
     }),
     vueDevTools(),
+    svgoStore(),
     // 自动启用 TLS + HTTP/2 自动在主机中安装证书
     // mkcert(),
     // 自动启用 TLS + HTTP/2 自动在主机中安装假证书
