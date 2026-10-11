@@ -2,13 +2,14 @@ import { defineComponent, onMounted, Transition, useTemplateRef, type VNode } fr
 import { cn } from 'cn'
 import s from '@/views/WelcomeView.module.scss'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
+import { useSwipe } from '@/hooks/useSwipe.ts'
 
 /**
  * @Description:
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 12:31:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 12:33:21
+ * @LastEditTime: 2026-10-11 12:44:53
  * @FilePath: src/modules/welcome/MainSwiper.tsx
  */
 export const MainSwiper = defineComponent({
@@ -16,18 +17,21 @@ export const MainSwiper = defineComponent({
   props: {},
   components: {},
   setup(/*props, ctx*/) {
-    const inputRef = useTemplateRef('input')
+    const mainRef = useTemplateRef<HTMLElement>('mainRef')
+
+    const {isSwiping}  =  useSwipe(mainRef)
 
     onMounted(() => {
       console.log('WelcomeView_______________________')
-      console.log("%c 4 --> inputRef: ","color:#f00;", inputRef);
-      console.log("%c 10 --> inputRef: ","color:#42b883;", inputRef.value);
+      console.log("%c 5 --> isSwiping: ","color:#ff6a00;", isSwiping);
+      console.log("%c 4 --> mainRef: ","color:#f00;", mainRef);
+      console.log("%c 10 --> mainRef: ","color:#42b883;", mainRef.value);
       console.log('_______________________WelcomeView')
     })
 
     return () => (
       <main
-        ref={inputRef}
+        ref="mainRef"
         class={cn([s.main, 'mb-62px mx-16px', 'position-relative'])}>
         <RouterView name="main">
           {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => (
