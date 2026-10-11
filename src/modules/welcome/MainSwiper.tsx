@@ -1,15 +1,15 @@
 import { defineComponent, onMounted, Transition, useTemplateRef, type VNode } from 'vue'
-import { cn } from 'cn'
-import s from '@/views/WelcomeView.module.scss'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
+import { cn } from 'cn'
+import '@/modules/welcome/MainSwiper.scoped.scss'
 import { useSwipe } from '@/hooks/useSwipe.ts'
 
 /**
- * @Description:
+ * @Description: 欢迎页主轮播
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 12:31:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 12:44:53
+ * @LastEditTime: 2026-10-11 14:10:45
  * @FilePath: src/modules/welcome/MainSwiper.tsx
  */
 export const MainSwiper = defineComponent({
@@ -32,15 +32,20 @@ export const MainSwiper = defineComponent({
     return () => (
       <main
         ref="mainRef"
-        class={cn([s.main, 'mb-62px mx-16px', 'position-relative'])}>
+        class={cn([
+          'max-h-[calc(100%-360px)]',
+          'flex flex-col flex-1',
+          'mb-62px mx-16px',
+          'position-relative'
+        ])}>
         <RouterView name="main">
           {({ Component, route }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => (
             <Transition
               name="slide-fade"
-              enterActiveClass={s['slide-fade-enter-active']}
-              leaveActiveClass={s['slide-fade-leave-active']}
-              enterFromClass={s['slide-fade-enter-from']}
-              leaveToClass={s['slide-fade-leave-to']}>
+              enterActiveClass="slide-fade-enter-active"
+              leaveActiveClass="slide-fade-leave-active"
+              enterFromClass="slide-fade-enter-from"
+              leaveToClass="slide-fade-leave-to">
               <div
                 key={route.path}
                 class={cn([
