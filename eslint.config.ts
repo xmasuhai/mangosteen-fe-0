@@ -12,7 +12,13 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
     rules: {
       'perfectionist/sort-named-imports': 'off',
-      'perfectionist/sort-imports': 'off'
+      'perfectionist/sort-imports': 'off',
+      // 1. 允许单行大括号（关键规则）
+      "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+      // 2. 强制单行代码块的大括号内部有空格（处理 { return null } 的空格）
+      "block-spacing": ["error", "always"],
+      // 3. 允许单行中花括号前后有空格（配合 block-spacing）
+      "object-curly-spacing": ["error", "always"]
     },
   },
 
