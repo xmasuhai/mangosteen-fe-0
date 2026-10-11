@@ -1,4 +1,10 @@
-import { defineComponent, onMounted, Transition, useTemplateRef, type VNode } from 'vue'
+import {
+  defineComponent,
+  Transition,
+  useTemplateRef,
+  type VNode,
+  watchEffect,
+} from 'vue'
 import { type RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
 import { cn } from 'cn'
 import '@/modules/welcome/MainSwiper.scoped.scss'
@@ -9,24 +15,19 @@ import { useSwipe } from '@/hooks/useSwipe.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 12:31:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 14:10:45
+ * @LastEditTime: 2026-10-11 17:27:25
  * @FilePath: src/modules/welcome/MainSwiper.tsx
  */
 export const MainSwiper = defineComponent({
   name: 'MainSwiper',
-  props: {},
-  components: {},
   setup(/*props, ctx*/) {
     const mainRef = useTemplateRef<HTMLElement>('mainRef')
-
-    const {isSwiping}  =  useSwipe(mainRef)
-
-    onMounted(() => {
-      console.log('WelcomeView_______________________')
-      console.log("%c 5 --> isSwiping: ","color:#ff6a00;", isSwiping);
-      console.log("%c 4 --> mainRef: ","color:#f00;", mainRef);
-      console.log("%c 10 --> mainRef: ","color:#42b883;", mainRef.value);
-      console.log('_______________________WelcomeView')
+    const { isSwiping, direction }  =  useSwipe(mainRef)
+    watchEffect(() => {
+      console.log('useSwipe_______________________')
+      console.log("%c 2 --> direction: ","color:#58c4dc;", direction.value);
+      console.log("%c 5 --> isSwiping: ","color:#ff6a00;", isSwiping.value);
+      console.log('_______________________useSwipe')
     })
 
     return () => (
