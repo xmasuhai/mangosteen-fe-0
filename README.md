@@ -47,6 +47,12 @@ pnpm build
 
 ---
 
+## 编码规范
+
+- [项目编码规范](markdown/spec.md)
+
+---
+
 ## ❓ 常见问题排查
 
 **Q: 运行 `pnpm install` 提示 `Command not found`？**
