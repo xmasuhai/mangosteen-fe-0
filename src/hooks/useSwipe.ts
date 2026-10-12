@@ -6,6 +6,14 @@ interface SwipeState {
   direction: ComputedRef<'' | 'right' | 'left' | 'up' | 'down'>
   distance: ComputedRef<Point | null>
 }
+interface EventOptions {
+  beforeStart?: (e: TouchEvent) => void,
+  afterStart?: (e: TouchEvent) => void,
+  beforeMove?: (e: TouchEvent) => void,
+  afterMove?: (e: TouchEvent) => void,
+  beforeEnd?: (e: TouchEvent) => void,
+  afterEnd?: (e: TouchEvent) => void,
+}
 
 const calcDistance = (start: Point, end: Point) => {
   return {
@@ -30,20 +38,36 @@ const calcDirection = (distance: Point) => {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 11:32:04
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-12 17:42:55
+ * @LastEditTime: 2026-10-12 19:36:16
  * @FilePath: src/hooks/useSwipe.ts
  */
-export const useSwipe = (elementRef: Ref<HTMLElement | null>): SwipeState => {
+export const useSwipe = (
+  elementRef: Ref<HTMLElement | null>,
+  eventOptions?: EventOptions,
+): SwipeState => {
+  const {
+    beforeStart,
+    afterStart,
+    beforeMove,
+    afterMove,
+    beforeEnd,
+    afterEnd,
+  } = eventOptions ?? {}
+
   const start = ref<Point>()
   const end = ref<Point>()
   const isSwiping = ref(false)
   const distance = computed(() => {
-    if (!start.value || !end.value) { return null }
+    if (!start.value || !end.value) {
+      return null
+    }
     return calcDistance(start.value, end.value)
   })
 
   const direction = computed(() => {
-    if (!distance.value || !isSwiping.value) { return '' }
+    if (!distance.value || !isSwiping.value) {
+      return ''
+    }
     return calcDirection(distance.value)
   })
 
@@ -51,29 +75,37 @@ export const useSwipe = (elementRef: Ref<HTMLElement | null>): SwipeState => {
   const opt = { signal: aborter.signal }
 
   const onStart = (e: TouchEvent) => {
+    beforeStart?.(e)
     start.value = {
       x: e.touches[0]?.screenX ?? 0,
       y: e.touches[0]?.screenY ?? 0,
     }
     end.value = void 0
     isSwiping.value = true
+    afterStart?.(e)
   }
 
   const onMove = (e: TouchEvent) => {
+    beforeMove?.(e)
     end.value = {
       x: e.touches[0]?.screenX ?? 0,
       y: e.touches[0]?.screenY ?? 0,
     }
+    afterMove?.(e)
   }
 
-  const onEnd = () => {
+  const onEnd = (e: TouchEvent) => {
+    beforeEnd?.(e)
     isSwiping.value = false
     start.value = void 0
     end.value = void 0
+    afterEnd?.(e)
   }
 
   onMounted(() => {
-    if (!elementRef.value) { return }
+    if (!elementRef.value) {
+      return
+    }
     elementRef.value.addEventListener('touchstart', onStart, opt)
     elementRef.value.addEventListener('touchmove', onMove, opt)
     elementRef.value.addEventListener('touchend', onEnd, opt)
