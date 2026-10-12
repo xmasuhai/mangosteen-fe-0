@@ -17,7 +17,7 @@ const routerToHash = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 12:31:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-12 21:17:54
+ * @LastEditTime: 2026-10-12 21:23:57
  * @FilePath: src/modules/welcome/MainSwiper.tsx
  */
 export const MainSwiper = defineComponent({
@@ -29,13 +29,13 @@ export const MainSwiper = defineComponent({
 
     const route = useRoute()
 
-    const push = throttle(async () => {
-      await router.push(routerToHash[route.name as keyof typeof routerToHash])
+    const replace = throttle(async () => {
+      await router.replace(routerToHash[route.name as keyof typeof routerToHash])
     }, 500)
 
     watchEffect(() => {
       if (isSwiping.value && direction.value === 'left') {
-        push()
+        replace()
       }
     })
 
