@@ -3,12 +3,12 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 14:08:01
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 14:08:27
+ * @LastEditTime: 2026-10-12 21:06:00
  * @FilePath: src/modules/welcome/MainSwiper.scoped.scss
  */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.8s ease-out;
+  transition: all var(--transition-duration) ease-out;
 }
 
 .slide-fade-enter-from {
