@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  typescript: npm:typescript-native-bridge@latest
-
 importers:
 
   .:
@@ -115,7 +112,7 @@ importers:
         specifier: 3.0.13
         version: 3.0.13(supports-color@10.2.2)
       typescript:
-        specifier: npm:typescript-native-bridge@latest
+        specifier: npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2
         version: typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2
       unocss:
         specifier: 66.10.5
@@ -8930,3 +8927,6 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zwitch@2.0.4: {}
+
+overrides:
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2
