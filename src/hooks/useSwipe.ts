@@ -15,7 +15,9 @@ const calcDistance = (start: Point, end: Point) => {
 }
 
 const calcDirection = (distance: Point) => {
-  if (!distance) { return '' }
+  if (!distance) {
+    return ''
+  }
   const { x, y } = distance
   if (Math.abs(x) > Math.abs(y)) {
     return x > 0 ? 'right' : 'left'
@@ -28,12 +30,12 @@ const calcDirection = (distance: Point) => {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-11 11:32:04
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 17:39:45
+ * @LastEditTime: 2026-10-12 17:42:55
  * @FilePath: src/hooks/useSwipe.ts
  */
 export const useSwipe = (elementRef: Ref<HTMLElement | null>): SwipeState => {
-  const start = ref<Point | null>(null)
-  const end = ref<Point | null>(null)
+  const start = ref<Point>()
+  const end = ref<Point>()
   const isSwiping = ref(false)
   const distance = computed(() => {
     if (!start.value || !end.value) { return null }
@@ -48,18 +50,16 @@ export const useSwipe = (elementRef: Ref<HTMLElement | null>): SwipeState => {
   const aborter = new AbortController()
   const opt = { signal: aborter.signal }
 
-  const onStart = (e: TouchEvent
-  ) => {
+  const onStart = (e: TouchEvent) => {
     start.value = {
       x: e.touches[0]?.screenX ?? 0,
       y: e.touches[0]?.screenY ?? 0,
     }
-    end.value = null
+    end.value = void 0
     isSwiping.value = true
   }
 
-  const onMove = (e: TouchEvent
-  ) => {
+  const onMove = (e: TouchEvent) => {
     end.value = {
       x: e.touches[0]?.screenX ?? 0,
       y: e.touches[0]?.screenY ?? 0,
@@ -68,18 +68,20 @@ export const useSwipe = (elementRef: Ref<HTMLElement | null>): SwipeState => {
 
   const onEnd = () => {
     isSwiping.value = false
-    start.value = null
-    end.value = null
+    start.value = void 0
+    end.value = void 0
   }
 
   onMounted(() => {
-    if(!elementRef.value) {return}
+    if (!elementRef.value) { return }
     elementRef.value.addEventListener('touchstart', onStart, opt)
     elementRef.value.addEventListener('touchmove', onMove, opt)
     elementRef.value.addEventListener('touchend', onEnd, opt)
   })
 
-  onUnmounted(() => {aborter.abort()})
+  onUnmounted(() => {
+    aborter.abort()
+  })
 
   return {
     isSwiping,
