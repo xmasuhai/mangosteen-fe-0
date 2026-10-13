@@ -1,13 +1,14 @@
 import { defineComponent } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
+import { FloatButton } from '@/components/FloatButton.tsx'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 14:14:25
+ * @LastEditTime: 2026-10-13 14:52:30
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -28,6 +29,8 @@ export const StartAccountsView = defineComponent({
           <BarButton onClick={onClick}>
             测试
           </BarButton>
+
+          <FloatButton/>
         </div>
       </div>
     )

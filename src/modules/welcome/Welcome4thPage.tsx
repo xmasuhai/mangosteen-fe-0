@@ -8,7 +8,7 @@ import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 13:14:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 17:03:29
+ * @LastEditTime: 2026-10-13 15:38:25
  * @FilePath: src/modules/welcome/Welcome4thPage.tsx
  */
 export const Welcome4thPage: FunctionalComponent = () => (
@@ -19,7 +19,7 @@ export const Welcome4thPage: FunctionalComponent = () => (
       <h2>再也不怕数据丢失</h2>
     </div>
     <div class={wp['to-next-page']}>
-      <RouterLink to="/welcome/home">开启应用</RouterLink>
+      <RouterLink to="/start">开启应用</RouterLink>
     </div>
   </>
 )
