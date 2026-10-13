@@ -8,7 +8,7 @@ import { FloatButton } from '@/components/FloatButton.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 14:52:30
+ * @LastEditTime: 2026-10-13 16:48:02
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -23,14 +23,14 @@ export const StartAccountsView = defineComponent({
     }
 
     return () => (
-      <div class="start-accounts-view">
+      <div class="start-accounts-view w-full h-full position-relative">
         <div
           class={cn('p-x-1em')}>
           <BarButton onClick={onClick}>
             测试
           </BarButton>
 
-          <FloatButton/>
+          <FloatButton class="fixed bottom-1em right-1em" />
         </div>
       </div>
     )

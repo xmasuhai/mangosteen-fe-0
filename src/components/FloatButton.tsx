@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
+import { cn } from 'cn'
 
 interface FloatButtonProps {
   onClick?: (e: MouseEvent) => void,
@@ -10,7 +11,7 @@ interface FloatButtonProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 14:23:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 15:27:10
+ * @LastEditTime: 2026-10-13 16:43:11
  * @FilePath: src/components/FloatButton.tsx
  */
 export const FloatButton = defineComponent<FloatButtonProps>({
@@ -19,8 +20,17 @@ export const FloatButton = defineComponent<FloatButtonProps>({
   components: {},
   setup(/*props, ctx*/) {
     return () => (
-      <div>
-        <SvgIcon name="add"/>
+      <div class={cn(
+        'w-56px h-56px flex justify-center items-center',
+        'bg-[var(--float-button-bg)] rounded-[var(--float-button-radius)]',
+      )}>
+        <SvgIcon
+          name="add"
+          class={cn(
+            'w-2.5em h-2.5em',
+            'fill-[var(--float-button-text-color)]',
+            'translate-y-[-2px]'
+          )}/>
       </div>
     )
   },
