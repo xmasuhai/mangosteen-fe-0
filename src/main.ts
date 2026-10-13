@@ -5,8 +5,7 @@ import { App } from '@/App.tsx'
 import '@/assets/styles/main.scss'
 import 'uno.css'
 // import 'virtual:uno.css'
-// @ts-ignore
-// import '@svgoStore'
+import '@svgoStore'
 
 const app = createApp(App)
 
