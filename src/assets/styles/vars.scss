@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 13:00:52
+ * @LastEditTime: 2026-10-13 16:22:36
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -21,6 +21,9 @@
   --button-text-size: 18px;
   --button-radius: 8px;
   --button-height: 48px;
+  --float-button-bg: var(--button-bg);
+  --float-button-text-color: var(--button-text-color);
+  --float-button-radius: 50%;
 }
 
 /* semantic color variables for this project */
