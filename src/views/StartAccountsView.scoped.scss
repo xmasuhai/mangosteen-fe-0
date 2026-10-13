@@ -1,0 +1,14 @@
+/**
+ * @Description: 开始记账页面
+ * @Author: xmasuhai <xmasuhai@163.com>
+ * @Date: 2026-10-13 22:14:19
+ * @LastEditors: xmasuhai <xmasuhai@163.com>
+ * @LastEditTime: 2026-10-13 22:39:18
+ * @FilePath: src/views/StartAccountsView.scoped.scss
+ */
+.start-accounts-view {
+  & > .navbar {
+    // for unocss: 'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]'
+    background-image: linear-gradient(to bottom, var(--navbar-bg-start), var(--navbar-bg-end));
+  }
+}

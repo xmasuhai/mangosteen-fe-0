@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 16:22:36
+ * @LastEditTime: 2026-10-13 22:05:39
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -24,6 +24,8 @@
   --float-button-bg: var(--button-bg);
   --float-button-text-color: var(--button-text-color);
   --float-button-radius: 50%;
+  --navbar-bg-start: var(--welcome-card-start);
+  --navbar-bg-end: var(--welcome-card-end);
 }
 
 /* semantic color variables for this project */

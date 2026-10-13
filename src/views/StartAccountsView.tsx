@@ -2,15 +2,17 @@ import { defineComponent } from 'vue'
 import { cn } from 'cn'
 import { BarButton } from '@/components/BarButton.tsx'
 import { FloatButton } from '@/components/FloatButton.tsx'
-import { PlaceCenter } from '@/components/icons/PlaceCenter.tsx'
+import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
+import { NavBar } from '@/components/NavBar.tsx'
+import './StartAccountsView.scoped.scss'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 20:46:16
+ * @LastEditTime: 2026-10-13 22:31:54
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -23,8 +25,15 @@ export const StartAccountsView = defineComponent({
     }
 
     return () => (
-      <div class="start-accounts-view w-full h-full position-relative">
-        <nav>menu</nav>
+      <div class={cn(
+        'start-accounts-view w-full h-full position-relative',
+      )}>
+        <NavBar direct-scoped class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">{
+          {
+            default: '山竹记账',
+            icon: () => <SvgIcon name="menu"/>,
+          }
+        }</NavBar>
 
         <PlaceCenter class="p-y-10em">
           <SvgIcon class="w-8em h-8em" name="pig"/>
