@@ -53,6 +53,12 @@ pnpm build
 
 ---
 
+## 自制 vite 插件说明
+
+- [自制 vite 插件说明](markdown/vite-plugin.md)
+
+---
+
 ## ❓ 常见问题排查
 
 **Q: 运行 `pnpm install` 提示 `Command not found`？**
