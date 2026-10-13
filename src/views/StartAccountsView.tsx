@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { cn } from 'cn'
 import { BarButton } from '@/components/BarButton.tsx'
 import { FloatButton } from '@/components/FloatButton.tsx'
@@ -6,22 +6,22 @@ import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { NavBar } from '@/components/NavBar.tsx'
 import '@/views/StartAccountsView.scoped.scss'
+import { FloatOverlay } from '@/components/FloatOverlay.tsx'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 23:48:48
+ * @LastEditTime: 2026-10-14 00:00:03
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
   name: 'StartAccountsView',
   setup(/*props, ctx*/) {
-    const onClickMenu = (e?: MouseEvent) => {
-      console.log('_______________________')
-      console.log("%c 4 --> e: ","color:#f00;", e);
-      console.log('_______________________')
+    const overlayVisible = ref(false)
+    const onClickMenu = () => {
+      overlayVisible.value = !overlayVisible.value
     }
 
     return () => (
@@ -30,7 +30,7 @@ export const StartAccountsView = defineComponent({
       )}>
         <NavBar direct-scoped class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">{
           {
-            default: '山竹记账',
+            default: () => '山竹记账',
             icon: () => <SvgIcon name="menu" class="w-2em h-2em" onClick={onClickMenu} />,
           }
         }</NavBar>
@@ -49,6 +49,8 @@ export const StartAccountsView = defineComponent({
         <FloatButton
           iconName="add"
           class="fixed bottom-1em right-1em" />
+
+        {overlayVisible.value && <FloatOverlay/>}
       </div>
     )
   },
