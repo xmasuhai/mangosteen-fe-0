@@ -60,5 +60,6 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "js/ts.experimental.useTsgo": false
 }
