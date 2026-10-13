@@ -1,20 +1,20 @@
 import { defineComponent } from 'vue'
-import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
+import { BarButton } from '@/components/BarButton.tsx'
 import { FloatButton } from '@/components/FloatButton.tsx'
+import { PlaceCenter } from '@/components/icons/PlaceCenter.tsx'
+import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 17:00:04
+ * @LastEditTime: 2026-10-13 20:46:16
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
   name: 'StartAccountsView',
-  props: {},
-  components: {},
   setup(/*props, ctx*/) {
     const onClick = (e: MouseEvent) => {
       console.log('_______________________')
@@ -24,16 +24,22 @@ export const StartAccountsView = defineComponent({
 
     return () => (
       <div class="start-accounts-view w-full h-full position-relative">
+        <nav>menu</nav>
+
+        <PlaceCenter class="p-y-10em">
+          <SvgIcon class="w-8em h-8em" name="pig"/>
+        </PlaceCenter>
+
         <div
           class={cn('p-x-1em')}>
           <BarButton onClick={onClick}>
             测试
           </BarButton>
-
-          <FloatButton
-            iconName="add"
-            class="fixed bottom-1em right-1em" />
         </div>
+
+        <FloatButton
+          iconName="add"
+          class="fixed bottom-1em right-1em" />
       </div>
     )
   },
