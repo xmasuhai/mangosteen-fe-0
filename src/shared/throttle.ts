@@ -6,14 +6,14 @@
  * @LastEditTime: 2026-10-12 21:52:10
  * @FilePath: src/shared/throttle.ts
  */
-export const throttle = <F extends (...args: unknown[]) => any>(fn: F, delay: number = 500) => {
+export const throttle = <F extends (...args: unknown[]) => unknown>(fn: F, delay: number = 500) => {
   let timer: NodeJS.Timeout | null = null
   let result: ReturnType<F>
   return (...args: Parameters<F>) => {
     if (timer) {
       return result
     }
-    result = fn(...args)
+    result = fn(...args) as ReturnType<F>
     timer = setTimeout(() => {
       timer = null
     }, delay)
