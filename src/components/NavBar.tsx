@@ -1,11 +1,13 @@
 import { defineComponent, type PropType } from 'vue'
+import s from '@/components/NavBar.module.scss'
+import { cn } from 'cn'
 
 /**
- * @Description:
+ * @Description: 导航头部
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 20:54:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 21:29:28
+ * @LastEditTime: 2026-10-13 23:13:40
  * @FilePath: src/components/NavBar.tsx
  */
 export const NavBar = defineComponent({
@@ -20,9 +22,12 @@ export const NavBar = defineComponent({
     const {slots} = _ctx
 
     return () => (
-      <header>
-        <span>{slots?.icon?.()}</span>
-        <span>{slots?.default?.()}</span>
+      <header class={cn(
+        s.navbar,
+        'text-[var(--navbar-text-color)]'
+      )}>
+        <span>{slots?.icon?.(s.icon)}</span>
+        <span>{slots?.default?.(s.title)}</span>
       </header>
     )
   },

@@ -5,14 +5,14 @@ import { FloatButton } from '@/components/FloatButton.tsx'
 import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { NavBar } from '@/components/NavBar.tsx'
-import './StartAccountsView.scoped.scss'
+import '@/views/StartAccountsView.scoped.scss'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 22:31:54
+ * @LastEditTime: 2026-10-13 23:22:37
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -31,7 +31,7 @@ export const StartAccountsView = defineComponent({
         <NavBar direct-scoped class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">{
           {
             default: '山竹记账',
-            icon: () => <SvgIcon name="menu"/>,
+            icon: (cls: string) => <SvgIcon name="menu" class={cls} data-xxx="标记" />,
           }
         }</NavBar>
 
