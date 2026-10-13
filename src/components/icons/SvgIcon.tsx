@@ -12,13 +12,14 @@ import {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 15:00:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 17:01:41
+ * @LastEditTime: 2026-10-13 23:47:42
  * @FilePath: src/components/icons/SvgIcon.tsx
  */
 export { svgIconNames, type SvgIconNames, type SvgIconName, SvgIconEnum }
 
 interface SvgIconProps {
   name: SvgIconNames
+  onClick?: (e?: MouseEvent) => void,
 }
 
 /**
@@ -28,7 +29,7 @@ interface SvgIconProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-10 16:17:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 17:01:41
+ * @LastEditTime: 2026-10-13 23:47:42
  * @FilePath: src/components/icons/SvgIcon.tsx
  */
 export const SvgIcon = defineComponent<SvgIconProps>({

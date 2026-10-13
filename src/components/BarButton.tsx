@@ -8,12 +8,11 @@ interface BarButtonProps {onClick?: (e: MouseEvent) => void}
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:44:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 14:02:00
+ * @LastEditTime: 2026-10-13 23:49:19
  * @FilePath: src/components/BarButton.tsx
  */
 export const BarButton = defineComponent<BarButtonProps>({
   name: 'BarButton',
-  components: {},
   setup(_props, ctx) {
 
     return () => (
