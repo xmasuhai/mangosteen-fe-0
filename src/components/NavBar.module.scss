@@ -3,22 +3,29 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 23:11:18
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 23:19:24
+ * @LastEditTime: 2026-10-13 23:34:09
  * @FilePath: src/components/NavBar.module.scss
  */
 .navbar {
   // for unocss: 'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]'
   background-image: linear-gradient(to bottom, var(--navbar-bg-start), var(--navbar-bg-end));
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 16px 12px;
 
-  & .icon {
-    width: 28px;
-    height: 28px;
+  & > .icon_wrapper {
+    width: 36px;
+    height: 36px;
     font-weight: bold;
-    display: inline;
+    display: flex;
+    place-items: center;
+    justify-content: center;
   }
 
-  & .title {
+  & > .title_wrapper {
     font-size: 1.5em;
     font-weight: bold;
+    margin-left: 12px;
   }
 }

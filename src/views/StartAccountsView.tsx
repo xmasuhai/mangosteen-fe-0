@@ -12,7 +12,7 @@ import '@/views/StartAccountsView.scoped.scss'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 23:22:37
+ * @LastEditTime: 2026-10-13 23:34:56
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -31,7 +31,7 @@ export const StartAccountsView = defineComponent({
         <NavBar direct-scoped class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">{
           {
             default: '山竹记账',
-            icon: (cls: string) => <SvgIcon name="menu" class={cls} data-xxx="标记" />,
+            icon: () => <SvgIcon class="w-2em h-2em" name="menu" />,
           }
         }</NavBar>
 
@@ -42,7 +42,7 @@ export const StartAccountsView = defineComponent({
         <div
           class={cn('p-x-1em')}>
           <BarButton onClick={onClick}>
-            测试
+            开始记账
           </BarButton>
         </div>
 
