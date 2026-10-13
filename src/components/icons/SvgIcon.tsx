@@ -1,6 +1,21 @@
 import { defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
-import { svgIconNames, type SvgIconNames } from '@/components/icons/svgIconNames.ts'
+import {
+  svgIconNames,
+  type SvgIconNames,
+  type SvgIconName,
+  SvgIconEnum,
+} from '@svgoStore'
+
+/**
+ * @Description: 图标文件名称作为 id，导出名称列表，并动态生成枚举类型
+ * @Author: xmasuhai <xmasuhai@163.com>
+ * @Date: 2026-10-13 15:00:40
+ * @LastEditors: xmasuhai <xmasuhai@163.com>
+ * @LastEditTime: 2026-10-13 17:01:41
+ * @FilePath: src/components/icons/SvgIcon.tsx
+ */
+export { svgIconNames, type SvgIconNames, type SvgIconName, SvgIconEnum }
 
 interface SvgIconProps {
   name: SvgIconNames
@@ -13,7 +28,7 @@ interface SvgIconProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-10 16:17:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 15:48:14
+ * @LastEditTime: 2026-10-13 17:01:41
  * @FilePath: src/components/icons/SvgIcon.tsx
  */
 export const SvgIcon = defineComponent<SvgIconProps>({
