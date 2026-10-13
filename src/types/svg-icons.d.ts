@@ -9,35 +9,38 @@ declare module '@svgoStore' {
     Chart = 'chart',
     Clock = 'clock',
     Cloud = 'cloud',
+    Export = 'export',
     Mangosteen = 'mangosteen',
+    Menu = 'menu',
+    Notify = 'notify',
     Pig = 'pig',
   }
 
-  export type SvgIconName = 'add' | 'chart' | 'clock' | 'cloud' | 'mangosteen' | 'pig'
+  export type SvgIconName = 'add' | 'chart' | 'clock' | 'cloud' | 'export' | 'mangosteen' | 'menu' | 'notify' | 'pig'
   export type SvgIconNames = SvgIconName
 
-  export const svgIconNames: readonly ["add","chart","clock","cloud","mangosteen","pig"]
-  export const iconNames: readonly ["add","chart","clock","cloud","mangosteen","pig"]
+  export const svgIconNames: readonly ["add","chart","clock","cloud","export","mangosteen","menu","notify","pig"]
+  export const iconNames: readonly ["add","chart","clock","cloud","export","mangosteen","menu","notify","pig"]
 
-  export const svgIconIds: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-mangosteen","icon-pig"]
-  export const ids: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-mangosteen","icon-pig"]
+  export const svgIconIds: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-export","icon-mangosteen","icon-menu","icon-notify","icon-pig"]
+  export const ids: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-export","icon-mangosteen","icon-menu","icon-notify","icon-pig"]
 
-  const defaultExport: readonly ["add","chart","clock","cloud","mangosteen","pig"]
+  const defaultExport: readonly ["add","chart","clock","cloud","export","mangosteen","menu","notify","pig"]
   export default defaultExport
 }
 
 declare module 'virtual:svgoStore' {
   export * from '@svgoStore'
-  const defaultExport: readonly ["add","chart","clock","cloud","mangosteen","pig"]
+  const defaultExport: readonly ["add","chart","clock","cloud","export","mangosteen","menu","notify","pig"]
   export default defaultExport
 }
 
 declare module 'virtual:svg-icons/names' {
-  const names: readonly ["add","chart","clock","cloud","mangosteen","pig"]
+  const names: readonly ["add","chart","clock","cloud","export","mangosteen","menu","notify","pig"]
   export default names
 }
 
 declare module 'virtual:svg-icons/ids' {
-  const ids: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-mangosteen","icon-pig"]
+  const ids: readonly ["icon-add","icon-chart","icon-clock","icon-cloud","icon-export","icon-mangosteen","icon-menu","icon-notify","icon-pig"]
   export default ids
 }
