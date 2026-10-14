@@ -13,7 +13,7 @@ import { FloatOverlay } from '@/components/FloatOverlay.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 00:00:03
+ * @LastEditTime: 2026-10-14 13:01:19
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -25,32 +25,27 @@ export const StartAccountsView = defineComponent({
     }
 
     return () => (
-      <div class={cn(
-        'start-accounts-view w-full h-full position-relative',
-      )}>
-        <NavBar direct-scoped class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">{
-          {
+      <div class={cn('start-accounts-view w-full h-full position-relative')}>
+        <NavBar
+          direct-scoped
+          class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">
+          {{
             default: () => '山竹记账',
             icon: () => <SvgIcon name="menu" class="w-2em h-2em" onClick={onClickMenu} />,
-          }
-        }</NavBar>
+          }}
+        </NavBar>
 
         <PlaceCenter class="p-y-10em">
-          <SvgIcon class="w-8em h-8em" name="pig"/>
+          <SvgIcon class="w-8em h-8em" name="pig" />
         </PlaceCenter>
 
-        <div
-          class={cn('p-x-1em')}>
-          <BarButton>
-            开始记账
-          </BarButton>
+        <div class={cn('p-x-1em')}>
+          <BarButton>开始记账</BarButton>
         </div>
 
-        <FloatButton
-          iconName="add"
-          class="fixed bottom-1em right-1em" />
+        <FloatButton iconName="add" class="fixed bottom-1em right-1em" />
 
-        {overlayVisible.value && <FloatOverlay/>}
+        {overlayVisible.value && <FloatOverlay onClose={() => (overlayVisible.value = false)} />}
       </div>
     )
   },
