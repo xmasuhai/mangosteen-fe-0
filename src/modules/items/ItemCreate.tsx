@@ -5,15 +5,15 @@ import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 
 /**
- * @Description: 记账项目列表
+ * @Description: 记一笔
  * @Author: xmasuhai <xmasuhai@163.com>
- * @Date: 2026-10-14 16:07:32
+ * @Date: 2026-10-14 16:00:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 21:19:18
- * @FilePath: src/views/ItemList.tsx
+ * @LastEditTime: 2026-10-14 22:34:34
+ * @FilePath: src/modules/items/ItemCreate.tsx
  */
-export const ItemList = defineComponent({
-  name: 'ItemList',
+export const ItemCreate = defineComponent({
+  name: 'ItemCreate',
   setup(/* _props, _ctx */) {
     const kind = ref('支出')
     return () => (

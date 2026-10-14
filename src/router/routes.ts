@@ -6,15 +6,15 @@ import { Welcome3rdPage } from '@/modules/welcome/Welcome3rdPage.tsx'
 import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
 import { StartAccountsView } from '@/views/StartAccountsView.tsx'
 import { ItemsView } from '@/views/ItemsView.tsx'
-import { ItemList } from '@/views/ItemList.tsx'
-import { ItemCreateView } from '@/views/ItemCreateView.tsx'
+import { ItemList } from '@/modules/items/ItemList.tsx'
+import { ItemCreate } from '@/modules/items/ItemCreate.tsx'
 
 /**
  * @Description: 路由表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 19:22:10
+ * @LastEditTime: 2026-10-14 22:41:19
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -49,7 +49,7 @@ export const routes: RouteRecordRaw[] = [
       },
       {
         path: 'create',
-        component: ItemCreateView,
+        component: ItemCreate,
       },
     ],
   },
