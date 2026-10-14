@@ -1,4 +1,4 @@
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent } from 'vue'
 import { cn } from 'cn'
 import { OverlayMask } from '@/modules/overlay/OverlayMask.tsx'
 import { OverlayUserHeader } from '@/modules/overlay/OverlayUserHeader.tsx'
@@ -9,16 +9,11 @@ import { MenuLinkList } from '@/modules/overlay/MenuLinkList.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 23:42:44
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 15:08:23
+ * @LastEditTime: 2026-10-14 15:26:44
  * @FilePath: src/modules/overlay/FloatOverlay.tsx
  */
 export const FloatOverlay = defineComponent({
   name: 'FloatOverlay',
-  props: {
-    onClose: {
-      type: Function as PropType<() => void>,
-    }
-  },
   setup( _props, _ctx ) {
     return () => (
       <>
