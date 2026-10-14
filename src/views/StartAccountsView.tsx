@@ -6,14 +6,14 @@ import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { NavBar } from '@/components/NavBar.tsx'
 import '@/views/StartAccountsView.scoped.scss'
-import { FloatOverlay } from '@/components/FloatOverlay.tsx'
+import { FloatOverlay } from '@/modules/overlay/FloatOverlay.tsx'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 13:01:19
+ * @LastEditTime: 2026-10-14 14:34:36
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -45,7 +45,12 @@ export const StartAccountsView = defineComponent({
 
         <FloatButton iconName="add" class="fixed bottom-1em right-1em" />
 
-        {overlayVisible.value && <FloatOverlay onClose={() => (overlayVisible.value = false)} />}
+        {
+          overlayVisible.value &&
+          <FloatOverlay
+            direct-scoped
+            onClose={() => (overlayVisible.value = false)} />
+        }
       </div>
     )
   },
