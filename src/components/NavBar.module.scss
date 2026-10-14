@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 23:11:18
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 23:34:09
+ * @LastEditTime: 2026-10-14 17:45:51
  * @FilePath: src/components/NavBar.module.scss
  */
 .navbar {
@@ -13,6 +13,8 @@
   justify-content: flex-start;
   align-items: center;
   padding: 40px 16px 12px;
+  min-height: var(--navbar-min-height);
+  flex-shrink: 0;
 
   & > .icon_wrapper {
     width: 36px;

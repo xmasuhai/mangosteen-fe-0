@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 14:23:43
+ * @LastEditTime: 2026-10-14 17:45:41
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -27,6 +27,7 @@
   --navbar-bg-start: var(--welcome-card-start);
   --navbar-bg-end: var(--welcome-card-end);
   --navbar-text-color: white;
+  --navbar-min-height: 88px;
   --z-index-button-nav: 10;
   // 划出浮层 遮罩层
   --z-index-float-overlay: 20;

@@ -7,7 +7,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 16:26:40
+ * @LastEditTime: 2026-10-14 17:50:13
  * @FilePath: src/components/layout/MainLayout.tsx
  */
 export const MainLayout = defineComponent({
@@ -23,7 +23,9 @@ export const MainLayout = defineComponent({
             icon: () => _ctx.slots?.icon?.(),
           }}
         </NavBar>
-        {_ctx.slots?.default?.()}
+        <main class="h-[calc(100%-var(--navbar-min-height))]">
+          {_ctx.slots?.default?.()}
+        </main>
       </div>
     )
   },
