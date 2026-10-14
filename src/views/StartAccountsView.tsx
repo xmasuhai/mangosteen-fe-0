@@ -15,7 +15,7 @@ import { MainLayout } from '@/components/layout/MainLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 16:33:14
+ * @LastEditTime: 2026-10-14 17:05:38
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -28,7 +28,7 @@ export const StartAccountsView = defineComponent({
     }
     const router = useRouter()
     const routerToCreateItemView = async () => {
-      await router.push('/item/create')
+      await router.push('/item')
     }
     return () => (
       <MainLayout>
