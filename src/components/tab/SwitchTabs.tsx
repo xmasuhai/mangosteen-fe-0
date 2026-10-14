@@ -1,0 +1,58 @@
+import { defineComponent, type PropType } from 'vue'
+import { ItemTab } from '@/components/tab/ItemTab.tsx'
+import { cn } from 'cn'
+
+/**
+ * @Description: 切换标签Tab列表组件
+ * @Description: 内部使用默认插槽接收 ItemTab 组件，ItemTab 组件必须有 tabName 属性
+ * @Author: xmasuhai <xmasuhai@163.com>
+ * @Date: 2026-10-14 17:39:38
+ * @LastEditors: xmasuhai <xmasuhai@163.com>
+ * @LastEditTime: 2026-10-14 20:30:11
+ * @FilePath: src/components/tab/SwitchTabs.tsx
+ */
+export const SwitchTabs = defineComponent({
+  name: 'SwitchTabs',
+  props: {
+    selected: {
+      type: String as PropType<string>,
+    },
+    onUpdateSeleted: {
+      type: Function as PropType<(name: string) => void>,
+    },
+  },
+  setup( _props, _ctx ) {
+    return () => {
+      const defaultSlotsArray = _ctx.slots?.default?.() ?? []
+      const ifAllItemTab = defaultSlotsArray
+        .every(slot => slot.type === ItemTab &&
+          !!slot.props?.tabName)
+      if (!ifAllItemTab) {
+        throw new Error(`SwitchTabs: 子组件必须是 ItemTab，且必须有 tabName 属性`)
+      }
+      return (
+        <>
+          {/* 切换标签 */}
+          <nav>
+            <menu>
+              {defaultSlotsArray
+                .map((slot, index) => (
+                  <li
+                    key={index + slot?.props?.tabName}
+                    class={cn(
+                      _props.selected === slot?.props?.tabName ? 'bg-red' : ''
+                    )}
+                    onClick={() => {_props.onUpdateSeleted?.(slot?.props?.tabName)}}>
+                    {slot?.props?.tabName}
+                  </li>
+                ))}
+            </menu>
+          </nav>
+
+          {/* 标签内容 */}
+
+        </>
+      )
+    }
+  },
+})
