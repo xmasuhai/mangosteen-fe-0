@@ -14,7 +14,7 @@ import { ItemCreateView } from '@/views/ItemCreateView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 17:05:28
+ * @LastEditTime: 2026-10-14 19:22:10
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -44,6 +44,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '', // 默认
+        name: 'itemList',
         component: ItemList,
       },
       {
