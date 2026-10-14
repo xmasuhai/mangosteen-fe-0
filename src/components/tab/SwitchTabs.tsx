@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 20:46:52
+ * @LastEditTime: 2026-10-14 21:37:42
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -18,36 +18,39 @@ export const SwitchTabs = defineComponent({
       type: String as PropType<string>,
     },
   },
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     return () => {
       const defaultSlotsArray = _ctx.slots?.default?.() ?? []
-      const ifAllItemTab = defaultSlotsArray
-        .every(slot => slot.type === ItemTab &&
-          !!slot.props?.tabName)
+      const ifAllItemTab = defaultSlotsArray.every(
+        (slot) => slot.type === ItemTab && !!slot.props?.tabName,
+      )
       if (!ifAllItemTab) {
         throw new Error(`SwitchTabs: 子组件必须是 ItemTab，且必须有 tabName 属性`)
       }
+
       return (
         <>
           {/* 切换标签 */}
           <nav>
             <menu>
-              {defaultSlotsArray
-                .map((slot, index) => (
-                  <li
-                    key={index + slot?.props?.tabName}
-                    class={cn(
-                      _props.selected === slot?.props?.tabName ? 'bg-red' : ''
-                    )}
-                    onClick={() => {_ctx.emit('update:selected', slot?.props?.tabName)}}>
-                    {slot?.props?.tabName}
-                  </li>
-                ))}
+              {defaultSlotsArray.map((slot, index) => (
+                <li
+                  key={index + slot?.props?.tabName}
+                  class={cn(_props.selected === slot?.props?.tabName ? 'bg-red' : '')}
+                  onClick={() => {
+                    _ctx.emit('update:selected', slot?.props?.tabName)
+                  }}>
+                  {slot?.props?.tabName}
+                </li>
+              ))}
             </menu>
           </nav>
 
           {/* 标签内容 */}
-
+          <section>
+            {defaultSlotsArray
+              .find((slot) => slot.props?.tabName === _props.selected)}
+          </section>
         </>
       )
     }

@@ -9,7 +9,7 @@ import { ItemTab } from '@/components/tab/ItemTab.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 20:43:18
+ * @LastEditTime: 2026-10-14 21:19:18
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -24,8 +24,8 @@ export const ItemList = defineComponent({
           default: () => (
             <>
               <SwitchTabs selected={kind.value} v-model:selected={kind.value}>
-                <ItemTab tabId="expenses" tabName="支出">icon 列表</ItemTab>
-                <ItemTab tabId="incomes" tabName="收入">icon 列表</ItemTab>
+                <ItemTab tabId="expenses" tabName="支出">支出 icon 列表</ItemTab>
+                <ItemTab tabId="incomes" tabName="收入">收入 icon 列表</ItemTab>
               </SwitchTabs>
             </>
           ),
