@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 20:30:11
+ * @LastEditTime: 2026-10-14 20:46:52
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -16,9 +16,6 @@ export const SwitchTabs = defineComponent({
   props: {
     selected: {
       type: String as PropType<string>,
-    },
-    onUpdateSeleted: {
-      type: Function as PropType<(name: string) => void>,
     },
   },
   setup( _props, _ctx ) {
@@ -42,7 +39,7 @@ export const SwitchTabs = defineComponent({
                     class={cn(
                       _props.selected === slot?.props?.tabName ? 'bg-red' : ''
                     )}
-                    onClick={() => {_props.onUpdateSeleted?.(slot?.props?.tabName)}}>
+                    onClick={() => {_ctx.emit('update:selected', slot?.props?.tabName)}}>
                     {slot?.props?.tabName}
                   </li>
                 ))}
