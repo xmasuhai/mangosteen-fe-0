@@ -9,13 +9,14 @@ import '@/views/StartAccountsView.scoped.scss'
 import { FloatOverlay } from '@/modules/overlay/FloatOverlay.tsx'
 import { storeToRefs } from 'pinia'
 import { useOverlayStore } from '@/stores/useOverlayStore.ts'
+import { useRouter } from 'vue-router'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 15:21:43
+ * @LastEditTime: 2026-10-14 16:12:51
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -25,6 +26,10 @@ export const StartAccountsView = defineComponent({
     const { toggleOverlay } = useOverlayStore()
     const onClickMenu = () => {
       toggleOverlay()
+    }
+    const router = useRouter()
+    const routerToCreateItemView = async () => {
+      await router.push('/item/create')
     }
     return () => (
       <div class={cn('start-accounts-view w-full h-full position-relative')}>
@@ -42,10 +47,10 @@ export const StartAccountsView = defineComponent({
         </PlaceCenter>
 
         <div class={cn('p-x-1em')}>
-          <BarButton>开始记账</BarButton>
+          <BarButton onClick={routerToCreateItemView}>开始记账</BarButton>
         </div>
 
-        <FloatButton iconName="add" class="fixed bottom-1em right-1em" />
+        <FloatButton onClick={routerToCreateItemView} iconName="add" class="fixed bottom-1em right-1em" />
 
         {
           overlayVisible.value &&
