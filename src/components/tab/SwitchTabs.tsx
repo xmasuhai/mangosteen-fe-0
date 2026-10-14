@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 21:37:42
+ * @LastEditTime: 2026-10-14 22:16:15
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -19,9 +19,16 @@ export const SwitchTabs = defineComponent({
     },
   },
   setup(_props, _ctx) {
+    const selectedClass = (tabName: string) => _props.selected === tabName
+      ? cn(
+        'relative',
+        `after:(content-[""] block absolute bottom-0 left-0 w-full h-4px bg-[var(--tabs-indicator-bg)])`,
+      )
+      : ''
+
     return () => {
-      const defaultSlotsArray = _ctx.slots?.default?.() ?? []
-      const ifAllItemTab = defaultSlotsArray.every(
+      const defaultSlotTabs = _ctx.slots?.default?.() ?? []
+      const ifAllItemTab = defaultSlotTabs.every(
         (slot) => slot.type === ItemTab && !!slot.props?.tabName,
       )
       if (!ifAllItemTab) {
@@ -32,11 +39,15 @@ export const SwitchTabs = defineComponent({
         <>
           {/* 切换标签 */}
           <nav>
-            <menu>
-              {defaultSlotsArray.map((slot, index) => (
+            <menu class="flex justify-between items-center text-color-[var(--navbar-text-color)]">
+              {defaultSlotTabs.map((slot, index) => (
                 <li
                   key={index + slot?.props?.tabName}
-                  class={cn(_props.selected === slot?.props?.tabName ? 'bg-red' : '')}
+                  class={cn(
+                    'flex-grow-1 flex-shrink-0 text-center',
+                    'p-y-12px bg-[var(--navbar-bg-end)]',
+                    selectedClass(slot?.props?.tabName)
+                  )}
                   onClick={() => {
                     _ctx.emit('update:selected', slot?.props?.tabName)
                   }}>
@@ -48,7 +59,7 @@ export const SwitchTabs = defineComponent({
 
           {/* 标签内容 */}
           <section>
-            {defaultSlotsArray
+            {defaultSlotTabs
               .find((slot) => slot.props?.tabName === _props.selected)}
           </section>
         </>
