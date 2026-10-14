@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { cn } from 'cn'
 import { BarButton } from '@/components/BarButton.tsx'
 import { FloatButton } from '@/components/FloatButton.tsx'
@@ -7,23 +7,25 @@ import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { NavBar } from '@/components/NavBar.tsx'
 import '@/views/StartAccountsView.scoped.scss'
 import { FloatOverlay } from '@/modules/overlay/FloatOverlay.tsx'
+import { storeToRefs } from 'pinia'
+import { useOverlayStore } from '@/stores/useOverlayStore.ts'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 14:34:36
+ * @LastEditTime: 2026-10-14 15:21:43
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
   name: 'StartAccountsView',
   setup(/*props, ctx*/) {
-    const overlayVisible = ref(false)
+    const { overlayVisible } = storeToRefs(useOverlayStore())
+    const { toggleOverlay } = useOverlayStore()
     const onClickMenu = () => {
-      overlayVisible.value = !overlayVisible.value
+      toggleOverlay()
     }
-
     return () => (
       <div class={cn('start-accounts-view w-full h-full position-relative')}>
         <NavBar
@@ -47,9 +49,7 @@ export const StartAccountsView = defineComponent({
 
         {
           overlayVisible.value &&
-          <FloatOverlay
-            direct-scoped
-            onClose={() => (overlayVisible.value = false)} />
+          <FloatOverlay direct-scoped />
         }
       </div>
     )
