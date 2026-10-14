@@ -5,13 +5,16 @@ import { Welcome2ndPage } from '@/modules/welcome/Welcome2ndPage.tsx'
 import { Welcome3rdPage } from '@/modules/welcome/Welcome3rdPage.tsx'
 import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
 import { StartAccountsView } from '@/views/StartAccountsView.tsx'
+import { ItemsView } from '@/views/ItemsView.tsx'
+import { ItemList } from '@/views/ItemList.tsx'
+import { ItemCreateView } from '@/views/ItemCreateView.tsx'
 
 /**
  * @Description: 路由表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 11:54:59
+ * @LastEditTime: 2026-10-14 16:13:10
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -32,5 +35,21 @@ export const routes: RouteRecordRaw[] = [
       { path: '4', name: 'welcomeCloud', components: { main: Welcome4thPage } },
     ],
   },
-  {path: '/start', name: 'StartAccounts', component: StartAccountsView,},
+  { path: '/start', name: 'startAccounts', component: StartAccountsView },
+  /* 记账项目相关：项目列表页、创建页 */
+  {
+    path: '/item',
+    name: 'item',
+    component: ItemsView,
+    children: [
+      {
+        path: 'list',
+        component: ItemList,
+      },
+      {
+        path: 'create',
+        component: ItemCreateView,
+      },
+    ],
+  },
 ]
