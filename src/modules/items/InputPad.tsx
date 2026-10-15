@@ -10,7 +10,7 @@ import { DatePicker, Popup } from 'vant'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 22:46:46
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 20:18:13
+ * @LastEditTime: 2026-10-15 20:29:50
  * @FilePath: src/modules/items/InputPad.tsx
  */
 export const InputPad = defineComponent({
@@ -21,7 +21,16 @@ export const InputPad = defineComponent({
     const minDate = new Date(2025, 1, 1)
     const maxDate = new Date(2028, 1, 1)
     const formattedDateStr = computed(() =>
-      time(new Date(currentDateRef.value.join('-'))).api.format(),)
+      time(new Date(currentDateRef.value.join('-'))).api.format(),
+    )
+    const toggleDatePicker = () => {
+      datePickerVisible.value = !datePickerVisible.value
+    }
+    const confirmDate = ({ selectedValues }: {selectedValues: string[]}) => {
+      currentDateRef.value = selectedValues
+      datePickerVisible.value = false
+    }
+    const cancelDate = () => {datePickerVisible.value = false}
 
     return () => (
       <>
@@ -30,20 +39,15 @@ export const InputPad = defineComponent({
           <span class="flex justify-start items-center">
             <SvgIcon name="date" class="size-2em mx-1 fill-[var(--button-bg)]" />
             <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
-              <span
-                onClick={() => {datePickerVisible.value = !datePickerVisible.value}}>
-                {formattedDateStr.value}
-              </span>
+              <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
               <Popup position="bottom" v-model:show={datePickerVisible.value}>
                 <DatePicker
                   title="选择年月日"
                   v-model={currentDateRef.value}
                   minDate={minDate}
                   maxDate={maxDate}
-                  onConfirm={({selectedValues,}) => {
-                    currentDateRef.value = selectedValues
-                    datePickerVisible.value = false
-                  }}/>
+                  onConfirm={confirmDate}
+                  onCancel={cancelDate}/>
               </Popup>
             </span>
           </span>
