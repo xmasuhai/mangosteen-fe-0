@@ -5,7 +5,7 @@ import { defineComponent /* type PropType */ } from 'vue'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 22:59:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 22:59:46
+ * @LastEditTime: 2026-10-15 15:38:54
  * @FilePath: src/modules/items/NumberOutput.tsx
  */
 export const NumberOutput = defineComponent({
@@ -20,6 +20,10 @@ export const NumberOutput = defineComponent({
   */
   },
   setup(/* _props, _ctx */) {
-    return () => <>NumberOutput</>
+    return () => (
+      <span class="text-24px font-mono color-[var(--amount-text-color)]">
+        199.12
+      </span>
+    )
   },
 })
