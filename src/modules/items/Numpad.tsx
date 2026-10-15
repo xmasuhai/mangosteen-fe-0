@@ -1,7 +1,8 @@
-import { defineComponent /* type PropType */ } from 'vue'
+import { defineComponent, } from 'vue'
 import { cn } from 'cn'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import type { SvgIconName } from '@svgoStore'
+import { useNumpadAmountStore } from '@/stores/useNumpadAmountStore.ts'
 
 type ButtonItem<T extends boolean = boolean> = {
   text: string,
@@ -23,19 +24,21 @@ type ButtonItem<T extends boolean = boolean> = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:25:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 17:28:19
+ * @LastEditTime: 2026-10-15 23:38:31
  * @FilePath: src/modules/items/Numpad.tsx
  */
 export const Numpad = defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Numpad',
   setup(/* _props, _ctx */) {
+
+    const {appendText} = useNumpadAmountStore()
     const buttons: ButtonItem[] = [
-      {text: '1', onClick: () => {}, gridArea: 'grid-area-[1/1/2/2]',},
-      {text: '2', onClick: () => {}, gridArea: 'grid-area-[1/2/2/3]',},
-      {text: '3', onClick: () => {}, gridArea: 'grid-area-[1/3/2/4]',},
+      {text: '1', onClick: () => {appendText('1')}, gridArea: 'grid-area-[1/1/2/2]',},
+      {text: '2', onClick: () => {appendText('2')}, gridArea: 'grid-area-[1/2/2/3]',},
+      {text: '3', onClick: () => {appendText('3')}, gridArea: 'grid-area-[1/3/2/4]',},
       {text: '清空', onClick: () => {}, gridArea: 'grid-area-[1/4/2/5]',},
-      {text: '4', onClick: () => {}, gridArea: 'grid-area-[2/1/3/2]',},
+      {text: '4', onClick: () => {appendText('4')}, gridArea: 'grid-area-[2/1/3/2]',},
       {text: '5', onClick: () => {}, gridArea: 'grid-area-[2/2/3/3]',},
       {text: '6', onClick: () => {}, gridArea: 'grid-area-[2/3/3/4]',},
       {text: '删除', onClick: () => {}, hasIcon: true, iconName: 'backspace',
@@ -44,8 +47,8 @@ export const Numpad = defineComponent({
       {text: '8', onClick: () => {}, gridArea: 'grid-area-[3/2/4/3]',},
       {text: '9', onClick: () => {}, gridArea: 'grid-area-[3/3/4/4]',},
       {text: '提交', onClick: () => {}, gridArea: 'grid-area-[3/4/5/5]',},
-      {text: '0', onClick: () => {}, gridArea: 'grid-area-[4/1/5/3]',},
-      {text: '.', onClick: () => {}, gridArea: 'grid-area-[4/3/5/4]',},
+      {text: '0', onClick: () => {appendText('0')}, gridArea: 'grid-area-[4/1/5/3]',},
+      {text: '.', onClick: () => {appendText('.')}, gridArea: 'grid-area-[4/3/5/4]',},
     ]
     const numberSizeClass = (text: string) => (/[0-9.]/g).test(text)
       ? cn('text-18px')
@@ -59,7 +62,9 @@ export const Numpad = defineComponent({
         {buttons.map((buttonItem) => (
           <button
             type="button"
+            key={buttonItem.text}
             onClick={buttonItem.onClick}
+            data-btn-text={`btn_${buttonItem.text}`}
             class={cn(
               'flex justify-center items-center font-bold',
               buttonItem.gridArea,
