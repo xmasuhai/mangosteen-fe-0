@@ -6,6 +6,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import unoCSS from 'unocss/vite'
 import jsxScoped from '@10coding/vite-plugin-jsx-scoped'
 import { svgoStore } from './src/plugins/svgoStore.ts'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 // import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
 // import mkcert from 'vite-plugin-mkcert'
 // import basicSsl from '@vitejs/plugin-basic-ssl'
@@ -21,7 +24,19 @@ export default defineConfig({
       transformOn: true,
       mergeProps: true,
     }),
+    AutoImport({
+      resolvers: [
+        VantResolver(),
+      ],
+    }),
+    Components({
+      resolvers: [
+        VantResolver(),
+      ],
+    }),
     vueDevTools(),
+
+    // svg精灵图标方案
     svgoStore(),
     /*
     createSvgIconsPlugin({
@@ -46,6 +61,7 @@ export default defineConfig({
       },
     }),
     */
+
     // 自动启用 TLS + HTTP/2 自动在主机中安装证书
     // mkcert(),
     // 自动启用 TLS + HTTP/2 自动在主机中安装假证书
