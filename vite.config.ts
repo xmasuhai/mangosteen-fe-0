@@ -1,4 +1,4 @@
-import { fileURLToPath, URL, } from 'node:url'
+import { fileURLToPath, pathToFileURL, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -66,6 +66,21 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@src': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 自定义 importers 解析 @/ 别名
+        importers: [
+          {
+            findFileUrl(url) {
+              if (!url.startsWith('@/')) return null;
+              return new URL(url.substring(2), pathToFileURL('./src'));
+            }
+          },
+        ],
+      },
     },
   },
 })
