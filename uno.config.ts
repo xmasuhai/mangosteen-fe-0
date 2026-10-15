@@ -6,7 +6,7 @@ import {presetWind4} from '@unocss/preset-wind4'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 22:27:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-10 23:25:48
+ * @LastEditTime: 2026-10-15 16:51:43
  * @FilePath: uno.config.ts
  */
 export default defineConfig({
@@ -33,6 +33,10 @@ export default defineConfig({
       // 绑定你的 CSS 变量
       welcomeCardBg: 'var(--welcome-card-bg-color)',
       primaryColor: '#6035BF',
-    }
-  }
+    },
+  },
+  shortcuts: {
+    // 将 UnoCSS 的原子类映射到你 SCSS 里定义好的 .animation-rainbow 类
+    'animate-rainbow': 'animation-rainbow',
+  },
 })

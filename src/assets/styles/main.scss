@@ -1,5 +1,6 @@
 @use './reset.scss' as *;
 @use './base.scss' as *;
+@use '@/assets/styles/animation/rainbow.scss' as *;
 
 #app {
   max-width: 1280px;
