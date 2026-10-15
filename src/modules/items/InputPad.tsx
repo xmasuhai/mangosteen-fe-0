@@ -10,27 +10,32 @@ import { DatePicker, Popup } from 'vant'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 22:46:46
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 20:29:50
+ * @LastEditTime: 2026-10-15 21:00:27
  * @FilePath: src/modules/items/InputPad.tsx
  */
 export const InputPad = defineComponent({
   name: 'InputPad',
   setup(/* _props, _ctx */) {
-    const datePickerVisible = ref(false)
+    const datePickerVisibleRef = ref(false)
+    const lastDateRef = ref(['2026', '11', '01'])
     const currentDateRef = ref(['2026', '11', '01'])
     const minDate = new Date(2025, 1, 1)
-    const maxDate = new Date(2028, 1, 1)
+    const maxDate = new Date(2028, 0, 1)
     const formattedDateStr = computed(() =>
       time(new Date(currentDateRef.value.join('-'))).api.format(),
     )
     const toggleDatePicker = () => {
-      datePickerVisible.value = !datePickerVisible.value
+      datePickerVisibleRef.value = !datePickerVisibleRef.value
     }
     const confirmDate = ({ selectedValues }: {selectedValues: string[]}) => {
+      lastDateRef.value = selectedValues
       currentDateRef.value = selectedValues
-      datePickerVisible.value = false
+      datePickerVisibleRef.value = false
     }
-    const cancelDate = () => {datePickerVisible.value = false}
+    const cancelDate = () => {
+      currentDateRef.value = lastDateRef.value
+      datePickerVisibleRef.value = false
+    }
 
     return () => (
       <>
@@ -40,7 +45,10 @@ export const InputPad = defineComponent({
             <SvgIcon name="date" class="size-2em mx-1 fill-[var(--button-bg)]" />
             <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
               <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
-              <Popup position="bottom" v-model:show={datePickerVisible.value}>
+              <Popup
+                position="bottom"
+                v-model:show={datePickerVisibleRef.value}
+                onClose={cancelDate}>
                 <DatePicker
                   title="选择年月日"
                   v-model={currentDateRef.value}
