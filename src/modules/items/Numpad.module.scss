@@ -5,7 +5,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-16 14:58:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 18:04:10
+ * @LastEditTime: 2026-10-16 20:37:35
  * @FilePath: src/modules/items/Numpad.module.scss
  */
 
@@ -18,23 +18,7 @@
   border-top: 1px solid var(--pad-border-color);
 
   & > .button-item {
-    border: unset;
-    background: var(--pad-button-bg-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bolder;
-
-    /* 与tsx中名称逻辑耦合，两边一致 */
-    &[data-btn-text="btn_删除"] :nth-child(n) {
-      width: 1.5em;
-      height: 1.5em;
-    }
-
-    &[data-btn-text="btn_提交"] {
-      background-color: var(--pad-submit-button-bg-color);
-      color: var(--pad-submit-button-text-color);
-    }
-
+    border-color: transparent;
   }
+
 }

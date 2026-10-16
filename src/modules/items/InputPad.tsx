@@ -8,7 +8,7 @@ import { DateInput } from '@/modules/items/DateInput.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 22:46:46
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 15:16:33
+ * @LastEditTime: 2026-10-16 19:59:15
  * @FilePath: src/modules/items/InputPad.tsx
  */
 export const InputPad = defineComponent({
@@ -17,7 +17,7 @@ export const InputPad = defineComponent({
     return () => (
       <>
         {/* 日期输入、金额显示 */}
-        <div class="flex justify-between items-center py-1em b-t-[var(--pad-border-color)] b-t-1">
+        <div class="flex justify-between items-center min-h-69px py-1em b-t-[var(--pad-border-color)] b-t-1">
           <DateInput />
           <AmountNumberOutput class="mr-4" />
         </div>
