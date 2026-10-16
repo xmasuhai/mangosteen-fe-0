@@ -5,7 +5,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-16 14:58:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 17:39:33
+ * @LastEditTime: 2026-10-16 18:04:10
  * @FilePath: src/modules/items/Numpad.module.scss
  */
 
@@ -29,13 +29,6 @@
     &[data-btn-text="btn_删除"] :nth-child(n) {
       width: 1.5em;
       height: 1.5em;
-    }
-
-    &[data-btn-text="btn_dot"] :nth-child(n) {
-      width: 2em;
-      height: 2em;
-      transform: translateY(-5px);
-      font-weight: bolder;
     }
 
     &[data-btn-text="btn_提交"] {
