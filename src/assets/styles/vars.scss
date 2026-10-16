@@ -3,12 +3,13 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 15:38:45
+ * @LastEditTime: 2026-10-16 16:09:26
  * @FilePath: src/assets/styles/vars.scss
  */
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  // welcome page
   --welcome-card-bg-color: white;
   --welcome-text: white;
   --title-text: #d4d4ee;
@@ -26,20 +27,23 @@
   --float-button-radius: 50%;
   --navbar-bg-start: var(--welcome-card-start);
   --navbar-bg-end: var(--welcome-card-end);
-  --navbar-text-color: white;
+  --navbar-text-color: var(--button-text-color);
   --navbar-min-height: 88px;
   --z-index-button-nav: 10;
   // 划出浮层 遮罩层
   --z-index-float-overlay: 20;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
   --overlay-bg: white;
-  --overlay-user-bg: #5C33BE;
-  --overlay-user-text: white;
+  --overlay-user-bg: var(--button-bg);
+  --overlay-user-text: var(--button-text-color);
   --top-safe-area-height: 24px;
   // tabs
   --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
-  --button-border-color: #ddd;
-  // input
+  // input pad
+  --pad-border-color: #ddd;
+  --pad-button-bg-color: white;
+  --pad-submit-button-bg-color: var(--button-bg);
+  --pad-submit-button-text-color: var(--button-text-color);
   --amount-text-color: #53a867;
   --date-text-color: #999;
 }

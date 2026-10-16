@@ -12,40 +12,42 @@ declare module '@svgoStore' {
     Clock = 'clock',
     Cloud = 'cloud',
     Date = 'date',
+    Decimal_point = 'decimal_point',
     Export = 'export',
     Mangosteen = 'mangosteen',
     Menu = 'menu',
     Notes = 'notes',
     Notify = 'notify',
     Pig = 'pig',
+    Radix_point = 'radix_point',
     Tech_stack = 'tech_stack',
   }
 
-  export type SvgIconName = 'add' | 'back-arrow' | 'backspace' | 'chart' | 'clock' | 'cloud' | 'date' | 'export' | 'mangosteen' | 'menu' | 'notes' | 'notify' | 'pig' | 'tech_stack'
+  export type SvgIconName = 'add' | 'back-arrow' | 'backspace' | 'chart' | 'clock' | 'cloud' | 'date' | 'decimal_point' | 'export' | 'mangosteen' | 'menu' | 'notes' | 'notify' | 'pig' | 'radix_point' | 'tech_stack'
   export type SvgIconNames = SvgIconName
 
-  export const svgIconNames: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","export","mangosteen","menu","notes","notify","pig","tech_stack"]
-  export const iconNames: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","export","mangosteen","menu","notes","notify","pig","tech_stack"]
+  export const svgIconNames: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","decimal_point","export","mangosteen","menu","notes","notify","pig","radix_point","tech_stack"]
+  export const iconNames: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","decimal_point","export","mangosteen","menu","notes","notify","pig","radix_point","tech_stack"]
 
-  export const svgIconIds: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-tech_stack"]
-  export const ids: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-tech_stack"]
+  export const svgIconIds: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-decimal_point","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-radix_point","icon-tech_stack"]
+  export const ids: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-decimal_point","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-radix_point","icon-tech_stack"]
 
-  const defaultExport: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","export","mangosteen","menu","notes","notify","pig","tech_stack"]
+  const defaultExport: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","decimal_point","export","mangosteen","menu","notes","notify","pig","radix_point","tech_stack"]
   export default defaultExport
 }
 
 declare module 'virtual:svgoStore' {
   export * from '@svgoStore'
-  const defaultExport: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","export","mangosteen","menu","notes","notify","pig","tech_stack"]
+  const defaultExport: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","decimal_point","export","mangosteen","menu","notes","notify","pig","radix_point","tech_stack"]
   export default defaultExport
 }
 
 declare module 'virtual:svg-icons/names' {
-  const names: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","export","mangosteen","menu","notes","notify","pig","tech_stack"]
+  const names: readonly ["add","back-arrow","backspace","chart","clock","cloud","date","decimal_point","export","mangosteen","menu","notes","notify","pig","radix_point","tech_stack"]
   export default names
 }
 
 declare module 'virtual:svg-icons/ids' {
-  const ids: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-tech_stack"]
+  const ids: readonly ["icon-add","icon-back-arrow","icon-backspace","icon-chart","icon-clock","icon-cloud","icon-date","icon-decimal_point","icon-export","icon-mangosteen","icon-menu","icon-notes","icon-notify","icon-pig","icon-radix_point","icon-tech_stack"]
   export default ids
 }
