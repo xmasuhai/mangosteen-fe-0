@@ -3,11 +3,11 @@ import { ref } from 'vue'
 import { useGlobalHintsBus } from '@/shared/events/useGlobalHintsBus.ts'
 
 /**
- * @Description: 命名规范 `use<Xxx>Store`
+ * @Description: 数字金额状态
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026/10/15 22:45
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 22:22:40
+ * @LastEditTime: 2026-10-16 23:26:46
  * @FilePath: src/stores/useNumpadAmountStore.ts
  */
 export const useNumpadAmountStore = defineStore('numpadAmount', () => {
