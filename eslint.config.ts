@@ -18,7 +18,9 @@ export default defineConfigWithVueTs(
       // 2. 强制单行代码块的大括号内部有空格（处理 { return null } 的空格）
       "block-spacing": ["error", "always"],
       // 3. 允许单行中花括号前后有空格（配合 block-spacing）
-      "object-curly-spacing": ["error", "always"]
+      "object-curly-spacing": ["error", "always"],
+      // 4. 允许按需选择箭头函数是否包含大括号
+      'arrow-body-style': ['error', 'as-needed'],
     },
   },
 
