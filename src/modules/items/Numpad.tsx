@@ -25,7 +25,7 @@ type ButtonItem<T extends boolean = boolean> = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:25:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 20:36:26
+ * @LastEditTime: 2026-10-16 21:52:19
  * @FilePath: src/modules/items/Numpad.tsx
  */
 export const Numpad = defineComponent({
@@ -50,7 +50,7 @@ export const Numpad = defineComponent({
       {id: '7', text: '7', onClick: () => {appendText('7')}, },
       {id: '8', text: '8', onClick: () => {appendText('8')},},
       {id: '9', text: '9', onClick: () => {appendText('9')}, },
-      {id: 'submit', text: '提交', onClick: () => {},
+      {id: 'submit', text: '提交', onClick: () => {clearText()},
         extraClass: cn('bg-[var(--pad-submit-button-bg-color)] text-[var(--button-text-color)]'),},
       {id: '0', text: '0', onClick: () => {appendText('0')}, },
       {id: 'dot', text: 'dot', onClick: () => {appendText('.')},
