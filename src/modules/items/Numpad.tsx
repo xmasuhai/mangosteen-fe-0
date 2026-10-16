@@ -4,14 +4,14 @@ import { cn } from 'cn'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { useGlobalHintsBus, } from '@/shared/events/useGlobalHintsBus.ts'
 import { numberLimitListener } from '@/modules/items/itemEvents.ts'
-import { useNumpadButtons } from '@/modules/items/useNumpadButtons.ts'
+import { useNumpadButtons } from '@/modules/items/useNumpadButtons.tsx'
 
 /**
  * @Description: 数字键盘
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:25:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 23:16:23
+ * @LastEditTime: 2026-10-16 23:51:36
  * @FilePath: src/modules/items/Numpad.tsx
  */
 export const Numpad = defineComponent({

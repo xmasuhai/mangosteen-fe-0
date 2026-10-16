@@ -22,8 +22,8 @@ type ButtonItem<T extends boolean = boolean> = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-16 23:08:22
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 23:40:49
- * @FilePath: src/modules/items/useNumpadButtons.ts
+ * @LastEditTime: 2026-10-16 23:51:59
+ * @FilePath: src/modules/items/useNumpadButtons.tsx
  */
 export const useNumpadButtons = () => {
   const { appendText, clearText, backspaceText } = useNumpadAmountStore()
