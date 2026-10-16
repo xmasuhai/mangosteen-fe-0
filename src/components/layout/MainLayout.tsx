@@ -12,7 +12,7 @@ import { cn } from 'cn'
  */
 export const MainLayout = defineComponent({
   name: 'MainLayout',
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     return () => (
       <div class={cn('w-full h-full position-relative')}>
         <NavBar
@@ -23,9 +23,7 @@ export const MainLayout = defineComponent({
             icon: () => _ctx.slots?.icon?.(),
           }}
         </NavBar>
-        <main class="h-[calc(100%-var(--navbar-min-height))]">
-          {_ctx.slots?.default?.()}
-        </main>
+        <main class="h-[calc(100%-var(--navbar-min-height))]">{_ctx.slots?.default?.()}</main>
       </div>
     )
   },

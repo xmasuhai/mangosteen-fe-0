@@ -1,11 +1,6 @@
 import { defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
-import {
-  svgIconNames,
-  type SvgIconNames,
-  type SvgIconName,
-  SvgIconEnum,
-} from '@svgoStore'
+import { svgIconNames, type SvgIconNames, type SvgIconName, SvgIconEnum } from '@svgoStore'
 
 /**
  * @Description: 图标文件名称作为 id，导出名称列表，并动态生成枚举类型
@@ -19,7 +14,7 @@ export { svgIconNames, type SvgIconNames, type SvgIconName, SvgIconEnum }
 
 interface SvgIconProps {
   name: SvgIconNames
-  onClick?: (e?: MouseEvent) => void,
+  onClick?: (e?: MouseEvent) => void
 }
 
 /**
@@ -50,11 +45,9 @@ export const SvgIcon = defineComponent<SvgIconProps>({
 
     return () => (
       <svg
-        class={cn(
-          'where:(h-1em w-1em align-[-0.15em] fill-[currentColor] overflow-clip)',
-        )}
+        class={cn('where:(h-1em w-1em align-[-0.15em] fill-[currentColor] overflow-clip)')}
         aria-hidden="true">
-        <use xlinkHref={`#icon-${props.name}`}/>
+        <use xlinkHref={`#icon-${props.name}`} />
       </svg>
     )
   },

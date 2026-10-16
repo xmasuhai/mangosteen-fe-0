@@ -19,12 +19,13 @@ export const SwitchTabs = defineComponent({
     },
   },
   setup(_props, _ctx) {
-    const selectedClass = (tabName: string) => _props.selected === tabName
-      ? cn(
-        'relative',
-        `after:(content-[""] block absolute bottom-0 left-0 w-full h-4px bg-[var(--tabs-indicator-bg)])`,
-      )
-      : ''
+    const selectedClass = (tabName: string) =>
+      _props.selected === tabName
+        ? cn(
+            'relative',
+            `after:(content-[""] block absolute bottom-0 left-0 w-full h-4px bg-[var(--tabs-indicator-bg)])`,
+          )
+        : ''
 
     return () => {
       const defaultSlotTabs = _ctx.slots?.default?.() ?? []
@@ -46,7 +47,7 @@ export const SwitchTabs = defineComponent({
                   class={cn(
                     'flex-grow-1 flex-shrink-0 text-center',
                     'p-y-12px bg-[var(--navbar-bg-end)]',
-                    selectedClass(slot?.props?.tabName)
+                    selectedClass(slot?.props?.tabName),
                   )}
                   onClick={() => {
                     _ctx.emit('update:selected', slot?.props?.tabName)
@@ -59,8 +60,7 @@ export const SwitchTabs = defineComponent({
 
           {/* 标签内容 */}
           <section>
-            {defaultSlotTabs
-              .find((slot) => slot.props?.tabName === _props.selected)}
+            {defaultSlotTabs.find((slot) => slot.props?.tabName === _props.selected)}
           </section>
         </>
       )

@@ -1,7 +1,7 @@
 import { defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
 
-type DirectionType =  'horizontal' | 'vertical' | '|' | '-'
+type DirectionType = 'horizontal' | 'vertical' | '|' | '-'
 interface PlaceCenterProps {
   direction?: DirectionType
 }
@@ -22,16 +22,13 @@ export const PlaceCenter = defineComponent<PlaceCenterProps>({
       type: String as PropType<PlaceCenterProps['direction']>,
       required: false,
       default: 'horizontal',
-    }
+    },
   },
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     const direction = _props.direction ?? 'horizontal'
     const flexDirection = cn(['horizontal', '-'].includes(direction) ? 'flex-row' : 'flex-col')
     return () => (
-      <section class={cn(
-        'flex place-items-center place-content-center',
-        flexDirection,
-      )}>
+      <section class={cn('flex place-items-center place-content-center', flexDirection)}>
         {_ctx.slots?.default?.()}
       </section>
     )

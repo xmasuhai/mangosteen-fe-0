@@ -15,7 +15,7 @@ import { MainLayout } from '@/components/layout/MainLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 22:38:29
+ * @LastEditTime: 2026-10-16 23:04:11
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -34,7 +34,7 @@ export const StartAccountsView = defineComponent({
       <MainLayout>
         {{
           title: () => '山竹记账',
-          icon: () => (<SvgIcon name="menu" class="w-2em h-2em" onClick={onClickMenu} />),
+          icon: () => <SvgIcon name="menu" class="w-2em h-2em" onClick={onClickMenu} />,
           default: () => (
             <>
               <PlaceCenter class="p-y-10em">
@@ -45,14 +45,14 @@ export const StartAccountsView = defineComponent({
                 <BarButton onClick={routerToCreateItemView}>开始记账</BarButton>
               </div>
 
-              <FloatButton onClick={routerToCreateItemView} iconName="add" class="fixed bottom-1em right-1em" />
+              <FloatButton
+                onClick={routerToCreateItemView}
+                iconName="add"
+                class="fixed bottom-1em right-1em"/>
 
-              {
-                overlayVisible.value &&
-                <FloatOverlay direct-scoped />
-              }
+              {overlayVisible.value && <FloatOverlay direct-scoped />}
             </>
-          )
+          ),
         }}
       </MainLayout>
     )

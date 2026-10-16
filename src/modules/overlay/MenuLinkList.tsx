@@ -21,24 +21,22 @@ export const MenuLinkList = defineComponent({
   name: 'MenuLinkList',
   setup(/* _props, _ctx */) {
     const menuLinkItemList: Readonly<MenuLinkItemType[]> = Object.freeze([
-      {linkPath: '/statistics', linkTitle: '统计图表', iconName: 'chart'},
-      {linkPath: '/export', linkTitle: '导出数据', iconName: 'export'},
-      {linkPath: '/notify', linkTitle: '记账提醒', iconName: 'notify'},
-      {linkPath: '/tech_stack', linkTitle: '本App技术栈', iconName: 'tech_stack'}
+      { linkPath: '/statistics', linkTitle: '统计图表', iconName: 'chart' },
+      { linkPath: '/export', linkTitle: '导出数据', iconName: 'export' },
+      { linkPath: '/notify', linkTitle: '记账提醒', iconName: 'notify' },
+      { linkPath: '/tech_stack', linkTitle: '本App技术栈', iconName: 'tech_stack' },
     ])
 
     return () => (
       <nav>
-        <menu
-          class={cn(
-            'p-t-1em text-20px'
-          )}>
+        <menu class={cn('p-t-1em text-20px')}>
           {menuLinkItemList.map((item) => (
             <MenuLinkItem
               key={item.linkPath}
               linkPath={item.linkPath}
               linkTitle={item.linkTitle}
-              iconName={item.iconName}/>
+              iconName={item.iconName}
+            />
           ))}
         </menu>
       </nav>

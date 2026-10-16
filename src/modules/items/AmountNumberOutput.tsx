@@ -1,4 +1,4 @@
-import { defineComponent, } from 'vue'
+import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useNumpadAmountStore } from '@/stores/useNumpadAmountStore.ts'
 
@@ -15,9 +15,7 @@ export const AmountNumberOutput = defineComponent({
   setup(/* _props, _ctx */) {
     const { amountRef } = storeToRefs(useNumpadAmountStore())
     return () => (
-      <span class="text-24px font-mono color-[var(--amount-text-color)]">
-        {amountRef.value}
-      </span>
+      <span class="text-24px font-mono color-[var(--amount-text-color)]">{amountRef.value}</span>
     )
   },
 })

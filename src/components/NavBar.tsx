@@ -16,16 +16,13 @@ export const NavBar = defineComponent({
     propsName: {
       type: String as PropType<string>,
       required: false,
-    }
+    },
   },
-  setup( _props, _ctx ) {
-    const {slots} = _ctx
+  setup(_props, _ctx) {
+    const { slots } = _ctx
 
     return () => (
-      <header class={cn(
-        s.navbar,
-        'text-[var(--navbar-text-color)]'
-      )}>
+      <header class={cn(s.navbar, 'text-[var(--navbar-text-color)]')}>
         <span class={s.icon_wrapper}>{slots?.icon?.()}</span>
         <span class={s.title_wrapper}>{slots?.default?.()}</span>
       </header>

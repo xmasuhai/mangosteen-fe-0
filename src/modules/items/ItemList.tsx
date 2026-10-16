@@ -18,11 +18,7 @@ export const ItemList = defineComponent({
         {{
           title: () => '山竹记账',
           icon: () => <SvgIcon name="menu" class="w-2em h-2em" />,
-          default: () => (
-            <>
-              山竹记账
-            </>
-          ),
+          default: () => <>山竹记账</>,
         }}
       </MainLayout>
     )

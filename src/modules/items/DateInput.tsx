@@ -25,7 +25,7 @@ export const DateInput = defineComponent({
     const toggleDatePicker = () => {
       datePickerVisibleRef.value = !datePickerVisibleRef.value
     }
-    const confirmDate = ({ selectedValues }: {selectedValues: string[]}) => {
+    const confirmDate = ({ selectedValues }: { selectedValues: string[] }) => {
       lastDateRef.value = selectedValues
       currentDateRef.value = selectedValues
       datePickerVisibleRef.value = false
@@ -37,20 +37,22 @@ export const DateInput = defineComponent({
 
     return () => (
       <span class="flex justify-start items-center">
-        <SvgIcon onClick={toggleDatePicker} name="date" class="size-2em mx-1 fill-[var(--button-bg)]" />
+        <SvgIcon
+          onClick={toggleDatePicker}
+          name="date"
+          class="size-2em mx-1 fill-[var(--button-bg)]"
+        />
         <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
           <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
-          <Popup
-            position="bottom"
-            v-model:show={datePickerVisibleRef.value}
-            onClose={cancelDate}>
+          <Popup position="bottom" v-model:show={datePickerVisibleRef.value} onClose={cancelDate}>
             <DatePicker
               title="选择年月日"
               v-model={currentDateRef.value}
               minDate={minDate}
               maxDate={maxDate}
               onConfirm={confirmDate}
-              onCancel={cancelDate}/>
+              onCancel={cancelDate}
+            />
           </Popup>
         </span>
       </span>

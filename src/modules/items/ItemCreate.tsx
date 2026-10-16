@@ -25,8 +25,12 @@ export const ItemCreate = defineComponent({
           default: () => (
             <>
               <SwitchTabs selected={kind.value} v-model:selected={kind.value}>
-                <ItemTab tabId="expenses" tabName="支出">支出 icon 列表</ItemTab>
-                <ItemTab tabId="incomes" tabName="收入">收入 icon 列表</ItemTab>
+                <ItemTab tabId="expenses" tabName="支出">
+                  支出 icon 列表
+                </ItemTab>
+                <ItemTab tabId="incomes" tabName="收入">
+                  收入 icon 列表
+                </ItemTab>
               </SwitchTabs>
 
               <section class="fixed bottom-0 left-0 w-full">

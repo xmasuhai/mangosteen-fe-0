@@ -6,10 +6,10 @@ import { useSwipe } from '@/hooks/useSwipe.ts'
 import { throttle } from '@/shared/throttle.ts'
 
 const routerToHash = {
-  'welcomePig': '/welcome/2',
-  'welcomeClock': '/welcome/3',
-  'welcomeChart': '/welcome/4',
-  'welcomeCloud': '/start',
+  welcomePig: '/welcome/2',
+  welcomeClock: '/welcome/3',
+  welcomeChart: '/welcome/4',
+  welcomeCloud: '/start',
 }
 
 /**
@@ -27,7 +27,7 @@ export const MainSwiper = defineComponent({
     const { isSwiping, direction } = useSwipe(mainRef)
     const router = useRouter()
     const route = useRoute()
-    const throttledRouterReplace = throttle( () => {
+    const throttledRouterReplace = throttle(() => {
       return router.replace(routerToHash[route.name as keyof typeof routerToHash])
     }, 500)
     watchEffect(async () => {

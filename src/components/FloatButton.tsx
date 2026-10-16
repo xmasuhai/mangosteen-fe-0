@@ -4,7 +4,7 @@ import { cn } from 'cn'
 import type { SvgIconNames } from '@/components/icons/SvgIcon.tsx'
 
 interface FloatButtonProps {
-  onClick?: (e: MouseEvent) => void,
+  onClick?: (e: MouseEvent) => void
   iconName: SvgIconNames
 }
 
@@ -27,17 +27,19 @@ export const FloatButton = defineComponent<FloatButtonProps>({
   components: {},
   setup(props, _ctx) {
     return () => (
-      <div class={cn(
-        'w-56px h-56px flex justify-center items-center',
-        'bg-[var(--float-button-bg)] rounded-[var(--float-button-radius)]',
-      )}>
+      <div
+        class={cn(
+          'w-56px h-56px flex justify-center items-center',
+          'bg-[var(--float-button-bg)] rounded-[var(--float-button-radius)]',
+        )}>
         <SvgIcon
           name={props.iconName}
           class={cn(
             'w-2.5em h-2.5em',
             'fill-[var(--float-button-text-color)]',
-            'translate-y-[-2px]'
-          )}/>
+            'translate-y-[-2px]',
+          )}
+        />
       </div>
     )
   },

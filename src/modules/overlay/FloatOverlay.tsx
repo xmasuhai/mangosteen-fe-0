@@ -14,15 +14,16 @@ import { MenuLinkList } from '@/modules/overlay/MenuLinkList.tsx'
  */
 export const FloatOverlay = defineComponent({
   name: 'FloatOverlay',
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     return () => (
       <>
         <OverlayMask />
         <aside
           class={cn(
-          'fixed z-[calc(var(--z-index-float-overlay)+1)] bg-[var(--overlay-bg)]',
-          'top-[var(--top-safe-area-height)] left-0',
-          'w-18em h-[calc(100%-var(--top-safe-area-height))]', )}>
+            'fixed z-[calc(var(--z-index-float-overlay)+1)] bg-[var(--overlay-bg)]',
+            'top-[var(--top-safe-area-height)] left-0',
+            'w-18em h-[calc(100%-var(--top-safe-area-height))]',
+          )}>
           <OverlayUserHeader />
           <MenuLinkList />
         </aside>

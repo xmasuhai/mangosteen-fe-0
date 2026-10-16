@@ -1,7 +1,9 @@
 import { defineComponent } from 'vue'
 import { cn } from 'cn'
 
-interface BarButtonProps {onClick?: (e: MouseEvent) => void}
+interface BarButtonProps {
+  onClick?: (e: MouseEvent) => void
+}
 
 /**
  * @Description: 条状按钮
@@ -14,7 +16,6 @@ interface BarButtonProps {onClick?: (e: MouseEvent) => void}
 export const BarButton = defineComponent<BarButtonProps>({
   name: 'BarButton',
   setup(_props, ctx) {
-
     return () => (
       <button
         type="button"
