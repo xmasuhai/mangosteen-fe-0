@@ -25,7 +25,7 @@ type ButtonItem<T extends boolean = boolean> = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:25:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 17:17:42
+ * @LastEditTime: 2026-10-16 17:38:43
  * @FilePath: src/modules/items/Numpad.tsx
  */
 export const Numpad = defineComponent({
@@ -56,20 +56,31 @@ export const Numpad = defineComponent({
       ? cn('text-18px')
       : ''
     return () => (
-      <div class={cn(
+      <div
+        class={cn(
         // 'grid grid-cols-[repeat(4,1fr)] grid-rows-[repeat(4,56px)]',
         // 'bg-[var(--pad-border-color)] gap-1px p-t-1px',
         s['button-wrapper'],
-      )}>
+        )}
+        style={{
+          'grid-template-areas': `
+          'btn_1 btn_2 btn_3 btn_清空'
+          'btn_4 btn_5 btn_6 btn_删除'
+          'btn_7 btn_8 btn_9 btn_提交'
+          'btn_0 btn_0 btn_dot btn_提交'
+          `
+        }}>
         {buttons.map((buttonItem) => (
           <button
             type="button"
             key={buttonItem.text}
             data-btn-text={`btn_${buttonItem.text}`}
             onClick={buttonItem.onClick}
-            // style={{'grid-area': `btn_${buttonItem.text}`}}
+            style={{
+              'grid-area': `btn_${buttonItem.text}`,
+            }}
             class={cn(
-              'flex justify-center items-center font-bold',
+              // 'flex justify-center items-center font-bold',
               // 'bg-white b-unset',
               // buttonItem.gridArea,
               // buttonItem?.extraClass,
