@@ -4,10 +4,11 @@ import { cn } from 'cn'
 
 /**
  * @Description: 主布局
+ * @Description: 接受 title、icon、default 三个插槽
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 17:50:13
+ * @LastEditTime: 2026-10-17 15:41:46
  * @FilePath: src/components/layout/MainLayout.tsx
  */
 export const MainLayout = defineComponent({

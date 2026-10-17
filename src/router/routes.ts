@@ -8,13 +8,16 @@ import { StartAccountsView } from '@/views/StartAccountsView.tsx'
 import { ItemsView } from '@/views/ItemsView.tsx'
 import { ItemList } from '@/modules/items/ItemList.tsx'
 import { ItemCreate } from '@/modules/items/ItemCreate.tsx'
+import { TagView } from '@/views/TagView.tsx'
+import { TagDetailEditView } from '@/views/TagDetailEditView.tsx'
+import { TagCreateView } from '@/views/TagCreateView.tsx'
 
 /**
  * @Description: 路由表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 22:41:19
+ * @LastEditTime: 2026-10-17 15:29:50
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -52,5 +55,16 @@ export const routes: RouteRecordRaw[] = [
         component: ItemCreate,
       },
     ],
+  },
+  /* 标签项目相关：标签详细页、创建页 */
+  {
+    path: '/tags',
+    name: '',
+    component: TagView,
+    children: [
+      {path: 'create', name: 'tagCreate', component: TagCreateView,},
+      // {path: '', name: 'tagList', component: TagView,},
+      {path: ':id', name: 'tagEdit', component: TagDetailEditView,},
+    ]
   },
 ]
