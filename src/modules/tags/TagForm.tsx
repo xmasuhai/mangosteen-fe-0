@@ -1,11 +1,13 @@
 import { defineComponent } from 'vue'
+import { BarButton } from '@/components/BarButton.tsx'
+import { cn } from 'cn'
 
 /**
  * @Description: 标签表单
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 16:47:23
+ * @LastEditTime: 2026-10-17 21:38:46
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -20,47 +22,234 @@ export const TagForm = defineComponent({
       '自然',
       '实物',
       '运动',
+      '表情',
+      '手势',
+      '职业',
+      '衣服',
+      '动物',
+      '自然',
+      '实物',
+      '运动',
     ]
     return () => (
-      <form>
-        <div>
-          <label>
-            <span>标签名称</span>
-            <input class="b-1 b-[#ddd]" />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            <span>符号</span>
-            <div>
-              <nav>
-                {navList.map(item => <span>{item}</span>)}
-              </nav>
-
-              <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-                <li>7</li>
-                <li>8</li>
-                <li>9</li>
-                <li>10</li>
-                <li>11</li>
-              </ul>
+      <form class="form p-1em min-h-720px h-full">
+        <div class="formRow mt-0.5em flex-grow-0">
+          <label for="tag-name" class="">
+            <span class="formItem_name">标签名称</span>
+            <div class="formItem_value flex mt-0.25em">
+              <input
+                id="tag-name"
+                class={cn(
+                  'flex-grow-1 min-h-[var(--input-min-height)] max-w-100%',
+                  'b-1 rounded-[var(--input-radius)]',
+                  'text-18px p-x-1em shadow-[inset_0_0_3px_var(--input-shadow)]',
+                  // 动态切换边框颜色 hasError
+                  Math.random() > .5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]'
+                )}/>
+            </div>
+            <div class="m-t-.25em text-12px color-[var(--error-color)]">
+              <span>必填</span>
             </div>
           </label>
         </div>
 
-        <div>
-          <p>记账时长按即可进行编辑</p>
+        <div class="formRow mt-0.5em">
+          <label class="flex flex-col">
+            <span class="formItem_name">符号</span>
+
+            <div class={cn(
+              'formValue',
+              'flex mt-0.25em',
+            )}>
+              <div class={cn(
+                'formItem emojiList error',
+                'min-h-[var(--input-min-height)] max-w-full flex-grow-1',
+                'b-1 rounded-[var(--input-radius)] text-14px',
+                // 动态切换边框颜色 hasError
+                Math.random() > .5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]'
+              )}>
+                <nav class={cn(
+                  'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
+                  '[&>span]:(shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap)',
+                  '[&>span.selected]:text-[var(--emoji-nav-text-selected)]',
+                )}>
+                  <span class="selected">选中</span>
+                  {navList.map(item => <span>{item}</span>)}
+                </nav>
+
+                <ul class={cn(
+                  'scrollbar-hide overflow-auto max-h-[calc(2em_*_12)]',
+                  'flex flex-wrap px-.5em py-0 text-22px line-height-2em',
+                  'children:(grow-0 shrink-0 w-10%) text-center',
+                )}>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                  <li>🐶</li>
+                </ul>
+
+              </div>
+
+            </div>
+
+            <div class="m-t-.25em text-12px color-[var(--error-color)]">
+              <span>必填</span>
+            </div>
+          </label>
         </div>
 
-        <div>
-          <button>确定</button>
+        <p class="tips flex-grow-0 text-center py-1em px-0 min-h-[var(--input-min-height)]">记账时长按即可进行编辑</p>
+
+        <div class="formRow flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
+          <div class="formValue mt-0.25em">
+            <BarButton class="formItem button formItem_value">确定</BarButton>
+          </div>
         </div>
       </form>
     )
