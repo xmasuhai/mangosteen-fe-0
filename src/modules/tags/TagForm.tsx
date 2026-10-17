@@ -7,7 +7,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 21:38:46
+ * @LastEditTime: 2026-10-17 22:06:23
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -78,8 +78,8 @@ export const TagForm = defineComponent({
                 </nav>
 
                 <ul class={cn(
-                  'scrollbar-hide overflow-auto max-h-[calc(2em_*_12)]',
-                  'flex flex-wrap px-.5em py-0 text-22px line-height-2em',
+                  'scrollbar-hide overflow-auto max-h-[calc(1.5em_*_12)]',
+                  'flex flex-wrap px-.5em py-0 text-22px line-height-1.5em',
                   'children:(grow-0 shrink-0 w-10%) text-center',
                 )}>
                   <li>🐶</li>
