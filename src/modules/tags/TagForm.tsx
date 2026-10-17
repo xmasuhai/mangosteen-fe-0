@@ -1,44 +1,33 @@
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
+import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 
 /**
  * @Description: 标签表单
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 22:06:23
+ * @LastEditTime: 2026-10-17 22:17:54
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
   name: 'TagForm',
   setup(/* _props, _ctx */) {
-    const navList = [
-      '表情',
-      '手势',
-      '职业',
-      '衣服',
-      '动物',
-      '自然',
-      '实物',
-      '运动',
-      '表情',
-      '手势',
-      '职业',
-      '衣服',
-      '动物',
-      '自然',
-      '实物',
-      '运动',
-    ]
+    const formData = reactive({
+      name: '',
+      sign: '',
+    })
+
     return () => (
       <form class="form p-1em min-h-720px h-full">
         <div class="formRow mt-0.5em flex-grow-0">
-          <label for="tag-name" class="">
+          <label for="tag-name">
             <span class="formItem_name">标签名称</span>
             <div class="formItem_value flex mt-0.25em">
               <input
                 id="tag-name"
+                v-model={formData.name}
                 class={cn(
                   'flex-grow-1 min-h-[var(--input-min-height)] max-w-100%',
                   'b-1 rounded-[var(--input-radius)]',
@@ -61,181 +50,7 @@ export const TagForm = defineComponent({
               'formValue',
               'flex mt-0.25em',
             )}>
-              <div class={cn(
-                'formItem emojiList error',
-                'min-h-[var(--input-min-height)] max-w-full flex-grow-1',
-                'b-1 rounded-[var(--input-radius)] text-14px',
-                // 动态切换边框颜色 hasError
-                Math.random() > .5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]'
-              )}>
-                <nav class={cn(
-                  'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
-                  '[&>span]:(shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap)',
-                  '[&>span.selected]:text-[var(--emoji-nav-text-selected)]',
-                )}>
-                  <span class="selected">选中</span>
-                  {navList.map(item => <span>{item}</span>)}
-                </nav>
-
-                <ul class={cn(
-                  'scrollbar-hide overflow-auto max-h-[calc(1.5em_*_12)]',
-                  'flex flex-wrap px-.5em py-0 text-22px line-height-1.5em',
-                  'children:(grow-0 shrink-0 w-10%) text-center',
-                )}>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                  <li>🐶</li>
-                </ul>
-
-              </div>
-
+              <EmojiSelector />
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">

@@ -1,4 +1,4 @@
-import { defineComponent /* type PropType */ } from 'vue'
+import { defineComponent } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { TagForm } from '@/modules/tags/TagForm.tsx'
@@ -8,20 +8,11 @@ import { TagForm } from '@/modules/tags/TagForm.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 15:53:31
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 16:46:07
+ * @LastEditTime: 2026-10-17 22:15:56
  * @FilePath: src/views/TagCreateView.tsx
  */
 export const TagCreateView = defineComponent({
   name: 'TagCreateView',
-  props: {
-    /*
-    propsName: {
-      type: String as PropType<string>,
-      required: false,
-      validator: (/!* value *!/) => true,
-    }
-  */
-  },
   setup(/* _props, _ctx */) {
     return () => (
       <MainLayout>{{
