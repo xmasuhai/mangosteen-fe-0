@@ -17,7 +17,7 @@ import { TagCreateView } from '@/views/TagCreateView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 15:52:37
+ * @LastEditTime: 2026-10-17 16:49:57
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -59,7 +59,7 @@ export const routes: RouteRecordRaw[] = [
   /* 标签项目相关：标签详细页、创建页 */
   {
     path: '/tags',
-    name: '',
+    name: 'tags',
     component: TagView,
     children: [
       {path: 'create', name: 'tagCreate', component: TagCreateView,},
