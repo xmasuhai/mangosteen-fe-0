@@ -2,6 +2,7 @@
 // index=页面序号, unicode=\u{...} 形式(运行时常量即渲染 emoji),
 // emoji=真实emoji字符(来自 full-emoji-list.json 的 unicode 字段), unicode_raw=原始码位, name=CLDR short name
 // 注意: \u{...} 为 ES6 转义, 需 tsconfig target >= ES2015
+
 export interface EmojiItem {
   index: number;
   unicode: string;
@@ -21,7 +22,7 @@ export interface EmojiTopic {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 14:15:43
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 11:23:02
+ * @LastEditTime: 2026-10-18 13:02:07
  * @FilePath: src/const/safeEmojiList.ts
  */
 export const safeEmojiList: Readonly<EmojiTopic[]> = Object.freeze([
@@ -2118,4 +2119,4 @@ export const safeEmojiList: Readonly<EmojiTopic[]> = Object.freeze([
       { index: 1665, unicode: "\u{1F3F4}\u{200D}\u{2620}\u{FE0F}", emoji: "🏴‍☠️", unicode_raw: "U+1F3F4 U+200D U+2620 U+FE0F", name: "pirate flag" }
     ],
   },
-])
+] as  const)

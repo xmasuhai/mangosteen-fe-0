@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 10:59:35
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 11:25:00
+ * @LastEditTime: 2026-10-18 12:44:19
  * @FilePath: src/const/emojiTopicList.ts
  */
 export const emojiTopicList = Object.freeze([
@@ -160,4 +160,7 @@ export const emojiTopicList = Object.freeze([
       'flag',
     ],
   },
-])
+] as const)
+
+export type EmojiMainTopic = (typeof emojiTopicList)[number]['mainTopic']
+export type EmojiTopics = (typeof emojiTopicList)[number]['topics']
