@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 10:59:35
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 11:22:14
+ * @LastEditTime: 2026-10-18 11:25:00
  * @FilePath: src/const/emojiTopicList.ts
  */
 export const emojiTopicList = Object.freeze([
@@ -98,7 +98,7 @@ export const emojiTopicList = Object.freeze([
   },
   {
     mainTopic: '交通',
-    topics: ['transport-sign', 'warning',],
+    topics: ['transport-sign', 'warning'],
   },
   {
     mainTopic: '节日',
@@ -127,15 +127,26 @@ export const emojiTopicList = Object.freeze([
   },
   {
     mainTopic: '职业',
-    topics: ['person-role', 'money', 'currency', 'phone', 'computer', 'mail', 'office', 'lock', 'tool', 'household',],
+    topics: [
+      'person-role',
+      'money',
+      'currency',
+      'phone',
+      'computer',
+      'mail',
+      'office',
+      'lock',
+      'tool',
+      'household',
+    ],
   },
   {
     mainTopic: '科技',
-    topics: ['science', 'medical', 'math',],
+    topics: ['science', 'medical', 'math'],
   },
   {
     mainTopic: '个人',
-    topics: ['body-parts', 'hair-style', 'religion', 'zodiac', 'gender',],
+    topics: ['body-parts', 'hair-style', 'religion', 'zodiac', 'gender'],
   },
   {
     mainTopic: '其他',
