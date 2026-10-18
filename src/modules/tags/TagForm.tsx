@@ -3,10 +3,10 @@ import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import {
-  type ErrorsType,
+  type FormErrorsType,
   type FormDataType,
+  type FormRules,
   formValidate,
-  type Rules,
 } from '@/shared/validator/formValidate.ts'
 
 /**
@@ -14,7 +14,7 @@ import {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 00:03:54
+ * @LastEditTime: 2026-10-19 00:17:53
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -25,14 +25,14 @@ export const TagForm = defineComponent({
       name: '',
       sign: '',
     })
-    const errors = ref<ErrorsType<FormDataType>>({})
+    const errors = ref<FormErrorsType<FormDataType>>({})
     const onSubmit = (e: SubmitEvent) => {
       e.preventDefault()
-      const rules: Rules<FormDataType> = [
+      const rules = [
         { key: 'name', type: 'required', required: true, message: '必填', },
         { key: 'name', type: 'pattern', regexp: /^.{1,4}$/, message: '只能填1到4个字符', },
         { key: 'sign', type: 'required', required: true, message: '必填', },
-      ]
+      ] satisfies FormRules<FormDataType>
       errors.value = formValidate(toRaw(formData), rules)
     }
     return () => (
@@ -51,8 +51,7 @@ export const TagForm = defineComponent({
                   'flex-grow-1 min-h-[var(--input-min-height)] max-w-100%',
                   'b-1 rounded-[var(--input-radius)]',
                   'text-18px p-x-1em shadow-[inset_0_0_3px_var(--input-shadow)]',
-                  // 动态切换边框颜色 hasError
-                  Math.random() > 0.5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]',
+                  errors.value.name ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
                 )}
               />
             </div>
@@ -69,6 +68,7 @@ export const TagForm = defineComponent({
 
             <div class="flex mt-0.25em">
               <EmojiSelector
+                errorHint={errors.value.sign?.join(', ')}
                 v-model:emoji={formData.sign}
                 v-model:emojiHint={emojiHint.value}/>
             </div>

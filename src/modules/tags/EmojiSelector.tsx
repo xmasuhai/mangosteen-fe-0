@@ -9,12 +9,13 @@ import { EmojiUnicodeList } from '@/modules/tags/emoji/EmojiUnicodeList.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 21:07:52
+ * @LastEditTime: 2026-10-19 00:17:26
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
   name: 'EmojiSelector',
   props: {
+    errorHint: { type: String, default: '' },
     emoji: { type: String, default: '' },
     emojiHint: { type: String, default: '' },
   },
@@ -42,7 +43,7 @@ export const EmojiSelector = defineComponent({
           'min-h-[var(--input-min-height)] max-w-full flex-grow-1',
           'b-1 rounded-[var(--input-radius)] text-14px',
           // 动态切换边框颜色 hasError
-          Math.random() > 0.5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]',
+          _props.errorHint ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
         )}>
         <EmojiMainTopicNav v-model:mainTopic={selectedMainTopic.value} />
         <EmojiUnicodeList
