@@ -21,10 +21,10 @@ export interface EmojiTopic {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 14:15:43
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 10:57:22
+ * @LastEditTime: 2026-10-18 11:23:02
  * @FilePath: src/const/safeEmojiList.ts
  */
-export const emojis: EmojiTopic[] = [
+export const safeEmojiList: Readonly<EmojiTopic[]> = Object.freeze([
   {
     topic: "face-smiling",
     emoji_list: [
@@ -2118,4 +2118,4 @@ export const emojis: EmojiTopic[] = [
       { index: 1665, unicode: "\u{1F3F4}\u{200D}\u{2620}\u{FE0F}", emoji: "🏴‍☠️", unicode_raw: "U+1F3F4 U+200D U+2620 U+FE0F", name: "pirate flag" }
     ],
   },
-];
+])
