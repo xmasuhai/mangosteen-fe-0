@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 10:59:35
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 12:44:19
+ * @LastEditTime: 2026-10-18 14:39:57
  * @FilePath: src/const/emojiTopicList.ts
  */
 export const emojiTopicList = Object.freeze([
@@ -90,15 +90,18 @@ export const emojiTopicList = Object.freeze([
       'place-building',
       'place-religious',
       'place-other',
-      'transport-ground',
-      'transport-water',
-      'transport-air',
       'hotel',
     ],
   },
   {
     mainTopic: '交通',
-    topics: ['transport-sign', 'warning'],
+    topics: [
+      'transport-ground',
+      'transport-water',
+      'transport-air',
+      'transport-sign',
+      'warning',
+    ],
   },
   {
     mainTopic: '节日',

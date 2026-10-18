@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { computed, type ComputedRef, defineComponent, ref } from 'vue'
 import { cn } from 'cn'
 import { type EmojiMainTopic, emojiTopicList, type EmojiSubTopic } from '@/const/emojiTopicList.ts'
 import { safeEmojiList } from '@/const/safeEmojiList.ts'
@@ -8,7 +8,7 @@ import { safeEmojiList } from '@/const/safeEmojiList.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 14:29:54
+ * @LastEditTime: 2026-10-18 14:38:54
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
@@ -17,14 +17,17 @@ export const EmojiSelector = defineComponent({
     const navList: EmojiMainTopic[] = emojiTopicList
       .map(topicItem => topicItem.mainTopic)
     const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
-    const selectedTopicList: readonly EmojiSubTopic[] = emojiTopicList
+    const selectedTopicList: ComputedRef<readonly EmojiSubTopic[]> = computed(() => emojiTopicList
       .find(topicItem => topicItem.mainTopic === selectedTopic.value)
-      ?.topics ?? []
-    const selectedEmojiList: string[] = safeEmojiList
-      .filter(item => selectedTopicList.includes(item.topic))
+      ?.topics ?? [])
+    const selectedEmojiList: ComputedRef<string[]> = computed<string[]>(() => safeEmojiList
+      .filter(item => selectedTopicList.value.includes(item.topic))
       .flatMap(item => item.emoji_list)
-      .map(item => item.unicode)
+      .map(item => item.unicode))
 
+    const selectMainTopic = (topic: EmojiMainTopic) => {
+      selectedTopic.value = topic
+    }
     return () => (
       <div
         class={cn(
@@ -41,7 +44,9 @@ export const EmojiSelector = defineComponent({
             '[&>span.selected]:(text-[var(--emoji-nav-text-selected)] font-bold)',
           )}>
           {navList.map((item) => (
-            <span class={item === selectedTopic.value ? 'selected' : ''}>
+            <span
+              onClick={() => selectMainTopic(item)}
+              class={item === selectedTopic.value ? 'selected' : ''}>
               {item}
             </span>
           ))}
@@ -53,7 +58,7 @@ export const EmojiSelector = defineComponent({
             'flex flex-wrap content-start px-.5em py-0 text-22px line-height-1.5em',
             'children:(grow-0 shrink-0 w-10%) text-center',
           )}>
-          {selectedEmojiList.map(unicode => (<li>{unicode}</li>)) }
+          {selectedEmojiList.value.map(unicode => (<li>{unicode}</li>)) }
         </ul>
       </div>
     )
