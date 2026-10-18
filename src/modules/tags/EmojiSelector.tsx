@@ -1,96 +1,55 @@
-import { computed, type ComputedRef, defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { cn } from 'cn'
-import { type EmojiMainTopic, emojiTopicList, type EmojiSubTopic } from '@/const/emojiTopicList.ts'
-import { type EmojiItem, safeEmojiList } from '@/const/safeEmojiList.ts'
+import { type EmojiMainTopic } from '@/const/emojiTopicList.ts'
+import { EmojiMainTopicNav } from '@/modules/tags/emoji/EmojiMainTopicNav.tsx'
+import { EmojiUnicodeList } from '@/modules/tags/emoji/EmojiUnicodeList.tsx'
 
 /**
  * @Description: 颜文字选择器
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 18:38:10
+ * @LastEditTime: 2026-10-18 21:07:52
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
   name: 'EmojiSelector',
   props: {
-    emoji: { type: String, default: '', },
-    emojiHint: { type: String, default: '', },
+    emoji: { type: String, default: '' },
+    emojiHint: { type: String, default: '' },
   },
-  emits: ['update:emoji', 'update:emojiHint',],
-  setup( _props, _ctx ) {
-    const navList: EmojiMainTopic[] = emojiTopicList
-      .map(topicItem => topicItem.mainTopic)
-    const selectedMainTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
-    const selectedTopicList: ComputedRef<readonly EmojiSubTopic[]> = computed(() => emojiTopicList
-      .find(topicItem => topicItem.mainTopic === selectedMainTopic.value)
-      ?.topics ?? [])
-    const selectedFlattedEmojiList: ComputedRef<EmojiItem[]> = computed(() => safeEmojiList
-      .filter(item => selectedTopicList.value.includes(item.topic))
-      .flatMap(item => item.emoji_list))
-    const selectedMainTopicEmojiUnicodeList: ComputedRef<string[]> = computed(() => selectedFlattedEmojiList.value
-      .map(item => item.unicode))
+  emits: ['update:emoji', 'update:emojiHint'],
+  setup(_props, _ctx) {
+    const selectedMainTopic = ref<EmojiMainTopic>('表情')
     const selectedEmoji = ref('')
-    const selectedEmojiHint: ComputedRef<string> = computed(() => selectedFlattedEmojiList.value
-      ?.find(emojiItem => emojiItem.unicode === selectedEmoji.value)
-      ?.hint ?? '')
-    const selectMainTopic = (topic: EmojiMainTopic) => {
-      selectedEmoji.value = ''
-      _ctx.emit('update:emoji', '')
-      selectedMainTopic.value = topic
-    }
-    const selectEmoji = (unicode: string) => {
-      selectedEmoji.value = unicode
-      _ctx.emit('update:emoji', unicode)
+    const selectedEmojiHint = ref('')
+    watch([selectedEmoji, selectedEmojiHint], () => {
+      _ctx.emit('update:emoji', selectedEmoji.value)
       _ctx.emit('update:emojiHint', selectedEmojiHint.value)
+    })
+    const clearEmoji = () => {
+      selectedEmoji.value = ''
+      selectedEmojiHint.value = ''
+      _ctx.emit('update:emoji', '')
+      _ctx.emit('update:emojiHint', '')
     }
+    watch(selectedMainTopic, () => {
+      clearEmoji()
+    })
     return () => (
       <div
         class={cn(
-          'formItem emojiList error',
           'min-h-[var(--input-min-height)] max-w-full flex-grow-1',
           'b-1 rounded-[var(--input-radius)] text-14px',
           // 动态切换边框颜色 hasError
           Math.random() > 0.5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]',
         )}>
-        <nav
-          class={cn(
-            'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
-            '[&>span.selected]:(text-[var(--emoji-nav-text-selected)] font-bold)',
-          )}>
-          {navList.map((item) => (
-            <span
-              onClick={() => selectMainTopic(item)}
-              class={cn(
-                'shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap',
-                item === selectedMainTopic.value ? 'selected' : '',
-              )}>
-              {item}
-            </span>
-          ))}
-        </nav>
-
-        <ul
-          class={cn(
-            'scrollbar-hide overflow-auto h-[calc(1.65em_*_12)]',
-            'flex flex-wrap content-start px-.5em py-2.5px',
-            'text-22px line-height-1.5em',
-          )}>
-          {
-            selectedMainTopicEmojiUnicodeList.value
-              .map(unicode => (
-                <li
-                  onClick={() => selectEmoji(unicode)}
-                  class={cn(
-                    'text-center grow-0 shrink-0 w-10% b-1 b-transparent',
-                    unicode === selectedEmoji.value &&
-                    'bg-blue-300 outline-1px outline-solid outline-[var(--button-bg)] rounded-[var(--input-radius)]'
-                  )}>
-                  {unicode}
-                </li>
-              ))
-          }
-        </ul>
+        <EmojiMainTopicNav v-model:mainTopic={selectedMainTopic.value} />
+        <EmojiUnicodeList
+          selectedMainTopic={selectedMainTopic.value}
+          v-model:emoji={selectedEmoji.value}
+          v-model:emojiHint={selectedEmojiHint.value}
+        />
       </div>
     )
   },
