@@ -13,7 +13,7 @@ import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
  */
 export const Welcome1stPage: FunctionalComponent = () => (
   <>
-    <SvgIcon class={wp.logo} name="pig"/>
+    <SvgIcon class={wp.logo} name="pig" />
     <div class={wp.description}>
       <h2>会挣钱</h2>
       <h2>还要会省钱</h2>

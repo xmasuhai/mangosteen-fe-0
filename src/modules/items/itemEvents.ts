@@ -1,4 +1,4 @@
-import { type GlobalHintPayload, } from '@/shared/events/useGlobalHintsBus.ts'
+import { type GlobalHintPayload } from '@/shared/events/useGlobalHintsBus.ts'
 import { showNotify } from 'vant'
 
 /**

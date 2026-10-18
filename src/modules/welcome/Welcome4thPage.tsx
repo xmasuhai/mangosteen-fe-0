@@ -13,7 +13,7 @@ import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
  */
 export const Welcome4thPage: FunctionalComponent = () => (
   <>
-    <SvgIcon class={wp.logo} name="cloud"/>
+    <SvgIcon class={wp.logo} name="cloud" />
     <div class={wp.description}>
       <h2>云备份</h2>
       <h2>再也不怕数据丢失</h2>

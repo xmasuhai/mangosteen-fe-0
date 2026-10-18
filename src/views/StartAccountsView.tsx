@@ -48,7 +48,8 @@ export const StartAccountsView = defineComponent({
               <FloatButton
                 onClick={routerToCreateItemView}
                 iconName="add"
-                class="fixed bottom-1em right-1em"/>
+                class="fixed bottom-1em right-1em"
+              />
 
               {overlayVisible.value && <FloatOverlay direct-scoped />}
             </>

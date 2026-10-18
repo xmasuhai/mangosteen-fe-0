@@ -33,8 +33,9 @@ export const TagForm = defineComponent({
                   'b-1 rounded-[var(--input-radius)]',
                   'text-18px p-x-1em shadow-[inset_0_0_3px_var(--input-shadow)]',
                   // 动态切换边框颜色 hasError
-                  Math.random() > .5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]'
-                )}/>
+                  Math.random() > 0.5 ? 'b-[var(--input-border-color)]' : 'b-[var(--error-color)]',
+                )}
+              />
             </div>
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
               <span>必填</span>
@@ -46,10 +47,7 @@ export const TagForm = defineComponent({
           <label class="flex flex-col">
             <span class="formItem_name">符号</span>
 
-            <div class={cn(
-              'formValue',
-              'flex mt-0.25em',
-            )}>
+            <div class={cn('formValue', 'flex mt-0.25em')}>
               <EmojiSelector />
             </div>
 
@@ -59,7 +57,9 @@ export const TagForm = defineComponent({
           </label>
         </div>
 
-        <p class="tips flex-grow-0 text-center py-1em px-0 min-h-[var(--input-min-height)]">记账时长按即可进行编辑</p>
+        <p class="tips flex-grow-0 text-center py-1em px-0 min-h-[var(--input-min-height)]">
+          记账时长按即可进行编辑
+        </p>
 
         <div class="formRow flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
           <div class="formValue mt-0.25em">

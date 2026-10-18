@@ -11,7 +11,7 @@
  */
 @keyframes rainbow {
   @for $i from 0 through 80 {
-    $keyframe: $i * 1.25 + "%";
+    $keyframe: $i * 1.25 + '%';
     $colorIndex: ((6 * $i) % 480) + 1;
     #{$keyframe} {
       --vp-c-brand-1: #{list.nth($colors, $colorIndex)};

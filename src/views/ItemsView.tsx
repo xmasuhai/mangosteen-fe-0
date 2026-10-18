@@ -12,6 +12,6 @@ import { RouterView } from 'vue-router'
 export const ItemsView = defineComponent({
   name: 'ItemsView',
   setup(/* _props, _ctx */) {
-    return () => <RouterView/>
+    return () => <RouterView />
   },
 })

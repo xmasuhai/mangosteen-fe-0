@@ -1,4 +1,4 @@
-import { defineComponent,  type PropType  } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
 interface ItemTabProps {
   tabId: string
@@ -25,9 +25,7 @@ export const ItemTab = defineComponent<ItemTabProps>({
       required: true,
     },
   },
-  setup( _props, _ctx ) {
-    return () => (
-      <div>{_ctx.slots?.default?.()}</div>
-    )
+  setup(_props, _ctx) {
+    return () => <div>{_ctx.slots?.default?.()}</div>
   },
 })

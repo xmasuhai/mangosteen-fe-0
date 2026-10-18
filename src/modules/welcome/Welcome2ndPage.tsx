@@ -13,7 +13,7 @@ import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
  */
 export const Welcome2ndPage: FunctionalComponent = () => (
   <>
-    <SvgIcon class={wp.logo} name="clock"/>
+    <SvgIcon class={wp.logo} name="clock" />
     <div class={wp.description}>
       <h2>每日提醒</h2>
       <h2>不会遗漏每一笔账单</h2>

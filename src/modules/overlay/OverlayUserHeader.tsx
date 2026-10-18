@@ -12,7 +12,9 @@ import { cn } from 'cn'
 export const OverlayUserHeader = defineComponent({
   name: 'OverlayUserHeader',
   setup(/* _props, _ctx */) {
-    const onClickSignIn = () => { console.log('点击登录') }
+    const onClickSignIn = () => {
+      console.log('点击登录')
+    }
 
     return () => (
       <section

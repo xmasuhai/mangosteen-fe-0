@@ -15,13 +15,13 @@ export const TagCreateView = defineComponent({
   name: 'TagCreateView',
   setup(/* _props, _ctx */) {
     return () => (
-      <MainLayout>{{
-        title: () => '新建标签',
-        icon: () => <SvgIcon name="back-arrow" size="1.5em" onClick={() => {}} />,
-        default: () => (
-          <TagForm />
-        ),
-      }}</MainLayout>
+      <MainLayout>
+        {{
+          title: () => '新建标签',
+          icon: () => <SvgIcon name="back-arrow" size="1.5em" onClick={() => {}} />,
+          default: () => <TagForm />,
+        }}
+      </MainLayout>
     )
   },
 })

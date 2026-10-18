@@ -2,7 +2,7 @@ import { defineComponent, onBeforeUnmount } from 'vue'
 import s from '@/modules/items/Numpad.module.scss'
 import { cn } from 'cn'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
-import { useGlobalHintsBus, } from '@/shared/events/useGlobalHintsBus.ts'
+import { useGlobalHintsBus } from '@/shared/events/useGlobalHintsBus.ts'
 import { numberLimitListener } from '@/modules/items/itemEvents.ts'
 import { useNumpadButtons } from '@/modules/items/useNumpadButtons.tsx'
 
@@ -18,12 +18,14 @@ export const Numpad = defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Numpad',
   setup(/* _props, _ctx */) {
-    const {on, off,} = useGlobalHintsBus()
+    const { on, off } = useGlobalHintsBus()
     const unsubscribe = on(numberLimitListener)
-    onBeforeUnmount(() => { off(numberLimitListener);unsubscribe() })
-    const numberSizeClass = (text: string) =>
-      (/[0-9|dot]/g.test(text) ? cn('text-18px') : '')
-    const {numpadButtons}  = useNumpadButtons()
+    onBeforeUnmount(() => {
+      off(numberLimitListener)
+      unsubscribe()
+    })
+    const numberSizeClass = (text: string) => (/[0-9|dot]/g.test(text) ? cn('text-18px') : '')
+    const { numpadButtons } = useNumpadButtons()
     return () => (
       <div
         class={cn(
