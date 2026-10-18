@@ -2,41 +2,38 @@ import { defineComponent, reactive, ref, toRaw } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
+import {
+  type ErrorsType,
+  type FormDataType,
+  formValidate,
+  type Rules,
+} from '@/shared/validator/formValidate.ts'
 
 /**
  * @Description: 标签表单
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 21:56:19
+ * @LastEditTime: 2026-10-19 00:03:54
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
   name: 'TagForm',
   setup(/* _props, _ctx */) {
-    const formData = reactive({
+    const emojiHint = ref('')
+    const formData = reactive<FormDataType>({
       name: '',
       sign: '',
     })
-    const emojiHint = ref('')
+    const errors = ref<ErrorsType<FormDataType>>({})
     const onSubmit = (e: SubmitEvent) => {
       e.preventDefault()
-      console.log('_______________________')
-      console.log(toRaw(formData))
-      console.log('_______________________')
-
-      /*
-      // const errors = validate(formData, rules)
-      const rules = [
-        { key: 'name', required: true, message: '', },
-        { key: 'name', pattern: /^.{0,4}$/, message: '', },
-        { key: 'sign', required: true,},
+      const rules: Rules<FormDataType> = [
+        { key: 'name', type: 'required', required: true, message: '必填', },
+        { key: 'name', type: 'pattern', regexp: /^.{1,4}$/, message: '只能填1到4个字符', },
+        { key: 'sign', type: 'required', required: true, message: '必填', },
       ]
-      const errors = {
-        name: ['错误1', '错误2'],
-        sign: ['错误3', '错误4'],
-      }
-      */
+      errors.value = formValidate(toRaw(formData), rules)
     }
     return () => (
       <form
@@ -44,7 +41,7 @@ export const TagForm = defineComponent({
         class="p-1em min-h-720px h-full">
         <div class="mt-0.5em flex-grow-0">
           <label for="tag-name">
-            <span class="">标签名称</span>
+            <span>标签名称</span>
 
             <div class="flex mt-0.25em">
               <input
@@ -61,14 +58,14 @@ export const TagForm = defineComponent({
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
-              <span>必填</span>
+              <span>{errors.value.name?.join(', ')}</span>
             </div>
           </label>
         </div>
 
         <div class="mt-0.5em">
           <label class="flex flex-col">
-            <span class="">符号 {formData.sign} {emojiHint.value}</span>
+            <span>符号 {formData.sign} {emojiHint.value}</span>
 
             <div class="flex mt-0.25em">
               <EmojiSelector
@@ -77,7 +74,7 @@ export const TagForm = defineComponent({
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
-              <span>必填</span>
+              <span>{errors.value.sign?.join(', ')}</span>
             </div>
           </label>
         </div>
