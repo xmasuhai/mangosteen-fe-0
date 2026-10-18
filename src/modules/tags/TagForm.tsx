@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive, ref, toRaw } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
@@ -8,7 +8,7 @@ import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 18:04:04
+ * @LastEditTime: 2026-10-18 21:56:19
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -18,11 +18,30 @@ export const TagForm = defineComponent({
       name: '',
       sign: '',
     })
-
     const emojiHint = ref('')
+    const onSubmit = (e: SubmitEvent) => {
+      e.preventDefault()
+      console.log('_______________________')
+      console.log(toRaw(formData))
+      console.log('_______________________')
 
+      /*
+      // const errors = validate(formData, rules)
+      const rules = [
+        { key: 'name', required: true, message: '', },
+        { key: 'name', pattern: /^.{0,4}$/, message: '', },
+        { key: 'sign', required: true,},
+      ]
+      const errors = {
+        name: ['错误1', '错误2'],
+        sign: ['错误3', '错误4'],
+      }
+      */
+    }
     return () => (
-      <form class="p-1em min-h-720px h-full">
+      <form
+        onSubmit={onSubmit}
+        class="p-1em min-h-720px h-full">
         <div class="mt-0.5em flex-grow-0">
           <label for="tag-name">
             <span class="">标签名称</span>
@@ -69,7 +88,10 @@ export const TagForm = defineComponent({
 
         <div class="flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
           <div class="mt-0.25em">
-            <BarButton class="formItem button formItem_value">确定</BarButton>
+            <BarButton
+              type="submit"
+              onClick={() => {}}
+              class="formItem button formItem_value">确定</BarButton>
           </div>
         </div>
       </form>
