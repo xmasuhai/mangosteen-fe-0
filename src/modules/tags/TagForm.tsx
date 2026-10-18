@@ -8,7 +8,7 @@ import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 22:17:54
+ * @LastEditTime: 2026-10-18 15:15:12
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -45,10 +45,12 @@ export const TagForm = defineComponent({
 
         <div class="formRow mt-0.5em">
           <label class="flex flex-col">
-            <span class="formItem_name">符号</span>
+            <span class="formItem_name">
+              符号 {formData.sign}
+            </span>
 
             <div class={cn('formValue', 'flex mt-0.25em')}>
-              <EmojiSelector />
+              <EmojiSelector v-model:emoji={formData.sign} />
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">

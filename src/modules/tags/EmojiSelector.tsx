@@ -8,12 +8,13 @@ import { safeEmojiList } from '@/const/safeEmojiList.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 14:38:54
+ * @LastEditTime: 2026-10-18 15:24:06
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
   name: 'EmojiSelector',
-  setup(/* _props, _ctx */) {
+  emits: ['update:emoji',],
+  setup( _props, _ctx ) {
     const navList: EmojiMainTopic[] = emojiTopicList
       .map(topicItem => topicItem.mainTopic)
     const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
@@ -24,9 +25,17 @@ export const EmojiSelector = defineComponent({
       .filter(item => selectedTopicList.value.includes(item.topic))
       .flatMap(item => item.emoji_list)
       .map(item => item.unicode))
+    const selectedEmoji = ref('')
 
     const selectMainTopic = (topic: EmojiMainTopic) => {
+      selectedEmoji.value = ''
+      _ctx.emit('update:emoji', '')
       selectedTopic.value = topic
+    }
+
+    const selectEmoji = (unicode: string) => {
+      selectedEmoji.value = unicode
+      _ctx.emit('update:emoji', unicode)
     }
     return () => (
       <div
@@ -54,11 +63,22 @@ export const EmojiSelector = defineComponent({
 
         <ul
           class={cn(
-            'scrollbar-hide overflow-auto h-[calc(1.5em_*_12)]',
-            'flex flex-wrap content-start px-.5em py-0 text-22px line-height-1.5em',
-            'children:(grow-0 shrink-0 w-10%) text-center',
+            'scrollbar-hide overflow-auto h-[calc(1.6em_*_12)]',
+            'flex flex-wrap content-start px-.5em py-0 ',
+            'text-center text-22px line-height-1.5em',
+            'children:(grow-0 shrink-0 w-10% b-1 b-transparent) ',
+            '[&>li.selected]:(bg-blue-300)',
           )}>
-          {selectedEmojiList.value.map(unicode => (<li>{unicode}</li>)) }
+          {
+            selectedEmojiList.value
+              .map(unicode => (
+                <li
+                  onClick={() => selectEmoji(unicode)}
+                  class={unicode === selectedEmoji.value ? 'selected' : ''}>
+                  {unicode}
+                </li>
+              ))
+          }
         </ul>
       </div>
     )
