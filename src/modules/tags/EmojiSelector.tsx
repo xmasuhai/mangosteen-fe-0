@@ -1,41 +1,48 @@
 import { computed, type ComputedRef, defineComponent, ref } from 'vue'
 import { cn } from 'cn'
 import { type EmojiMainTopic, emojiTopicList, type EmojiSubTopic } from '@/const/emojiTopicList.ts'
-import { safeEmojiList } from '@/const/safeEmojiList.ts'
+import { type EmojiItem, safeEmojiList } from '@/const/safeEmojiList.ts'
 
 /**
  * @Description: 颜文字选择器
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 16:08:28
+ * @LastEditTime: 2026-10-18 18:38:10
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
   name: 'EmojiSelector',
-  emits: ['update:emoji',],
+  props: {
+    emoji: { type: String, default: '', },
+    emojiHint: { type: String, default: '', },
+  },
+  emits: ['update:emoji', 'update:emojiHint',],
   setup( _props, _ctx ) {
     const navList: EmojiMainTopic[] = emojiTopicList
       .map(topicItem => topicItem.mainTopic)
-    const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
+    const selectedMainTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
     const selectedTopicList: ComputedRef<readonly EmojiSubTopic[]> = computed(() => emojiTopicList
-      .find(topicItem => topicItem.mainTopic === selectedTopic.value)
+      .find(topicItem => topicItem.mainTopic === selectedMainTopic.value)
       ?.topics ?? [])
-    const selectedEmojiList: ComputedRef<string[]> = computed<string[]>(() => safeEmojiList
+    const selectedFlattedEmojiList: ComputedRef<EmojiItem[]> = computed(() => safeEmojiList
       .filter(item => selectedTopicList.value.includes(item.topic))
-      .flatMap(item => item.emoji_list)
+      .flatMap(item => item.emoji_list))
+    const selectedMainTopicEmojiUnicodeList: ComputedRef<string[]> = computed(() => selectedFlattedEmojiList.value
       .map(item => item.unicode))
     const selectedEmoji = ref('')
-
+    const selectedEmojiHint: ComputedRef<string> = computed(() => selectedFlattedEmojiList.value
+      ?.find(emojiItem => emojiItem.unicode === selectedEmoji.value)
+      ?.hint ?? '')
     const selectMainTopic = (topic: EmojiMainTopic) => {
       selectedEmoji.value = ''
       _ctx.emit('update:emoji', '')
-      selectedTopic.value = topic
+      selectedMainTopic.value = topic
     }
-
     const selectEmoji = (unicode: string) => {
       selectedEmoji.value = unicode
       _ctx.emit('update:emoji', unicode)
+      _ctx.emit('update:emojiHint', selectedEmojiHint.value)
     }
     return () => (
       <div
@@ -56,7 +63,7 @@ export const EmojiSelector = defineComponent({
               onClick={() => selectMainTopic(item)}
               class={cn(
                 'shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap',
-                item === selectedTopic.value ? 'selected' : '',
+                item === selectedMainTopic.value ? 'selected' : '',
               )}>
               {item}
             </span>
@@ -70,7 +77,7 @@ export const EmojiSelector = defineComponent({
             'text-22px line-height-1.5em',
           )}>
           {
-            selectedEmojiList.value
+            selectedMainTopicEmojiUnicodeList.value
               .map(unicode => (
                 <li
                   onClick={() => selectEmoji(unicode)}

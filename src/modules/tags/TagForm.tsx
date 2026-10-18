@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
@@ -8,7 +8,7 @@ import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 17:02:43
+ * @LastEditTime: 2026-10-18 18:04:04
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -18,6 +18,8 @@ export const TagForm = defineComponent({
       name: '',
       sign: '',
     })
+
+    const emojiHint = ref('')
 
     return () => (
       <form class="p-1em min-h-720px h-full">
@@ -47,10 +49,12 @@ export const TagForm = defineComponent({
 
         <div class="mt-0.5em">
           <label class="flex flex-col">
-            <span class="">符号 {formData.sign}</span>
+            <span class="">符号 {formData.sign} {emojiHint.value}</span>
 
-            <div class={cn('flex mt-0.25em')}>
-              <EmojiSelector v-model:emoji={formData.sign} />
+            <div class="flex mt-0.25em">
+              <EmojiSelector
+                v-model:emoji={formData.sign}
+                v-model:emojiHint={emojiHint.value}/>
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
@@ -63,8 +67,8 @@ export const TagForm = defineComponent({
           记账时长按即可进行编辑
         </p>
 
-        <div class="formRow flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
-          <div class="formValue mt-0.25em">
+        <div class="flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
+          <div class="mt-0.25em">
             <BarButton class="formItem button formItem_value">确定</BarButton>
           </div>
         </div>
