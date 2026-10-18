@@ -14,7 +14,7 @@ import {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 00:36:50
+ * @LastEditTime: 2026-10-19 00:40:29
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -34,7 +34,7 @@ export const TagForm = defineComponent({
         { key: 'name', type: 'pattern', regexp: /^.{1,4}$/, message: '只能填1到4个字符', },
         { key: 'sign', type: 'required', required: true, message: '必填', },
       ] satisfies FormRules<typeof formData>
-      // 每次先清空上一次报错
+      // 每次先清空上一次报错 errors.value = {}
       Object.assign(errors, {name: undefined, sign: undefined,} )
         // errors.value = formValidate(toRaw(formData), rules) // 从 ref 换用 reactive
       // 无法重复赋值，只能覆盖key
@@ -61,7 +61,7 @@ export const TagForm = defineComponent({
               />
             </div>
 
-            <div class="m-t-.25em text-12px color-[var(--error-color)]">
+            <div class="min-h-18px m-t-.25em text-12px color-[var(--error-color)]">
               <span>{errors.name?.join(', ')}</span>
             </div>
           </label>
@@ -78,7 +78,7 @@ export const TagForm = defineComponent({
                 v-model:emojiHint={emojiHint.value}/>
             </div>
 
-            <div class="m-t-.25em text-12px color-[var(--error-color)]">
+            <div class="min-h-18px m-t-.25em text-12px color-[var(--error-color)]">
               <span>{errors.sign?.join(', ')}</span>
             </div>
           </label>
