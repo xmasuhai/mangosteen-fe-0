@@ -164,3 +164,4 @@ export const emojiTopicList = Object.freeze([
 
 export type EmojiMainTopic = (typeof emojiTopicList)[number]['mainTopic']
 export type EmojiTopics = (typeof emojiTopicList)[number]['topics']
+export type EmojiSubTopic = EmojiTopics[number]

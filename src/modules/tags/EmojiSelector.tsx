@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
 import { cn } from 'cn'
-import { type EmojiMainTopic, emojiTopicList, type EmojiTopics } from '@/const/emojiTopicList.ts'
-import { type EmojiItem, safeEmojiList } from '@/const/safeEmojiList.ts'
+import { type EmojiMainTopic, emojiTopicList, type EmojiSubTopic } from '@/const/emojiTopicList.ts'
+import { safeEmojiList } from '@/const/safeEmojiList.ts'
 
 /**
  * @Description: 颜文字选择器
@@ -17,14 +17,13 @@ export const EmojiSelector = defineComponent({
     const navList: EmojiMainTopic[] = emojiTopicList
       .map(topicItem => topicItem.mainTopic)
     const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '表情')
-    const selectedTopicList = emojiTopicList
+    const selectedTopicList: readonly EmojiSubTopic[] = emojiTopicList
       .find(topicItem => topicItem.mainTopic === selectedTopic.value)
-      ?.topics as  EmojiTopics
-    const selectedEmojiList: EmojiItem[] = safeEmojiList
+      ?.topics ?? []
+    const selectedEmojiList: string[] = safeEmojiList
       .filter(item => selectedTopicList.includes(item.topic))
-      .map(item => item.emoji_list)
-      .flat()
-      .map(item => item?.unicode)
+      .flatMap(item => item.emoji_list)
+      .map(item => item.unicode)
 
     return () => (
       <div

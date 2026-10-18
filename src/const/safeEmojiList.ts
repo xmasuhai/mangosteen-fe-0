@@ -3,6 +3,8 @@
 // emoji=真实emoji字符(来自 full-emoji-list.json 的 unicode 字段), unicode_raw=原始码位, name=CLDR short name
 // 注意: \u{...} 为 ES6 转义, 需 tsconfig target >= ES2015
 
+import type { EmojiSubTopic } from '@/const/emojiTopicList.ts'
+
 export interface EmojiItem {
   index: number;
   unicode: string;
@@ -12,7 +14,7 @@ export interface EmojiItem {
 }
 
 export interface EmojiTopic {
-  topic: string;
+  topic: EmojiSubTopic;
   emoji_list: EmojiItem[];
 }
 
