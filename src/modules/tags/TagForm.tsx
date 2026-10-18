@@ -3,7 +3,7 @@ import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import {
-  type FormErrorsType,
+  // type FormErrorsType,
   type FormDataType,
   type FormRules,
   formValidate,
@@ -14,7 +14,7 @@ import {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 00:17:53
+ * @LastEditTime: 2026-10-19 00:32:47
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -25,15 +25,18 @@ export const TagForm = defineComponent({
       name: '',
       sign: '',
     })
-    const errors = ref<FormErrorsType<FormDataType>>({})
+    // const errors = ref<FormErrorsType<FormDataType>>({})
+    const errors = reactive<{[k in keyof FormDataType]?: string[]}>({})
     const onSubmit = (e: SubmitEvent) => {
       e.preventDefault()
       const rules = [
         { key: 'name', type: 'required', required: true, message: '必填', },
         { key: 'name', type: 'pattern', regexp: /^.{1,4}$/, message: '只能填1到4个字符', },
         { key: 'sign', type: 'required', required: true, message: '必填', },
-      ] satisfies FormRules<FormDataType>
-      errors.value = formValidate(toRaw(formData), rules)
+      ] satisfies FormRules<typeof formData>
+      // errors.value = formValidate(toRaw(formData), rules) // 从 ref 换用 reactive
+      // 无法重复赋值，只能覆盖key
+      Object.assign(errors, formValidate(toRaw(formData), rules))
     }
     return () => (
       <form
@@ -51,13 +54,13 @@ export const TagForm = defineComponent({
                   'flex-grow-1 min-h-[var(--input-min-height)] max-w-100%',
                   'b-1 rounded-[var(--input-radius)]',
                   'text-18px p-x-1em shadow-[inset_0_0_3px_var(--input-shadow)]',
-                  errors.value.name ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
+                  errors.name ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
                 )}
               />
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
-              <span>{errors.value.name?.join(', ')}</span>
+              <span>{errors.name?.join(', ')}</span>
             </div>
           </label>
         </div>
@@ -68,13 +71,13 @@ export const TagForm = defineComponent({
 
             <div class="flex mt-0.25em">
               <EmojiSelector
-                errorHint={errors.value.sign?.join(', ')}
+                errorHint={errors.sign?.join(', ')}
                 v-model:emoji={formData.sign}
                 v-model:emojiHint={emojiHint.value}/>
             </div>
 
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
-              <span>{errors.value.sign?.join(', ')}</span>
+              <span>{errors.sign?.join(', ')}</span>
             </div>
           </label>
         </div>
