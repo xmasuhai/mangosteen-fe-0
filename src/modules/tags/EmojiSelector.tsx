@@ -8,7 +8,7 @@ import { safeEmojiList } from '@/const/safeEmojiList.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 15:24:06
+ * @LastEditTime: 2026-10-18 16:08:28
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
@@ -49,13 +49,15 @@ export const EmojiSelector = defineComponent({
         <nav
           class={cn(
             'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
-            '[&>span]:(shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap)',
             '[&>span.selected]:(text-[var(--emoji-nav-text-selected)] font-bold)',
           )}>
           {navList.map((item) => (
             <span
               onClick={() => selectMainTopic(item)}
-              class={item === selectedTopic.value ? 'selected' : ''}>
+              class={cn(
+                'shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap',
+                item === selectedTopic.value ? 'selected' : '',
+              )}>
               {item}
             </span>
           ))}
@@ -63,18 +65,20 @@ export const EmojiSelector = defineComponent({
 
         <ul
           class={cn(
-            'scrollbar-hide overflow-auto h-[calc(1.6em_*_12)]',
-            'flex flex-wrap content-start px-.5em py-0 ',
-            'text-center text-22px line-height-1.5em',
-            'children:(grow-0 shrink-0 w-10% b-1 b-transparent) ',
-            '[&>li.selected]:(bg-blue-300)',
+            'scrollbar-hide overflow-auto h-[calc(1.65em_*_12)]',
+            'flex flex-wrap content-start px-.5em py-2.5px',
+            'text-22px line-height-1.5em',
           )}>
           {
             selectedEmojiList.value
               .map(unicode => (
                 <li
                   onClick={() => selectEmoji(unicode)}
-                  class={unicode === selectedEmoji.value ? 'selected' : ''}>
+                  class={cn(
+                    'text-center grow-0 shrink-0 w-10% b-1 b-transparent',
+                    unicode === selectedEmoji.value &&
+                    'bg-blue-300 outline-1px outline-solid outline-[var(--button-bg)] rounded-[var(--input-radius)]'
+                  )}>
                   {unicode}
                 </li>
               ))

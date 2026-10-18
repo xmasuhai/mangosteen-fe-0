@@ -8,7 +8,7 @@ import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 15:15:12
+ * @LastEditTime: 2026-10-18 17:02:43
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -20,11 +20,12 @@ export const TagForm = defineComponent({
     })
 
     return () => (
-      <form class="form p-1em min-h-720px h-full">
-        <div class="formRow mt-0.5em flex-grow-0">
+      <form class="p-1em min-h-720px h-full">
+        <div class="mt-0.5em flex-grow-0">
           <label for="tag-name">
-            <span class="formItem_name">标签名称</span>
-            <div class="formItem_value flex mt-0.25em">
+            <span class="">标签名称</span>
+
+            <div class="flex mt-0.25em">
               <input
                 id="tag-name"
                 v-model={formData.name}
@@ -37,19 +38,18 @@ export const TagForm = defineComponent({
                 )}
               />
             </div>
+
             <div class="m-t-.25em text-12px color-[var(--error-color)]">
               <span>必填</span>
             </div>
           </label>
         </div>
 
-        <div class="formRow mt-0.5em">
+        <div class="mt-0.5em">
           <label class="flex flex-col">
-            <span class="formItem_name">
-              符号 {formData.sign}
-            </span>
+            <span class="">符号 {formData.sign}</span>
 
-            <div class={cn('formValue', 'flex mt-0.25em')}>
+            <div class={cn('flex mt-0.25em')}>
               <EmojiSelector v-model:emoji={formData.sign} />
             </div>
 
