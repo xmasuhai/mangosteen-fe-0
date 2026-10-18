@@ -8,7 +8,7 @@ import { safeEmojiList } from '@/const/safeEmojiList.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 22:14:34
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 13:01:50
+ * @LastEditTime: 2026-10-18 14:29:54
  * @FilePath: src/modules/tags/EmojiSelector.tsx
  */
 export const EmojiSelector = defineComponent({
@@ -16,7 +16,7 @@ export const EmojiSelector = defineComponent({
   setup(/* _props, _ctx */) {
     const navList: EmojiMainTopic[] = emojiTopicList
       .map(topicItem => topicItem.mainTopic)
-    const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '表情')
+    const selectedTopic = ref<EmojiMainTopic>(navList[0] ?? '手势')
     const selectedTopicList: readonly EmojiSubTopic[] = emojiTopicList
       .find(topicItem => topicItem.mainTopic === selectedTopic.value)
       ?.topics ?? []
@@ -38,7 +38,7 @@ export const EmojiSelector = defineComponent({
           class={cn(
             'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
             '[&>span]:(shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap)',
-            '[&>span.selected]:text-[var(--emoji-nav-text-selected)]',
+            '[&>span.selected]:(text-[var(--emoji-nav-text-selected)] font-bold)',
           )}>
           {navList.map((item) => (
             <span class={item === selectedTopic.value ? 'selected' : ''}>
@@ -49,7 +49,7 @@ export const EmojiSelector = defineComponent({
 
         <ul
           class={cn(
-            'scrollbar-hide overflow-auto max-h-[calc(1.5em_*_12)]',
+            'scrollbar-hide overflow-auto h-[calc(1.5em_*_12)]',
             'flex flex-wrap content-start px-.5em py-0 text-22px line-height-1.5em',
             'children:(grow-0 shrink-0 w-10%) text-center',
           )}>
