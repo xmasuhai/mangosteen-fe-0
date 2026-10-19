@@ -17,7 +17,7 @@ import { TagCreateView } from '@/views/TagCreateView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 12:27:14
+ * @LastEditTime: 2026-10-19 20:41:07
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -65,7 +65,7 @@ export const routes: RouteRecordRaw[] = [
       { path: '', name: 'tagDefault', redirect: '/tags/create', },
       { path: 'create', name: 'tagCreate', component: TagCreateView },
       // {path: '', name: 'tagList', component: TagView,},
-      { path: ':id', name: 'tagEdit', component: TagDetailEditView },
+      { path: 'edit/:id', name: 'tagEdit', component: TagDetailEditView },
     ],
   },
 ]
