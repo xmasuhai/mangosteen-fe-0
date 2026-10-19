@@ -1,4 +1,4 @@
-import { defineComponent /* type PropType */ } from 'vue'
+import { defineComponent, } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { TagForm } from '@/modules/tags/TagForm.tsx'
@@ -8,7 +8,7 @@ import { TagForm } from '@/modules/tags/TagForm.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 15:54:11
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 20:48:05
+ * @LastEditTime: 2026-10-19 21:03:16
  * @FilePath: src/views/TagDetailEditView.tsx
  */
 export const TagDetailEditView = defineComponent({

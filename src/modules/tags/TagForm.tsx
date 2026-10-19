@@ -3,18 +3,20 @@ import { BarButton } from '@/components/BarButton.tsx'
 import { cn } from 'cn'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import {
-  // type FormErrorsType,
   type FormDataType,
   type FormRules,
   formValidate,
 } from '@/shared/validator/formValidate.ts'
 
 /**
- * @Description: 标签表单
+ * @Description: 标签表单组件
+ * @Description: 仅做验证逻辑，展示验证错误结果；
+ * @Description: 仅当编辑tag时，有表单默认数据，通过 props 传入；
+ * @Description: 提交逻辑抛出事件；
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 00:40:29
+ * @LastEditTime: 2026-10-19 21:12:12
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -25,7 +27,6 @@ export const TagForm = defineComponent({
       name: '',
       sign: '',
     })
-    // const errors = ref<FormErrorsType<FormDataType>>({})
     const errors = reactive<{[k in keyof FormDataType]?: string[]}>({})
     const onSubmit = (e: SubmitEvent) => {
       e.preventDefault()
@@ -34,10 +35,9 @@ export const TagForm = defineComponent({
         { key: 'name', type: 'pattern', regexp: /^.{1,4}$/, message: '只能填1到4个字符', },
         { key: 'sign', type: 'required', required: true, message: '必填', },
       ] satisfies FormRules<typeof formData>
-      // 每次先清空上一次报错 errors.value = {}
+      // 每次先清空上一次报错
       Object.assign(errors, {name: undefined, sign: undefined,} )
-        // errors.value = formValidate(toRaw(formData), rules) // 从 ref 换用 reactive
-      // 无法重复赋值，只能覆盖key
+      // reactive 无法重复赋值，只能覆盖key
       Object.assign(errors, formValidate(toRaw(formData), rules))
     }
     return () => (
