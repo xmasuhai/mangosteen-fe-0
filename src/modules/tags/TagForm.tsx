@@ -16,7 +16,7 @@ import {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:12:12
+ * @LastEditTime: 2026-10-19 21:27:58
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -43,7 +43,7 @@ export const TagForm = defineComponent({
     return () => (
       <form
         onSubmit={onSubmit}
-        class="p-1em min-h-720px h-full">
+        class="p-1em min-h-720px">
         <div class="mt-0.5em flex-grow-0">
           <label for="tag-name">
             <span>标签名称</span>
