@@ -3,21 +3,22 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 17:51:39
+ * @LastEditTime: 2026-10-19 14:40:14
  * @FilePath: src/assets/styles/vars.scss
  */
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  --main: #5c33be;
   // welcome page
   --welcome-card-bg-color: white;
   --welcome-text: white;
   --title-text: #d4d4ee;
-  --welcome-card-start: #5d33be;
+  --welcome-card-start: var(--main);
   --welcome-card-end: #8f4cd7;
   --welcome-text-primary-color: #6035bf;
   --transition-duration: 0.8s;
-  --button-bg: #5c33be;
+  --button-bg: var(--main);
   --button-text-color: white;
   --button-text-size: 18px;
   --button-radius: 8px;
@@ -48,12 +49,14 @@
   --date-text-color: #999;
   // input emoji
   --input-min-height: 48px;
-  --input-border-color: #5c33be;
+  --input-border-color: var(--main);
   --input-radius: var(--button-radius);
   --input-shadow: rgba(0, 0, 0, 0.25);
   --error-color: #e10505;
   --emoji-nav-text: #999;
   --emoji-nav-text-selected: #333;
+  // tag
+  --tag-bg: #EFEFEF;
 }
 
 /* semantic color variables for this project */
