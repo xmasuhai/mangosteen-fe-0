@@ -17,7 +17,7 @@ import { TagCreateView } from '@/views/TagCreateView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 11:29:25
+ * @LastEditTime: 2026-10-19 12:27:14
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -41,12 +41,12 @@ export const routes: RouteRecordRaw[] = [
   { path: '/start', name: 'startAccounts', component: StartAccountsView },
   /* 记账项目相关：项目列表页、创建页 */
   {
-    path: '/item',
-    name: 'item',
+    path: '/items',
+    name: 'items',
     component: ItemsView,
     children: [
       {
-        path: '', // 默认
+        path: '',
         name: 'itemList',
         component: ItemList,
       },
