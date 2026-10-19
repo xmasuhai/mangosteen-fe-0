@@ -6,13 +6,12 @@ import type { VNode } from 'vue'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-19 17:48:23
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 17:51:08
+ * @LastEditTime: 2026-10-19 18:29:46
  * @FilePath: src/views/genDefaultSlotTabs.ts
  */
 export const genDefaultSlotTabs = (slots: Array<VNode>): VNode[] =>
-  slots.flatMap(slot =>
-    typeof slot?.type === 'symbol' ?
-      Symbol.keyFor(slot?.type as symbol) === 'v-fgt'
-        ? genDefaultSlotTabs(slot.children as VNode[])
-        : slot
-      :slot)
+  slots.flatMap((slot) =>
+    typeof slot?.type === 'symbol' && Symbol.keyFor(slot?.type as symbol) === 'v-fgt'
+      ? genDefaultSlotTabs(slot.children as VNode[])
+      : slot,
+  )

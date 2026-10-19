@@ -11,7 +11,7 @@ import { IconTag } from '@/modules/tags/IconTag.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:00:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 17:55:35
+ * @LastEditTime: 2026-10-19 20:32:41
  * @FilePath: src/views/ItemCreate.tsx
  */
 export const ItemCreate = defineComponent({
@@ -64,20 +64,10 @@ export const ItemCreate = defineComponent({
       { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
       { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
     ])
-
     const itemTabList = computed(() => ([
-      {
-        tabId: 'expenses2',
-        tabName: '支出',
-        tagList: refExpensesTags.value,
-      },
-      {
-        tabId: 'incomes2',
-        tabName: '收入',
-        tagList: refIncomeTags.value,
-      },
+      { tabId: 'expenses', tabName: '支出', tagList: refExpensesTags.value, },
+      { tabId: 'incomes', tabName: '收入', tagList: refIncomeTags.value, },
     ]))
-
     return () => (
       <MainLayout>
         {{
@@ -108,26 +98,6 @@ export const ItemCreate = defineComponent({
                       </ItemTab>
                     ))
                 }
-
-                {/*
-                <ItemTab tabId="expenses" tabName="支出" class="flex flex-wrap pt-1em">
-                  <IconTag tagName="新增">
-                    <SvgIcon name="add" class="fill-[var(--main)]" />
-                  </IconTag>
-                  {refExpensesTags.value.map(tag =>
-                    <IconTag tagName={tag.name} tagSign={tag.sign}/>
-                  )}
-                </ItemTab>
-                <ItemTab tabId="incomes" tabName="收入" class="flex flex-wrap pt-1em">
-                  <IconTag tagName="新增">
-                    <SvgIcon name="add" class="fill-[var(--main)]" />
-                  </IconTag>
-                  {refIncomeTags.value.map(tag =>
-                    <IconTag tagName={tag.name} tagSign={tag.sign}/>
-                  )}
-                </ItemTab>
-                */}
-
               </SwitchTabs>
 
               <section class="w-full grow-0 shrink-0">

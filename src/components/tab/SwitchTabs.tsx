@@ -6,10 +6,11 @@ import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
 /**
  * @Description: 切换标签Tab列表组件
  * @Description: 内部必须使用默认插槽接收 ItemTab 组件，ItemTab 组件必须有 tabName 属性
+ * @Description: 拿到默认插槽的子组件数组，遍历判断是否为 ItemTab 或是 'v-fgt'，递归拍平返回子组件数组并渲染 defaultSlotTabs
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 17:53:32
+ * @LastEditTime: 2026-10-19 20:26:26
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
