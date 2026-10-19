@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 14:56:04
+ * @LastEditTime: 2026-10-19 21:28:03
  * @FilePath: src/components/layout/MainLayout.tsx
  */
 export const MainLayout = defineComponent({
@@ -18,14 +18,17 @@ export const MainLayout = defineComponent({
       <div class={cn('w-full h-full relative')}>
         <NavBar
           direct-scoped
-          class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">
+          class={cn(
+            'sticky top-0 z-1',
+            'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]',
+          )}>
           {{
             default: () => _ctx.slots?.title?.(),
             icon: () => _ctx.slots?.icon?.(),
           }}
         </NavBar>
         <main
-          class="h-[calc(100vh-var(--navbar-min-height))] ">
+          class="h-[calc(100vh-var(--navbar-min-height))]">
           {_ctx.slots?.default?.()}
         </main>
       </div>
