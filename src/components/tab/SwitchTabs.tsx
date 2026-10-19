@@ -1,14 +1,15 @@
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent, type PropType, } from 'vue'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 import { cn } from 'cn'
+import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
 
 /**
  * @Description: 切换标签Tab列表组件
- * @Description: 内部使用默认插槽接收 ItemTab 组件，ItemTab 组件必须有 tabName 属性
+ * @Description: 内部必须使用默认插槽接收 ItemTab 组件，ItemTab 组件必须有 tabName 属性
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 16:26:24
+ * @LastEditTime: 2026-10-19 17:53:32
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -28,10 +29,10 @@ export const SwitchTabs = defineComponent({
         : ''
 
     return () => {
-      const defaultSlotTabs = _ctx.slots?.default?.() ?? []
-      const ifAllItemTab = defaultSlotTabs.every(
-        (slot) => slot.type === ItemTab && !!slot.props?.tabName,
-      )
+      const defaultSlotTabs = genDefaultSlotTabs(_ctx.slots?.default?.() ?? [])
+      const ifAllItemTab = defaultSlotTabs
+        .every((slot) => slot.type === ItemTab && !!slot.props?.tabName)
+
       if (!ifAllItemTab) {
         throw new Error(`SwitchTabs: 子组件必须是 ItemTab，且必须有 tabName 属性`)
       }
