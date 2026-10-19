@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 22:16:15
+ * @LastEditTime: 2026-10-19 16:26:24
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -37,15 +37,15 @@ export const SwitchTabs = defineComponent({
       }
 
       return (
-        <>
+        <div class="grow-1 shrink-1 overflow-auto scrollbar-hide relative">
           {/* 切换标签 */}
-          <nav>
-            <menu class="flex justify-between items-center text-color-[var(--navbar-text-color)]">
+          <nav class="sticky left-0 top-0 z-1">
+            <menu class="flex items-center text-color-[var(--navbar-text-color)]">
               {defaultSlotTabs.map((slot, index) => (
                 <li
                   key={index + slot?.props?.tabName}
                   class={cn(
-                    'flex-grow-1 flex-shrink-0 text-center',
+                    'grow-1 shrink-0 text-center',
                     'p-y-12px bg-[var(--navbar-bg-end)]',
                     selectedClass(slot?.props?.tabName),
                   )}
@@ -58,11 +58,11 @@ export const SwitchTabs = defineComponent({
             </menu>
           </nav>
 
-          {/* 标签内容 */}
+          {/* 标签内容-插槽-数组 */}
           <section>
             {defaultSlotTabs.find((slot) => slot.props?.tabName === _props.selected)}
           </section>
-        </>
+        </div>
       )
     }
   },
