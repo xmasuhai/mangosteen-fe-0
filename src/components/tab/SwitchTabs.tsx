@@ -10,7 +10,7 @@ import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 20:26:26
+ * @LastEditTime: 2026-10-19 22:39:42
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -33,7 +33,6 @@ export const SwitchTabs = defineComponent({
       const defaultSlotTabs = genDefaultSlotTabs(_ctx.slots?.default?.() ?? [])
       const ifAllItemTab = defaultSlotTabs
         .every((slot) => slot.type === ItemTab && !!slot.props?.tabName)
-
       if (!ifAllItemTab) {
         throw new Error(`SwitchTabs: 子组件必须是 ItemTab，且必须有 tabName 属性`)
       }
@@ -41,14 +40,13 @@ export const SwitchTabs = defineComponent({
       return (
         <div class="grow-1 shrink-1 overflow-auto scrollbar-hide relative">
           {/* 切换标签 */}
-          <nav class="sticky left-0 top-0 z-1">
-            <menu class="flex items-center text-color-[var(--navbar-text-color)]">
+          <nav class="sticky left-0 top-0 z-1 bg-[var(--navbar-bg-end)]">
+            <menu class="flex justify-start items-center text-color-[var(--navbar-text-color)]">
               {defaultSlotTabs.map((slot, index) => (
                 <li
                   key={index + slot?.props?.tabName}
                   class={cn(
-                    'grow-1 shrink-0 text-center',
-                    'p-y-12px bg-[var(--navbar-bg-end)]',
+                    'where:(text-center grow-1 shrink-0 px-1em py-12px)',
                     selectedClass(slot?.props?.tabName),
                   )}
                   onClick={() => {
