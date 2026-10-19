@@ -17,7 +17,7 @@ export type FormErrorsType<T extends FormDataType> = { [k in keyof T]?: string[]
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 22:02:08
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 00:12:22
+ * @LastEditTime: 2026-10-19 12:56:48
  * @FilePath: src/shared/validator/formValidate.ts
  */
 export const formValidate = <T extends FormDataType>(
@@ -28,16 +28,16 @@ export const formValidate = <T extends FormDataType>(
 
   rules.forEach(rule => {
     const { key, message, type, } = rule
-    const value = formData[key]
+    const value = formData[key] satisfies FormDataType[string]
     switch(type) {
       case 'required':
-        if([null, undefined, ''].includes(value?.toString())) {
+        if(!isEmpty(value)) {
           errors[key] ??= []
           errors[key].push(message)
         }
         break
       case 'pattern':
-        if(value && !rule.regexp.test(value.toString())) {
+        if(!isEmpty(value) && !rule.regexp.test(value!.toString())) {
           errors[key] ??= []
           errors[key].push(message)
         }
@@ -48,4 +48,8 @@ export const formValidate = <T extends FormDataType>(
   })
 
   return errors
+}
+
+export function isEmpty(value: FormDataType[string]) {
+  return [null, undefined, '',].includes(value?.toString())
 }
