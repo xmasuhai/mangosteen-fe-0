@@ -8,14 +8,14 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-17 15:41:46
+ * @LastEditTime: 2026-10-19 14:56:04
  * @FilePath: src/components/layout/MainLayout.tsx
  */
 export const MainLayout = defineComponent({
   name: 'MainLayout',
   setup(_props, _ctx) {
     return () => (
-      <div class={cn('w-full h-full position-relative')}>
+      <div class={cn('w-full h-full relative')}>
         <NavBar
           direct-scoped
           class="navbar bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]">
@@ -24,7 +24,10 @@ export const MainLayout = defineComponent({
             icon: () => _ctx.slots?.icon?.(),
           }}
         </NavBar>
-        <main class="h-[calc(100%-var(--navbar-min-height))]">{_ctx.slots?.default?.()}</main>
+        <main
+          class="h-[calc(100vh-var(--navbar-min-height))] ">
+          {_ctx.slots?.default?.()}
+        </main>
       </div>
     )
   },
