@@ -11,7 +11,7 @@ import { type EmojiMainTopic, type EmojiSubTopic, emojiTopicList } from '@/const
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 19:54:04
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-18 21:09:22
+ * @LastEditTime: 2026-10-19 21:36:07
  * @FilePath: src/modules/tags/emoji/EmojiUnicodeList.tsx
  */
 export const EmojiUnicodeList = defineComponent({
@@ -68,7 +68,7 @@ export const EmojiUnicodeList = defineComponent({
             class={cn(
               'text-center grow-0 shrink-0 w-10% b-1 b-transparent',
               unicode === selectedEmojiUnicode.value &&
-                'bg-blue-300 outline-1px outline-solid outline-[var(--button-bg)] rounded-[var(--input-radius)]',
+                'bg-blue-300 outline-1px outline-solid outline-[var(--button-main)] rounded-[var(--input-radius)]',
             )}>
             {unicode}
           </li>

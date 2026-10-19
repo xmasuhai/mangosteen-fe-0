@@ -8,7 +8,7 @@ import { time } from '@/shared/time.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 23:51:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 23:52:48
+ * @LastEditTime: 2026-10-19 21:36:06
  * @FilePath: src/modules/items/DateInput.tsx
  */
 export const DateInput = defineComponent({
@@ -40,7 +40,7 @@ export const DateInput = defineComponent({
         <SvgIcon
           onClick={toggleDatePicker}
           name="date"
-          class="size-2em mx-1 fill-[var(--button-bg)]"
+          class="size-2em mx-1 fill-[var(--button-main)]"
         />
         <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
           <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
