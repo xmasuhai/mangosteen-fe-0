@@ -7,16 +7,30 @@
   margin: 0 auto;
   font-weight: normal;
   overflow: hidden;
+  &,
+  & > .container {
+    //@apply w-screen h-screen;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 440px;
+  }
+
 }
 
 @media (hover: hover) {
+  //#app {}
 }
-
 @media (min-width: 1024px) {
+  //#app {}
   body {
     display: flex;
     place-items: center;
+    justify-content: center;
   }
-
-  //#app {}
 }
+@screen lt-iPhone16ProMax {
+  #app {}
+}
+@screen ipadMini {}

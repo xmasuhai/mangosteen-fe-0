@@ -9,23 +9,21 @@ import s from '@/views/WelcomeView.module.scss'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 21:26:21
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-11 12:35:06
+ * @LastEditTime: 2026-10-19 11:53:11
  * @FilePath: src/views/WelcomeView.tsx
  */
 export const WelcomeView = defineComponent(
-  () => {
-    return () => (
-      <div class={s.wrapper}>
-        <WelcomeHeader />
+  () => () => (
+    <div class={s.wrapper}>
+      <WelcomeHeader />
 
-        <MainSwiper />
+      <MainSwiper />
 
-        <WelcomeSkipper />
-      </div>
-    )
-  },
+      <WelcomeSkipper />
+    </div>
+  ),
   {
-    props: {},
+    // props: {},
     name: 'WelcomeView',
   },
 )

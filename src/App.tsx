@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 export const App = defineComponent({
   setup(/*props, ctx*/) {
     return () => (
-      <div class="container w-screen h-screen">
+      <div class="container">
         <RouterView />
       </div>
     )
