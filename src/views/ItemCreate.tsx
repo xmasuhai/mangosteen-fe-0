@@ -10,33 +10,116 @@ import { InputPad } from '@/modules/items/InputPad.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:00:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-15 14:18:46
- * @FilePath: src/modules/items/ItemCreate.tsx
+ * @LastEditTime: 2026-10-19 16:19:06
+ * @FilePath: src/views/ItemCreate.tsx
  */
 export const ItemCreate = defineComponent({
   name: 'ItemCreate',
   setup(/* _props, _ctx */) {
-    const kind = ref('支出')
+    const kindRef = ref('支出')
+    const refExpensesTags = ref([
+      { id: 1, name: '餐费', sign: '￥', category: 'expenses' },
+      { id: 2, name: '打车', sign: '￥', category: 'expenses' },
+      { id: 3, name: '聚餐', sign: '￥', category: 'expenses' },
+      { id: 4, name: '打车', sign: '￥', category: 'expenses' },
+      { id: 5, name: '聚餐', sign: '￥', category: 'expenses' },
+      { id: 6, name: '打车', sign: '￥', category: 'expenses' },
+      { id: 7, name: '聚餐', sign: '￥', category: 'expenses' },
+    ])
+    const refIncomeTags = ref([
+      { id: 4, name: '工资', sign: '￥', category: 'incomes' },
+      { id: 5, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 6, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 11, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 18, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 4, name: '工资', sign: '￥', category: 'incomes' },
+      { id: 5, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 6, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 11, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 18, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 4, name: '工资', sign: '￥', category: 'incomes' },
+      { id: 5, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 6, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 11, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 18, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 4, name: '工资', sign: '￥', category: 'incomes' },
+      { id: 5, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 6, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 11, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 18, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 4, name: '工资', sign: '￥', category: 'incomes' },
+      { id: 5, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 6, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 11, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 18, name: '滴滴', sign: '￥', category: 'incomes' },
+      { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
+      { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
+    ])
+
     return () => (
       <MainLayout>
         {{
           title: () => '记一笔',
           icon: () => <SvgIcon name="back-arrow" class="w-2em h-2em" />,
           default: () => (
-            <>
-              <SwitchTabs selected={kind.value} v-model:selected={kind.value}>
-                <ItemTab tabId="expenses" tabName="支出">
-                  支出 icon 列表
+            <div class="h-full flex flex-col">
+              <SwitchTabs
+                selected={kindRef.value}
+                v-model:selected={kindRef.value}>
+                <ItemTab tabId="expenses" tabName="支出" class="flex flex-wrap pt-1em">
+                  <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
+                    <div class="bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)] w-12vw h-12vw rounded-[50%] flex justify-center items-center">
+                      <SvgIcon name="add" class="fill-[var(--main)]" />
+                    </div>
+                    <div class="text-12px mt-.25em">
+                      新增
+                    </div>
+                  </div>
+                  {refExpensesTags.value.map(tag =>
+                    <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
+                      <div class="bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)] w-12vw h-12vw rounded-[50%] flex justify-center items-center">
+                        {tag.sign}
+                      </div>
+                      <div class="text-12px mt-.25em">
+                        {tag.name}
+                      </div>
+                    </div>
+                  )}
                 </ItemTab>
-                <ItemTab tabId="incomes" tabName="收入">
-                  收入 icon 列表
+                <ItemTab tabId="incomes" tabName="收入" class="flex flex-wrap pt-1em">
+                  <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
+                    <div class="bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)] w-12vw h-12vw rounded-[50%] flex justify-center items-center">
+                      <SvgIcon name="add" class="fill-[var(--main)]" />
+                    </div>
+                    <div class="text-12px mt-.25em">
+                      新增
+                    </div>
+                  </div>
+                  {refIncomeTags.value.map(tag =>
+                    <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
+                      <div class="bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)] w-12vw h-12vw rounded-[50%] flex justify-center items-center">
+                        {tag.sign}
+                      </div>
+                      <div class="text-12px mt-.25em">
+                        {tag.name}
+                      </div>
+                    </div>
+                  )}
                 </ItemTab>
               </SwitchTabs>
 
-              <section class="fixed bottom-0 left-0 w-full">
+              <section class="w-full grow-0 shrink-0">
                 <InputPad />
               </section>
-            </>
+            </div>
           ),
         }}
       </MainLayout>
