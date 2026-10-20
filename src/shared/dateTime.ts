@@ -11,7 +11,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:03:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 14:46:43
+ * @LastEditTime: 2026-10-20 14:54:16
  * @FilePath: src/shared/dateTime.ts
  */
 export class DateTime {
@@ -109,6 +109,7 @@ export class DateTime {
       default:
         throw new Error(`Invalid unit: ${unit}`)
     }
+    return new DateTime(date)
   }
   subtract(
     amount: number,
@@ -143,5 +144,6 @@ export class DateTime {
       default:
         throw new Error(`Invalid unit: ${unit}`)
     }
+    return new DateTime(date)
   }
 }
