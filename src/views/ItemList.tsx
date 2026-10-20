@@ -5,13 +5,14 @@ import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 import { ItemSummary } from '@/modules/items/ItemSummary.tsx'
 import { DateTime } from '@/shared/dateTime.ts'
+import { FloatButton } from '@/components/FloatButton.tsx'
 
 /**
  * @Description: 记账项目列表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 15:20:09
+ * @LastEditTime: 2026-10-20 16:31:31
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -60,6 +61,8 @@ export const ItemList = defineComponent({
                     endDate={customDate.end.format()} />
                 </ItemTab>
               </SwitchTabs>
+
+              <FloatButton class="fixed bottom-1em right-1em" iconName="add" />
             </div>
           ),
         }}

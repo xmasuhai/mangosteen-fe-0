@@ -10,7 +10,7 @@ interface ItemTabProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 19:14:35
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 20:27:33
+ * @LastEditTime: 2026-10-20 17:34:49
  * @FilePath: src/components/tab/ItemTab.tsx
  */
 export const ItemTab = defineComponent<ItemTabProps>({
@@ -26,6 +26,6 @@ export const ItemTab = defineComponent<ItemTabProps>({
     },
   },
   setup(_props, _ctx) {
-    return () => <div>{_ctx.slots?.default?.()}</div>
+    return () => <div class="item-tab">{_ctx.slots?.default?.()}</div>
   },
 })
