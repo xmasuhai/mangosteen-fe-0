@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:51:52
+ * @LastEditTime: 2026-10-20 16:19:21
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -19,6 +19,7 @@
   --welcome-card-end: #8f4cd7;
   --welcome-text-primary-color: #6035bf;
   --transition-duration: 0.8s;
+  --button-border-color: #ddd;
   --button-bg: var(--main);
   --button-bg-primary: var(--button-bg);
   --button-bg-success: #67C23A;
@@ -61,6 +62,14 @@
   --emoji-nav-text-selected: #333;
   // tag
   --tag-bg: #EFEFEF;
+  // item
+  --list-tag-text: #333;
+  --list-amount-text: var(--amount-text-color);
+  --list-time-text: var(--date-text-color);
+  --total-bg: #252A43;
+  --total-text: white;
+  --total-income: #FE7275;
+  --total-expenses: #53A867;
 }
 
 /* semantic color variables for this project */

@@ -14,7 +14,9 @@
     place-items: center;
     justify-content: center;
     flex: 1;
-    min-width: 440px;
+    // iPhone12Pro
+    min-width: 390px;
+    min-height: 844px;
   }
 
 }
