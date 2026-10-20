@@ -1,14 +1,14 @@
 import { computed, defineComponent, ref } from 'vue'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { DatePicker, Popup } from 'vant'
-import { time } from '@/shared/time.ts'
+import { DateTime } from '@/shared/dateTime.ts'
 
 /**
  * @Description: 日期输入
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 23:51:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:36:06
+ * @LastEditTime: 2026-10-20 14:46:42
  * @FilePath: src/modules/items/DateInput.tsx
  */
 export const DateInput = defineComponent({
@@ -20,7 +20,7 @@ export const DateInput = defineComponent({
     const minDate = new Date(2025, 1, 1)
     const maxDate = new Date(2028, 0, 1)
     const formattedDateStr = computed(() =>
-      time(new Date(currentDateRef.value.join('-'))).api.format(),
+      (new DateTime(new Date(currentDateRef.value.join('-')))).format(),
     )
     const toggleDatePicker = () => {
       datePickerVisibleRef.value = !datePickerVisibleRef.value
