@@ -12,10 +12,10 @@ import {presetWind4} from '@unocss/preset-wind4'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 22:27:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 12:02:58
+ * @LastEditTime: 2026-10-20 20:57:23
  * @FilePath: uno.config.ts
  */
-export default defineConfig({
+export const unoConfig = defineConfig({
   presets: [
     presetWind4(),
     presetAttributify(),
@@ -77,4 +77,17 @@ export default defineConfig({
       'scrollbar-width': 'auto',
     })],
   ],
+  preflights: [
+    {
+      getCSS: () => `
+        @property --sibling-idx {
+          syntax: '<integer>'; /* 核心：限制为整数类型，迫使浏览器立即求值 */
+          inherits: true;      /* 允许向下继承计算后的结果 */
+          initial-value: 1;
+        }
+      `
+    }
+  ]
 })
+
+export default unoConfig
