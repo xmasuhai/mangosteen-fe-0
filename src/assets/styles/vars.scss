@@ -3,16 +3,17 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 16:19:21
+ * @LastEditTime: 2026-10-20 21:35:00
  * @FilePath: src/assets/styles/vars.scss
  */
 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --main: #5c33be;
+  --main-light-bg: white;
   --error-color: #e10505;
   // welcome page
-  --welcome-card-bg-color: white;
+  --welcome-card-bg-color: var(--main-light-bg);
   --welcome-text: white;
   --title-text: #d4d4ee;
   --welcome-card-start: var(--main);
@@ -40,7 +41,7 @@
   // 划出浮层 遮罩层
   --z-index-float-overlay: 20;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
-  --overlay-bg: white;
+  --overlay-bg: var(--main-light-bg);
   --overlay-user-bg: var(--button-bg);
   --overlay-user-text: var(--button-text-color);
   --top-safe-area-height: 24px;
@@ -48,7 +49,7 @@
   --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
   // input pad
   --pad-border-color: #ddd;
-  --pad-button-bg-color: white;
+  --pad-button-bg-color: var(--main-light-bg);
   --pad-submit-button-bg-color: var(--button-bg);
   --pad-submit-button-text-color: var(--button-text-color);
   --amount-text-color: #53a867;
@@ -70,6 +71,8 @@
   --total-text: white;
   --total-income: #FE7275;
   --total-expenses: #53A867;
+  // 弹出框
+  --dialog-header-text: white;
 }
 
 /* semantic color variables for this project */

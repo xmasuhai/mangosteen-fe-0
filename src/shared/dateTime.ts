@@ -11,11 +11,11 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:03:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 14:54:16
+ * @LastEditTime: 2026-10-20 22:08:55
  * @FilePath: src/shared/dateTime.ts
  */
 export class DateTime {
-  readonly #date: Date
+  readonly #date: Date = new Date()
   constructor(date = new Date()) {
     this.#date = date
   }
@@ -45,6 +45,9 @@ export class DateTime {
         .replace(/ss/g, second.toString().padStart(2, '0'))
         .replace(/sss/g, millisecond.toString().padStart(3, '0'))
     )
+  }
+  getOriginDate() {
+    return new DateTime(this.#date)
   }
   firstDayOfMonth() {
     return new DateTime(new Date(this.#date.getFullYear(), this.#date.getMonth(), 1, 0, 0, 0))
