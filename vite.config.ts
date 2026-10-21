@@ -9,6 +9,7 @@ import { svgoStore } from './src/plugins/svgoStore.ts'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
+import { consoleBanner } from "vite-plugin-console-banner"
 // import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
 // import mkcert from 'vite-plugin-mkcert'
 // import basicSsl from '@vitejs/plugin-basic-ssl'
@@ -77,6 +78,15 @@ export default defineConfig({
       certDir: '/Users/.../.devServer/cert',
     }),
     */
+    consoleBanner({
+      text: "xmasuhai.xyz",
+      font: "big",
+      color: "#476EE3",
+      badges: [
+        { label: "徐帅的博客", url: "https://xmasuhai.xyz" },
+        { label: "徐帅${year}简历", url: "https://xmasuhai.xyz/my-latest-resume/" },
+      ],
+    }),
   ],
   resolve: {
     alias: {

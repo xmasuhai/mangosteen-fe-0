@@ -26,6 +26,7 @@
     "svgo": "4.1.0",
     "svgstore": "3.0.1",
     "vant": "4.10.2",
+    "vite-plugin-console-banner": "0.1.1",
     "vue": "3.5.43",
     "vue-router": "5.4.0"
   },

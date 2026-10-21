@@ -29,6 +29,9 @@ importers:
       vant:
         specifier: 4.10.2
         version: 4.10.2(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2))
+      vite-plugin-console-banner:
+        specifier: 0.1.1
+        version: 0.1.1(figlet@1.12.0)(vite@8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1))
       vue:
         specifier: 3.5.43
         version: 3.5.43(typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2)
@@ -2578,6 +2581,11 @@ packages:
       picomatch:
         optional: true
 
+  figlet@1.12.0:
+    resolution: {integrity: sha512-Ith3WsUi0N/EqGt+0/F6XnWhT04sohhH2tT0Dq7GdUmWbMTIoCbg2Jq9qKggmTO62ST5kRCfB311EmIMbizGyA==}
+    engines: {node: '>= 17.0.0'}
+    hasBin: true
+
   file-entry-cache@11.1.5:
     resolution: {integrity: sha512-+PFTHITI08JIGhnNpGNI8T8inUpgZfk3GNEqfT9R2zZV2iFXg3CvqzSl/uEhs7TSGujYRELEANyDvS8Fj7+S7Q==}
 
@@ -4301,6 +4309,13 @@ packages:
     resolution: {integrity: sha512-76Zs9zrHbH7M7wqeyooGQKdX+yg0pQ0xuQ1PbFp4z5a0Lzn2e5IPFoCswnmqZ4GiwqB4Jo3WcDAMO9jARTJl8w==}
     peerDependencies:
       vite: ^2.6.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0 || ^8.0.0
+
+  vite-plugin-console-banner@0.1.1:
+    resolution: {integrity: sha512-JsW3fb8Gti3qpYW3ZSbFPmC6P+Czn1ghIA2lRhWsXxswE7uuCNK2DB0zOahcFRA5X8VTROHCtnNXCET2Pb1xDA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      figlet: ^1.12.0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
   vite-plugin-inspect@11.4.1:
     resolution: {integrity: sha512-ShOFe2PURXGvRS5OrgmOLZOCwDTD7dEBVt0tMpFPKb9AsvqXKCRGM8QgKrUbRbJYFXScHvDPpGRd28rYidC0tA==}
@@ -6997,6 +7012,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
+  figlet@1.12.0:
+    dependencies:
+      commander: 14.0.3
+
   file-entry-cache@11.1.5:
     dependencies:
       flat-cache: 6.1.23
@@ -8894,6 +8913,11 @@ snapshots:
 
   vite-hot-client@2.2.0(vite@8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1)):
     dependencies:
+      vite: 8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1)
+
+  vite-plugin-console-banner@0.1.1(figlet@1.12.0)(vite@8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1)):
+    dependencies:
+      figlet: 1.12.0
       vite: 8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1)
 
   vite-plugin-inspect@11.4.1(vite@8.3.4(@types/node@24.13.4)(jiti@2.7.0)(sass-embedded@1.105.1)(sass@1.105.1)(yaml@2.9.1)):
