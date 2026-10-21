@@ -11,7 +11,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:03:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 22:08:55
+ * @LastEditTime: 2026-10-21 19:14:11
  * @FilePath: src/shared/dateTime.ts
  */
 export class DateTime {
@@ -71,7 +71,19 @@ export class DateTime {
     const date = new Date(this.#date.getTime())
     switch (unit) {
       case 'year':
+        // date.setFullYear(date.getFullYear() + amount)
+        const currentDate = date.getDate()
+        date.setDate(1)
         date.setFullYear(date.getFullYear() + amount)
+        const targetDate = new Date(
+          date.getFullYear(),
+          date.getMonth() + 1,
+          0,
+          0,
+          0,
+          0,
+        ).getDate()
+        date.setDate(Math.min(currentDate, targetDate))
         break
       case 'month':
         // date.setMonth(date.getMonth() + amount)
