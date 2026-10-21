@@ -6,6 +6,7 @@ import type { FormDataType } from '@/shared/validator/formValidate.ts'
 export type FormItemType = 'text' | 'emojiSelector' | 'date'
 
 interface FormItemProps {
+  uniqId?: string
   modelValue?: UnwrapRef<FormDataType[string]>
   type?: FormItemType
   error?: string
@@ -19,12 +20,14 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 21:52:17
+ * @LastEditTime: 2026-10-21 22:09:41
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
   name: 'FormItem',
   props: {
+    // 使用 useId 生成唯一 id，可以区分类型相同的表单项，并且在 label 标签上的 for 属性上
+    uniqId: { type: String as PropType<string>, default: '', },
     label: { type: String as PropType<string>, default: '', },
     hasLabelColon: { type: Boolean as PropType<boolean>, default: true, },
     type: { type: String as PropType<FormItemType>, },
@@ -44,17 +47,16 @@ export const FormItem = defineComponent<FormItemProps>({
       'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
       _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
     )
-    const errorHintClass = cn('min-h-18px m-t-.25em text-12px color-[var(--error-color)]')
     const getModelValue = computed({
       get() {return _props.modelValue?.toString()},
       set(value) {_ctx.emit('update:modelValue', value)}
     })
-
     const itemContent = computed(() => {
       switch (_props.type) {
         case 'text':
           return (
             <input
+              id={`form-item-${_props.type}-${_props.uniqId}`}
               v-model={getModelValue.value}
               class={cn(inputClass)} />
           )
@@ -71,10 +73,9 @@ export const FormItem = defineComponent<FormItemProps>({
           return _ctx.slots.default?.()
       }
     })
-
     return () => (
       <div class="mt-.5em">
-        <label class="block">
+        <label for={`form-item-${_props.type}-${_props.uniqId}`} class="block">
           {/* 标题 */}
           {_props.label &&
             <span class="label_name">
@@ -88,7 +89,7 @@ export const FormItem = defineComponent<FormItemProps>({
           {/* 错误 */}
           {
             (_props.error || _props.hasErrorPlaceholder)  &&
-            <div class={cn('error-hint', errorHintClass,)}>
+            <div class={cn('error-hint min-h-18px m-t-.25em text-12px color-[var(--error-color)]')}>
               <span>{_props.error}</span>
             </div>
           }

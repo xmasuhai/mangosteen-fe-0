@@ -1,7 +1,5 @@
-import { defineComponent, reactive, /* ref, */ toRaw } from 'vue'
+import { defineComponent, reactive, toRaw, useId } from 'vue'
 import { BarButton } from '@/components/BarButton.tsx'
-// import { cn } from 'cn'
-// import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import {
   type FormDataType,
   type FormRules,
@@ -18,14 +16,15 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 21:53:18
+ * @LastEditTime: 2026-10-21 22:05:29
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
   name: 'TagForm',
+  props: {
+    /* 仅当编辑tag时，有表单默认数据，通过 props 传入；暂时占位 */
+  },
   setup(/* _props, _ctx */) {
-    // const emojiHint = ref('')
-
     const formData = reactive<FormDataType>({
       name: '',
       sign: '',
@@ -105,8 +104,19 @@ export const TagForm = defineComponent({
 
       <FormContainer
         onSubmit={onSubmit}>
-        <FormItem type="text" label="标签名称" v-model={formData.name} hasErrorPlaceholder error={errors.name?.join(', ')}/>
-        <FormItem type="emojiSelector" label="符号" v-model={formData.sign} hasErrorPlaceholder error={errors.sign?.join(', ') }/>
+        <FormItem
+          uniqId={useId()}
+          type="text"
+          label="标签名称"
+          v-model={formData.name}
+          hasErrorPlaceholder
+          error={errors.name?.join(', ')}/>
+        <FormItem
+          uniqId={useId()}
+          type="emojiSelector"
+          label="符号"
+          v-model={formData.sign} hasErrorPlaceholder
+          error={errors.sign?.join(', ') }/>
         <FormItem>
           <p class="tips text-center py-1em px-0 min-h-[var(--input-min-height)]">
             记账时长按即可进行编辑
