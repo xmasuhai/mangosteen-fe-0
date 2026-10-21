@@ -1,12 +1,13 @@
-import { computed, defineComponent, type PropType, ref, type UnwrapRef } from 'vue'
+import { computed, defineComponent, type PropType, ref, type UnwrapRef, useId } from 'vue'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import { cn } from 'cn'
 import type { FormDataType } from '@/shared/validator/formValidate.ts'
+import { BarButton } from '@/components/BarButton.tsx'
+import { LabelOrDivWrapper } from '@/components/form/LabelOrDivWrapper.tsx'
 
-export type FormItemType = 'text' | 'emojiSelector' | 'date'
+export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit-button'
 
 interface FormItemProps {
-  uniqId?: string
   modelValue?: UnwrapRef<FormDataType[string]>
   type?: FormItemType
   error?: string
@@ -20,14 +21,13 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 22:09:41
+ * @LastEditTime: 2026-10-21 23:36:42
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
   name: 'FormItem',
   props: {
     // 使用 useId 生成唯一 id，可以区分类型相同的表单项，并且在 label 标签上的 for 属性上
-    uniqId: { type: String as PropType<string>, default: '', },
     label: { type: String as PropType<string>, default: '', },
     hasLabelColon: { type: Boolean as PropType<boolean>, default: true, },
     type: { type: String as PropType<FormItemType>, },
@@ -41,24 +41,29 @@ export const FormItem = defineComponent<FormItemProps>({
   emit: ['update:modelValue',],
   setup( _props, _ctx ) {
     const extraHint = ref('')
-    const itemContentCommonClass = cn('grow-1 min-h-[var(--input-min-height)] max-w-100%')
-    const inputClass = cn(
-      'p-x-1em text-18px',
-      'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
-      _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
-    )
     const getModelValue = computed({
       get() {return _props.modelValue?.toString()},
       set(value) {_ctx.emit('update:modelValue', value)}
     })
+    const getIfNeedLabelFor = computed(() =>
+      ['text', 'submit-button'].includes(_props?.type ?? ''))
+    const getLabelFor = computed(() => getIfNeedLabelFor.value
+        ? `form-item-${_props.type}-${useId()}`
+        : '')
     const itemContent = computed(() => {
       switch (_props.type) {
         case 'text':
           return (
             <input
-              id={`form-item-${_props.type}-${_props.uniqId}`}
+              id={getLabelFor.value}
               v-model={getModelValue.value}
-              class={cn(inputClass)} />
+              class={
+                cn(
+                  'p-x-1em text-18px',
+                  'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
+                  _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
+                )
+              }/>
           )
         case 'emojiSelector':
           return (
@@ -67,6 +72,8 @@ export const FormItem = defineComponent<FormItemProps>({
               hasError={!!_props.error}
               v-model:extraHint={extraHint.value} />
           )
+        case 'submit-button':
+          return <BarButton id={getLabelFor.value} type="submit">确定</BarButton>
         case 'date':
           return <input />
         case undefined:
@@ -75,7 +82,9 @@ export const FormItem = defineComponent<FormItemProps>({
     })
     return () => (
       <div class="mt-.5em">
-        <label for={`form-item-${_props.type}-${_props.uniqId}`} class="block">
+        <LabelOrDivWrapper
+          ifUseLabelTag={getIfNeedLabelFor.value}
+          labelFor={getLabelFor.value}>
           {/* 标题 */}
           {_props.label &&
             <span class="label_name">
@@ -83,7 +92,7 @@ export const FormItem = defineComponent<FormItemProps>({
             </span>
           }
           {/* 内容 */}
-          <div class={cn(itemContentCommonClass, 'content-value flex mt-0.25em children:grow-1')}>
+          <div class={cn('content-value flex mt-0.25em grow-1 children:grow-1 min-h-[var(--input-min-height)] max-w-100%')}>
             {itemContent.value}
           </div>
           {/* 错误 */}
@@ -93,7 +102,7 @@ export const FormItem = defineComponent<FormItemProps>({
               <span>{_props.error}</span>
             </div>
           }
-        </label>
+        </LabelOrDivWrapper>
       </div>
     )
   },

@@ -1,5 +1,4 @@
-import { defineComponent, reactive, toRaw, useId } from 'vue'
-import { BarButton } from '@/components/BarButton.tsx'
+import { defineComponent, reactive, toRaw, } from 'vue'
 import {
   type FormDataType,
   type FormRules,
@@ -16,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 22:05:29
+ * @LastEditTime: 2026-10-21 23:30:32
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -43,76 +42,15 @@ export const TagForm = defineComponent({
       Object.assign(errors, formValidate(toRaw(formData), rules))
     }
     return () => (
-      /*
-      <form
-        onSubmit={onSubmit}
-        class="p-1em min-h-720px">
-        <div class="mt-0.5em flex-grow-0">
-          <label for="tag-name">
-            <span>标签名称</span>
-
-            <div class="flex mt-0.25em">
-              <input
-                id="tag-name"
-                v-model={formData.name}
-                class={cn(
-                  'grow-1 min-h-[var(--input-min-height)] max-w-100%',
-                  'b-1 rounded-[var(--input-radius)]',
-                  'text-18px p-x-1em shadow-[inset_0_0_3px_var(--input-shadow)]',
-                  errors.name ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
-                )}
-              />
-            </div>
-
-            <div class="min-h-18px m-t-.25em text-12px color-[var(--error-color)]">
-              <span>{errors.name?.join(', ')}</span>
-            </div>
-          </label>
-        </div>
-
-        <div class="mt-0.5em">
-          <label class="flex flex-col">
-            <span>符号 {emojiHint.value}</span>
-
-            <div class="flex mt-0.25em">
-              <EmojiSelector
-                hasError={!!errors.sign?.join(', ')}
-                v-model={formData.sign}
-                v-model:extraHint={emojiHint.value}/>
-            </div>
-
-            <div class="min-h-18px m-t-.25em text-12px color-[var(--error-color)]">
-              <span>{errors.sign?.join(', ')}</span>
-            </div>
-          </label>
-        </div>
-
-        <p class="tips flex-grow-0 text-center py-1em px-0 min-h-[var(--input-min-height)]">
-          记账时长按即可进行编辑
-        </p>
-
-        <div class="flex-grow-0 mt-0.5em min-h-[var(--input-min-height)]">
-          <div class="mt-0.25em">
-            <BarButton
-              type="submit"
-              onClick={() => {}}
-              class="formItem button formItem_value">确定</BarButton>
-          </div>
-        </div>
-      </form>
-      */
-
       <FormContainer
         onSubmit={onSubmit}>
         <FormItem
-          uniqId={useId()}
           type="text"
           label="标签名称"
           v-model={formData.name}
           hasErrorPlaceholder
           error={errors.name?.join(', ')}/>
         <FormItem
-          uniqId={useId()}
           type="emojiSelector"
           label="符号"
           v-model={formData.sign} hasErrorPlaceholder
@@ -120,14 +58,10 @@ export const TagForm = defineComponent({
         <FormItem>
           <p class="tips text-center py-1em px-0 min-h-[var(--input-min-height)]">
             记账时长按即可进行编辑
+            {errors.name?.join(', ')}
           </p>
         </FormItem>
-        <FormItem>
-          <BarButton
-            type="submit"
-            onClick={() => {}}
-            class="formItem button formItem_value">确定</BarButton>
-        </FormItem>
+        <FormItem type="submit-button" />
       </FormContainer>
     )
   },
