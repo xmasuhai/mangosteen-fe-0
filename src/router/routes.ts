@@ -11,13 +11,14 @@ import { ItemCreate } from '@/views/ItemCreate.tsx'
 import { TagView } from '@/views/TagView.tsx'
 import { TagDetailEditView } from '@/views/TagDetailEditView.tsx'
 import { TagCreateView } from '@/views/TagCreateView.tsx'
+import { SignInView } from '@/views/SignInView.tsx'
 
 /**
  * @Description: 路由表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 22:08:45
+ * @LastEditTime: 2026-10-22 22:18:04
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -38,6 +39,7 @@ export const routes: RouteRecordRaw[] = [
       { path: '4', name: 'welcomeCloud', components: { main: Welcome4thPage } },
     ],
   },
+  { path: '/sign_in', name: 'signIn', component: SignInView, },
   { path: '/start', name: 'startAccounts', component: StartAccountsView },
   { path: '/statistics', name: 'statistics', redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
   { path: '/export', name: 'export',redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
