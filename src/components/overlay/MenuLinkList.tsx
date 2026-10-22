@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { cn } from 'cn'
 import type { SvgIconName } from '@svgoStore'
-import { MenuLinkItem } from '@/modules/overlay/MenuLinkItem.tsx'
+import { MenuLinkItem } from '@/components/overlay/MenuLinkItem.tsx'
 
 type MenuLinkItemType = {
   linkPath: string
@@ -14,8 +14,8 @@ type MenuLinkItemType = {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 14:58:23
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 15:06:16
- * @FilePath: src/modules/overlay/MenuLinkList.tsx
+ * @LastEditTime: 2026-10-22 21:36:00
+ * @FilePath: src/components/overlay/MenuLinkList.tsx
  */
 export const MenuLinkList = defineComponent({
   name: 'MenuLinkList',

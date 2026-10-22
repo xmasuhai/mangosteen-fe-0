@@ -1,16 +1,16 @@
 import { defineComponent } from 'vue'
 import { cn } from 'cn'
-import { OverlayMask } from '@/modules/overlay/OverlayMask.tsx'
-import { OverlayUserHeader } from '@/modules/overlay/OverlayUserHeader.tsx'
-import { MenuLinkList } from '@/modules/overlay/MenuLinkList.tsx'
+import { OverlayMask } from '@/components/overlay/OverlayMask.tsx'
+import { OverlayUserHeader } from '@/components/overlay/OverlayUserHeader.tsx'
+import { MenuLinkList } from '@/components/overlay/MenuLinkList.tsx'
 
 /**
  * @Description: 划出浮层
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 23:42:44
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-14 15:26:44
- * @FilePath: src/modules/overlay/FloatOverlay.tsx
+ * @LastEditTime: 2026-10-22 21:36:01
+ * @FilePath: src/components/overlay/FloatOverlay.tsx
  */
 export const FloatOverlay = defineComponent({
   name: 'FloatOverlay',

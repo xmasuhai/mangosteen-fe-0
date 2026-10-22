@@ -4,7 +4,7 @@ import { BarButton } from '@/components/BarButton.tsx'
 import { FloatButton } from '@/components/FloatButton.tsx'
 import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
-import { FloatOverlay } from '@/modules/overlay/FloatOverlay.tsx'
+import { FloatOverlay } from '@/components/overlay/FloatOverlay.tsx'
 import { storeToRefs } from 'pinia'
 import { useOverlayStore } from '@/stores/useOverlayStore.ts'
 import { useRouter } from 'vue-router'
@@ -15,7 +15,7 @@ import { MainLayout } from '@/components/layout/MainLayout.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 21:27:14
+ * @LastEditTime: 2026-10-22 21:36:58
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({
@@ -37,7 +37,7 @@ export const StartAccountsView = defineComponent({
           icon: () => (
             <>
               <SvgIcon name="menu" class="w-2em h-2em" onClick={onClickMenu} />
-              {overlayVisible.value && <FloatOverlay direct-scoped />}
+              {overlayVisible.value && <FloatOverlay />}
             </>
           ),
           default: () => (
