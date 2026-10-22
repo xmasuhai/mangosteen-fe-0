@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 17:48:36
+ * @LastEditTime: 2026-10-22 19:46:27
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -41,6 +41,14 @@ export const ItemList = defineComponent({
     watchEffect(() => {
       refOverlayVisible.value = selectedDateRef.value === '自定义日期范围'
     })
+
+    const onSubmitCustomDateRange = (e: SubmitEvent) => {
+      e.preventDefault()
+      refOverlayVisible.value = false
+    }
+    const onCnacelCustomDateRange = () => {
+      refOverlayVisible.value = false
+    }
     return () => (
       <MainLayout>
         {{
@@ -78,17 +86,21 @@ export const ItemList = defineComponent({
               <Overlay
                 show={refOverlayVisible.value}
                 onClick={() => (refOverlayVisible.value = false)}
-                class="flex items-center justify-center b-3 b-solid b-red bg-[var(--overlay-mask-bg)]" >
+                class="flex items-center justify-center bg-[var(--overlay-mask-bg)]" >
                 <div
                   onClick={(e: MouseEvent) => e.stopPropagation()}
-                  class="bg-[var(--overlay-bg)] w-80vw">
+                  class="bg-[var(--overlay-bg)] w-80vw h-35vh">
                   <header class="bg-[var(--main)] text-[var(--dialog-header-text)] py-12px px-1em">
                     请选择时间
                   </header>
                   <main>
-                    <FormContainer>
+                    <FormContainer onSubmit={onSubmitCustomDateRange}>
                       <FormItem type="date" label="开始时间" v-model={customDate.start} />
                       <FormItem type="date" label="结束时间" v-model={customDate.end} />
+                      <footer class="flex justify-between mt-1em children:(w-[calc(50%-.25em)])">
+                        <FormItem type="button" onClick={onCnacelCustomDateRange} buttonConfig={{level: 'default', text: '取 消' }}/>
+                        <FormItem type="submit-button" buttonConfig={{level: 'primary', text: '确 认' }}/>
+                      </footer>
                     </FormContainer>
                   </main>
                 </div>

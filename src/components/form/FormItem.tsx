@@ -1,20 +1,23 @@
-import { computed, defineComponent, type PropType, ref, type UnwrapRef, useId } from 'vue'
+import { computed, defineComponent, type PropType, ref, useId } from 'vue'
 import { EmojiSelector } from '@/modules/tags/EmojiSelector.tsx'
 import { cn } from 'cn'
 import type { FormDataType } from '@/shared/validator/formValidate.ts'
-import { BarButton } from '@/components/BarButton.tsx'
+import { BarButton, type ButtonLevelType } from '@/components/BarButton.tsx'
 import { LabelOrDivWrapper } from '@/components/form/LabelOrDivWrapper.tsx'
 import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
 
-export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit-button'
+export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit-button' | 'button'
 
 interface FormItemProps {
-  modelValue?: UnwrapRef<FormDataType[string]>
   type?: FormItemType
+  modelValue?: FormDataType[string]
+  visibleValue?: boolean
   error?: string
   hasErrorPlaceholder?: boolean
   label?: string
   hasLabelColon?: boolean
+  buttonConfig?: { level?: ButtonLevelType, text?: string }
+  onClick?: () => void
 }
 
 /**
@@ -22,29 +25,37 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 17:11:19
+ * @LastEditTime: 2026-10-22 19:46:53
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
   name: 'FormItem',
   props: {
-    // 使用 useId 生成唯一 id，可以区分类型相同的表单项，并且在 label 标签上的 for 属性上
+    type: { type: String as PropType<FormItemType>, },
     label: { type: String as PropType<string>, default: '', },
     hasLabelColon: { type: Boolean as PropType<boolean>, default: true, },
-    type: { type: String as PropType<FormItemType>, },
     modelValue: {
-      type: [String, Number, null, undefined,] as PropType<UnwrapRef<FormDataType[string]>>,
+      type: [String, Number, null, undefined,] as PropType<FormDataType[string]>,
       default: '',
     },
+    visibleValue: { type: Boolean as PropType<boolean>, default: false, },
     error: { type: String as PropType<string>, },
     hasErrorPlaceholder: { type: Boolean as PropType<boolean>, default: false, },
+    buttonConfig: {
+      type: Object as PropType<{ level?: ButtonLevelType, text?: string }>,
+      default: () => ({ level: 'default', text: '确认' }),
+    },
   },
-  emit: ['update:modelValue',],
+  emit: ['update:modelValue', 'update:visibleValue',],
   setup( _props, _ctx ) {
     const extraHint = ref('')
     const getModelValue = computed({
       get() {return _props.modelValue?.toString()},
       set(value) {_ctx.emit('update:modelValue', value)}
+    })
+    const getVisibleValue = computed({
+      get() {return _props.visibleValue},
+      set(value) {_ctx.emit('update:visibleValue', value)}
     })
     const getIfNeedLabelFor = computed(() =>
       ['text', 'submit-button'].includes(_props?.type ?? ''))
@@ -52,7 +63,6 @@ export const FormItem = defineComponent<FormItemProps>({
         ? `form-item-${_props.type}-${useId()}`
         : '')
 
-    const dateVisibleRef = ref(false)
     const itemContent = computed(() => {
       switch (_props.type) {
         case 'text':
@@ -77,7 +87,13 @@ export const FormItem = defineComponent<FormItemProps>({
               v-model:extraHint={extraHint.value} />
           )
         case 'submit-button':
-          return <BarButton id={getLabelFor.value} type="submit">确定</BarButton>
+          return <BarButton level={_props.buttonConfig?.level} id={getLabelFor.value} type="submit">
+            {_props.buttonConfig?.text}
+          </BarButton>
+        case 'button':
+          return <BarButton level={_props.buttonConfig?.level} id={getLabelFor.value} type="button">
+            {_props.buttonConfig?.text}
+          </BarButton>
         case 'date':
           return (
             <>
@@ -85,7 +101,7 @@ export const FormItem = defineComponent<FormItemProps>({
                 id={getLabelFor.value}
                 value={getModelValue.value}
                 readonly={true}
-                onClick={() => {dateVisibleRef.value = true}}
+                onClick={() => {getVisibleValue.value = true}}
                 class={
                   cn(
                     'p-x-1em text-18px',
@@ -94,7 +110,7 @@ export const FormItem = defineComponent<FormItemProps>({
                   )
                 }/>
               <DatePickerPopup
-                v-model:popupVisible={dateVisibleRef.value}
+                v-model:popupVisible={getVisibleValue.value}
                 v-model:dateStr={getModelValue.value} />
             </>
           )
