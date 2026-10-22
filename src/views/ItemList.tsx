@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 17:35:29
+ * @LastEditTime: 2026-10-22 17:48:36
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -29,12 +29,12 @@ export const ItemList = defineComponent({
     })
 
     const dateList = [
-      {start: currentDate.firstDayOfMonth(), end: currentDate.lastDayOfMonth()},
+      {start: currentDate.firstDayOfMonth().format(), end: currentDate.lastDayOfMonth().format(),},
       {
-        start: currentDate.subtract(1, 'month').firstDayOfMonth(),
-        end: currentDate.subtract(1, 'month').lastDayOfMonth()
+        start: currentDate.subtract(1, 'month').firstDayOfMonth().format(),
+        end: currentDate.subtract(1, 'month').lastDayOfMonth().format(),
       },
-      {start: currentDate.firstDayOfYear(), end: currentDate.lastDayOfYear()},
+      {start: currentDate.firstDayOfYear().format(), end: currentDate.lastDayOfYear().format(),},
     ] as const
 
     const refOverlayVisible = ref(false)
@@ -54,18 +54,18 @@ export const ItemList = defineComponent({
                 class="[&>nav>menu>li]:(text-start grow-0)">
                 <ItemTab tabName="本月" tabId="thisMonth">
                   <ItemSummary
-                    startDate={dateList[0].start.format()}
-                    endDate={dateList[0].end.format()} />
+                    startDate={dateList[0].start}
+                    endDate={dateList[0].end} />
                 </ItemTab>
                 <ItemTab tabName="上月" tabId="lastMonth">
                   <ItemSummary
-                    startDate={dateList[1].start.format()}
-                    endDate={dateList[1].end.format()} />
+                    startDate={dateList[1].start}
+                    endDate={dateList[1].end} />
                 </ItemTab>
                 <ItemTab tabName="今年" tabId="thisYear">
                   <ItemSummary
-                    startDate={dateList[2].start.format()}
-                    endDate={dateList[2].end.format()} />
+                    startDate={dateList[2].start}
+                    endDate={dateList[2].end} />
                 </ItemTab>
                 <ItemTab tabName="自定义日期范围" tabId="customDateRange">
                   <ItemSummary
