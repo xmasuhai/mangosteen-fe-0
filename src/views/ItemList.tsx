@@ -1,6 +1,5 @@
 import { defineComponent, reactive, ref, } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
-import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 import { ItemSummary } from '@/modules/items/ItemSummary.tsx'
@@ -9,13 +8,14 @@ import { FloatButton } from '@/components/FloatButton.tsx'
 import { Overlay } from 'vant'
 import { FormContainer } from '@/components/form/FormContainer.tsx'
 import { FormItem } from '@/components/form/FormItem.tsx'
+import { OverlayIcon } from '@/components/overlay/OverlayIcon.tsx'
 
 /**
  * @Description: 记账项目列表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 20:44:52
+ * @LastEditTime: 2026-10-22 21:49:27
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -53,7 +53,7 @@ export const ItemList = defineComponent({
       <MainLayout>
         {{
           title: () => '山竹记账',
-          icon: () => <SvgIcon name="menu" class="w-2em h-2em" />,
+          icon: () => <OverlayIcon/>,
           default: () => (
             <div class="h-full flex flex-col">
               <SwitchTabs
