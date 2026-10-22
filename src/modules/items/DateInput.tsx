@@ -1,25 +1,21 @@
-import { computed, defineComponent, ref } from 'vue'
-import { DateTime } from '@/shared/dateTime.ts'
+import { defineComponent, ref } from 'vue'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
-import { genDateArray } from '@/const/genDateArray.ts'
+import { genDateStr } from '@/const/genDateStr.ts'
 
 /**
  * @Description: 日期输入
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 23:51:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 16:30:31
+ * @LastEditTime: 2026-10-22 17:11:10
  * @FilePath: src/modules/items/DateInput.tsx
  */
 export const DateInput = defineComponent({
   name: 'DateInput',
   setup(/* _props, _ctx */) {
     const datePickerVisibleRef = ref(false)
-    const currentDateRef = ref<string[]>(genDateArray())
-    const formattedDateStr = computed(() =>
-      (new DateTime(new Date(currentDateRef.value.join('-')))).format(),
-    )
+    const currentDateStrRef = ref<string>(genDateStr())
     const toggleDatePicker = () => {
       datePickerVisibleRef.value = !datePickerVisibleRef.value
     }
@@ -30,10 +26,10 @@ export const DateInput = defineComponent({
           name="date"
           class="size-2em mx-1 fill-[var(--main)]" />
         <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
-          <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
+          <span onClick={toggleDatePicker}>{currentDateStrRef.value}</span>
           <DatePickerPopup
             v-model:popupVisible={datePickerVisibleRef.value}
-            v-model:dateStrArray={currentDateRef.value} />
+            v-model:dateStr={currentDateStrRef.value} />
         </span>
       </span>
     )
