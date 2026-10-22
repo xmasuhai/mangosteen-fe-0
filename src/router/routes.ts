@@ -17,7 +17,7 @@ import { TagCreateView } from '@/views/TagCreateView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:21:08
+ * @LastEditTime: 2026-10-22 22:08:45
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -31,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
     component: WelcomeView,
     children: [
       // { path: '', name: 'default', component: WelCome1stPage },
-      { path: '', name: 'welcomeDefault', redirect: '/welcome/1' },
+      { path: '', name: 'welcomeDefault', redirect: '/welcome/1', },
       { path: '1', name: 'welcomePig', components: { main: Welcome1stPage } },
       { path: '2', name: 'welcomeClock', components: { main: Welcome2ndPage } },
       { path: '3', name: 'welcomeChart', components: { main: Welcome3rdPage } },
@@ -39,6 +39,10 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   { path: '/start', name: 'startAccounts', component: StartAccountsView },
+  { path: '/statistics', name: 'statistics', redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
+  { path: '/export', name: 'export',redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
+  { path: '/notify', name: 'notify',redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
+  { path: '/tech_stack', name: 'techStack', redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
   /* 记账项目相关：项目列表页、创建页 */
   {
     path: '/items',
