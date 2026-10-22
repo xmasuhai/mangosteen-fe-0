@@ -2,21 +2,21 @@ import { computed, defineComponent, ref } from 'vue'
 import { DateTime } from '@/shared/dateTime.ts'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
-import { genDateArrayOfToday } from '@/const/genDateArrayOfToday.ts'
+import { genDateArray } from '@/const/genDateArray.ts'
 
 /**
  * @Description: 日期输入
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 23:51:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 16:15:59
+ * @LastEditTime: 2026-10-22 16:30:31
  * @FilePath: src/modules/items/DateInput.tsx
  */
 export const DateInput = defineComponent({
   name: 'DateInput',
   setup(/* _props, _ctx */) {
     const datePickerVisibleRef = ref(false)
-    const currentDateRef = ref<string[]>(genDateArrayOfToday())
+    const currentDateRef = ref<string[]>(genDateArray())
     const formattedDateStr = computed(() =>
       (new DateTime(new Date(currentDateRef.value.join('-')))).format(),
     )

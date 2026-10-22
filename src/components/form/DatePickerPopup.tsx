@@ -1,25 +1,25 @@
 import { computed, defineComponent, type PropType, ref } from 'vue'
 import { DatePicker, Popup } from 'vant'
 import { DateTime } from '@/shared/dateTime.ts'
-import { genDateArrayOfToday } from '@/const/genDateArrayOfToday.ts'
+import { genDateArray } from '@/const/genDateArray.ts'
 
 /**
  * @Description: 弹出日期选择器组件
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-22 14:44:36
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 16:01:03
- * @FilePath: src/modules/items/DatePickerPopup.tsx
+ * @LastEditTime: 2026-10-22 16:30:30
+ * @FilePath: src/components/form/DatePickerPopup.tsx
  */
 export const DatePickerPopup = defineComponent({
   name: 'DatePickerPopup',
   props: {
     popupVisible: { type: Boolean as PropType<boolean>, default: false, },
-    dateStrArray: { type: Array as PropType<string[]>, default: () => genDateArrayOfToday(), }
+    dateStrArray: { type: Array as PropType<string[]>, default: () => genDateArray(), }
   },
   emits: ['update:popupVisible', 'update:dateStrArray'],
   setup( _props, _ctx ) {
-    const lastDateRef = ref<string[]>(_props.dateStrArray ?? genDateArrayOfToday())
+    const lastDateRef = ref<string[]>(_props.dateStrArray ?? genDateArray())
     const [minDate, maxDate,] = [
       new DateTime(new Date()).add(-1, 'year').getRawDate(),
       new DateTime(new Date()).add(1, 'year').getRawDate(),

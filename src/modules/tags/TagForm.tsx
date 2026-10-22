@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 23:30:32
+ * @LastEditTime: 2026-10-22 16:25:37
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -53,7 +53,8 @@ export const TagForm = defineComponent({
         <FormItem
           type="emojiSelector"
           label="符号"
-          v-model={formData.sign} hasErrorPlaceholder
+          v-model={formData.sign}
+          hasErrorPlaceholder
           error={errors.sign?.join(', ') }/>
         <FormItem>
           <p class="tips text-center py-1em px-0 min-h-[var(--input-min-height)]">
