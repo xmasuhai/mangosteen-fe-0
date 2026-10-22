@@ -25,7 +25,7 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 19:46:53
+ * @LastEditTime: 2026-10-22 22:24:33
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
@@ -69,7 +69,6 @@ export const FormItem = defineComponent<FormItemProps>({
           return (
             <input
               id={getLabelFor.value}
-              type="date"
               v-model={getModelValue.value}
               class={
                 cn(
