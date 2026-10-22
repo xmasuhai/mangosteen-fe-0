@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref, toRaw, watchEffect } from 'vue'
+import { defineComponent, reactive, ref, watchEffect } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
@@ -7,13 +7,15 @@ import { ItemSummary } from '@/modules/items/ItemSummary.tsx'
 import { DateTime } from '@/shared/dateTime.ts'
 import { FloatButton } from '@/components/FloatButton.tsx'
 import { Overlay } from 'vant'
+import { FormContainer } from '@/components/form/FormContainer.tsx'
+import { FormItem } from '@/components/form/FormItem.tsx'
 
 /**
  * @Description: 记账项目列表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 22:16:40
+ * @LastEditTime: 2026-10-22 17:35:29
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -21,10 +23,9 @@ export const ItemList = defineComponent({
   setup(/* _props, _ctx */) {
     const selectedDateRef = ref('本月')
     const currentDate = new DateTime()
-    // 调用 api 时需要 toRaw 转换访问私有变量
-    const customDate = reactive({
-      start: currentDate.getOriginDate(),
-      end: currentDate.getOriginDate()
+    const customDate = reactive<{ start: string; end: string }>({
+      start: currentDate.getOriginDate()?.format(),
+      end: currentDate.getOriginDate()?.format()
     })
 
     const dateList = [
@@ -68,8 +69,8 @@ export const ItemList = defineComponent({
                 </ItemTab>
                 <ItemTab tabName="自定义日期范围" tabId="customDateRange">
                   <ItemSummary
-                    startDate={toRaw(customDate.start)?.format()}
-                    endDate={toRaw(customDate.end)?.format()} />
+                    startDate={customDate.start}
+                    endDate={customDate.end} />
                 </ItemTab>
               </SwitchTabs>
 
@@ -85,14 +86,10 @@ export const ItemList = defineComponent({
                     请选择时间
                   </header>
                   <main>
-                    <form>
-                      <div>
-
-                      </div>
-                      <div>
-
-                      </div>
-                    </form>
+                    <FormContainer>
+                      <FormItem type="date" label="开始时间" v-model={customDate.start} />
+                      <FormItem type="date" label="结束时间" v-model={customDate.end} />
+                    </FormContainer>
                   </main>
                 </div>
               </Overlay>

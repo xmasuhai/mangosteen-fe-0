@@ -4,6 +4,7 @@ import { cn } from 'cn'
 import type { FormDataType } from '@/shared/validator/formValidate.ts'
 import { BarButton } from '@/components/BarButton.tsx'
 import { LabelOrDivWrapper } from '@/components/form/LabelOrDivWrapper.tsx'
+import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
 
 export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit-button'
 
@@ -21,7 +22,7 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 23:36:42
+ * @LastEditTime: 2026-10-22 17:11:19
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
@@ -50,12 +51,15 @@ export const FormItem = defineComponent<FormItemProps>({
     const getLabelFor = computed(() => getIfNeedLabelFor.value
         ? `form-item-${_props.type}-${useId()}`
         : '')
+
+    const dateVisibleRef = ref(false)
     const itemContent = computed(() => {
       switch (_props.type) {
         case 'text':
           return (
             <input
               id={getLabelFor.value}
+              type="date"
               v-model={getModelValue.value}
               class={
                 cn(
@@ -75,7 +79,25 @@ export const FormItem = defineComponent<FormItemProps>({
         case 'submit-button':
           return <BarButton id={getLabelFor.value} type="submit">确定</BarButton>
         case 'date':
-          return <input />
+          return (
+            <>
+              <input
+                id={getLabelFor.value}
+                value={getModelValue.value}
+                readonly={true}
+                onClick={() => {dateVisibleRef.value = true}}
+                class={
+                  cn(
+                    'p-x-1em text-18px',
+                    'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
+                    _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
+                  )
+                }/>
+              <DatePickerPopup
+                v-model:popupVisible={dateVisibleRef.value}
+                v-model:dateStr={getModelValue.value} />
+            </>
+          )
         case undefined:
           return _ctx.slots.default?.()
       }
