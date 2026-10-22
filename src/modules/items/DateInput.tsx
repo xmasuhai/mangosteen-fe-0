@@ -1,30 +1,37 @@
 import { computed, defineComponent, ref } from 'vue'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
-import { DatePicker, Popup } from 'vant'
 import { DateTime } from '@/shared/dateTime.ts'
+import { DatePickerPopup } from '@/modules/items/DatePickerPopup.tsx'
+// import { DatePicker, Popup } from 'vant'
 
 /**
  * @Description: 日期输入
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 23:51:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 14:46:42
+ * @LastEditTime: 2026-10-22 15:48:12
  * @FilePath: src/modules/items/DateInput.tsx
  */
 export const DateInput = defineComponent({
   name: 'DateInput',
   setup(/* _props, _ctx */) {
     const datePickerVisibleRef = ref(false)
-    const lastDateRef = ref(['2026', '11', '01'])
-    const currentDateRef = ref(['2026', '11', '01'])
-    const minDate = new Date(2025, 1, 1)
-    const maxDate = new Date(2028, 0, 1)
+    const nowDate = new Date()
+    const jsonDateStr = JSON.stringify([`${nowDate.getFullYear()}`, `${nowDate.getMonth() + 1}`, `${nowDate.getDate()}`])
+    // const lastDateRef = ref<string[]>(JSON.parse(jsonDateStr))
+    const currentDateRef = ref<string[]>(JSON.parse(jsonDateStr))
     const formattedDateStr = computed(() =>
       (new DateTime(new Date(currentDateRef.value.join('-')))).format(),
     )
     const toggleDatePicker = () => {
       datePickerVisibleRef.value = !datePickerVisibleRef.value
     }
+
+    /*
+    const [minDate, maxDate,] = [
+      new DateTime(new Date()).add(-1, 'year').getRawDate(),
+      new DateTime(new Date()).add(1, 'year').getRawDate(),
+    ]
     const confirmDate = ({ selectedValues }: { selectedValues: string[] }) => {
       lastDateRef.value = selectedValues
       currentDateRef.value = selectedValues
@@ -34,6 +41,7 @@ export const DateInput = defineComponent({
       currentDateRef.value = lastDateRef.value
       datePickerVisibleRef.value = false
     }
+    */
 
     return () => (
       <span class="flex justify-start items-center">
@@ -44,7 +52,15 @@ export const DateInput = defineComponent({
         />
         <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
           <span onClick={toggleDatePicker}>{formattedDateStr.value}</span>
-          <Popup position="bottom" v-model:show={datePickerVisibleRef.value} onClose={cancelDate}>
+          <DatePickerPopup
+            v-model:popupVisible={datePickerVisibleRef.value}
+            v-model:dateStrArray={currentDateRef.value}
+          />
+          {/*
+          <Popup
+            position="bottom"
+            v-model:show={datePickerVisibleRef.value}
+            onClose={cancelDate}>
             <DatePicker
               title="选择年月日"
               v-model={currentDateRef.value}
@@ -54,6 +70,8 @@ export const DateInput = defineComponent({
               onCancel={cancelDate}
             />
           </Popup>
+          */}
+
         </span>
       </span>
     )
