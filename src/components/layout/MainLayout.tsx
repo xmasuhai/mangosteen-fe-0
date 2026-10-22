@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:28:03
+ * @LastEditTime: 2026-10-22 21:56:21
  * @FilePath: src/components/layout/MainLayout.tsx
  */
 export const MainLayout = defineComponent({
@@ -19,7 +19,7 @@ export const MainLayout = defineComponent({
         <NavBar
           direct-scoped
           class={cn(
-            'sticky top-0 z-1',
+            'sticky top-0 z-[var(--z-index-navbar)]',
             'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]',
           )}>
           {{
