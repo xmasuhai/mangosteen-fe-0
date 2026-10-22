@@ -1,8 +1,8 @@
 import { defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
 
-type ButtonFeatType = 'button' | 'submit' | 'reset'
-type ButtonLevelType = 'primary' | 'success' | 'warning' | 'danger'
+export type ButtonFeatType = 'button' | 'submit' | 'reset'
+export type ButtonLevelType = 'primary' | 'success' | 'warning' | 'danger' | 'default'
 
 interface BarButtonProps {
   onClick?: (e: MouseEvent) => void
@@ -16,7 +16,7 @@ interface BarButtonProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:44:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 23:35:52
+ * @LastEditTime: 2026-10-22 18:06:44
  * @FilePath: src/components/BarButton.tsx
  */
 export const BarButton = defineComponent<BarButtonProps>({
@@ -31,16 +31,17 @@ export const BarButton = defineComponent<BarButtonProps>({
       success: cn('bg-[var(--button-bg-success)] b-[var(--button-bg-success)]'),
       warning: cn('bg-[var(--button-bg-warning)] b-[var(--button-bg-warning)]'),
       danger: cn('bg-[var(--button-bg-danger)] b-[var(--button-bg-danger)]'),
+      default: cn('bg-[var(--button-bg-default)] b-[var(--button-bg-default)]'),
     }
 
     return () => (
       <button
         type={_props.type}
         class={cn(
-          `${levelHashClass[_props.level ?? 'primary']}`,
+          `bar-button ${levelHashClass[_props.level ?? 'primary']}`,
           'b-1 b-solid rounded-[var(--button-radius)]',
           'text-[var(--button-text-color)] font-size-[var(--button-text-size)]',
-          'w-[100%] h-[var(--button-height)] p-x-1em p-y-[0.5em]',
+          'where:(w-[100%] h-[var(--button-height)] p-x-1em p-y-[0.5em])',
         )}>
         {ctx.slots.default?.()}
       </button>
