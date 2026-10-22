@@ -6,7 +6,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-19 22:52:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 17:47:11
+ * @LastEditTime: 2026-10-22 20:57:19
  * @FilePath: src/modules/items/ItemSummary.tsx
  */
 export const ItemSummary = defineComponent({
@@ -27,9 +27,6 @@ export const ItemSummary = defineComponent({
 
     return () => (
       <div class="flex flex-col h-[calc(100vh-136px)] scrollbar-hide relative">
-        {_props.startDate}
-        <br></br>
-        {_props.endDate}
         <ul class={cn(
           'bg-[var(--total-bg)] text-[var(--total-text)]',
           'grow-0 shrink-0 flex justify-between',

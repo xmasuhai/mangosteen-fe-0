@@ -1,4 +1,5 @@
 import { defineComponent, type PropType } from 'vue'
+import { cn } from 'cn'
 
 /**
  * @Description: 记账图标标签组件
@@ -6,7 +7,7 @@ import { defineComponent, type PropType } from 'vue'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-19 16:53:10
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 18:09:21
+ * @LastEditTime: 2026-10-22 21:10:56
  * @FilePath: src/modules/tags/IconTag.tsx
  */
 export const IconTag = defineComponent({
@@ -19,7 +20,11 @@ export const IconTag = defineComponent({
   setup(_props, _ctx) {
     return () => (
       <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
-        <div class="bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)] w-12vw h-12vw rounded-[50%] flex justify-center items-center">
+        <div class={cn(
+          'size-12vw max-w-50px max-h-50px rounded-[50%] ',
+          'bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)]',
+          'flex justify-center items-center',
+        )}>
           {_ctx.slots?.default?.() ? _ctx.slots?.default?.() : _props.tagSign}
         </div>
         <div class="text-12px mt-.25em">{_props.tagName}</div>
