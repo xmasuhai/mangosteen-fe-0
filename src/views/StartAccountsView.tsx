@@ -6,14 +6,14 @@ import { FloatButton } from '@/components/FloatButton.tsx'
 import { PlaceCenter } from '@/components/PlaceCenter.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
-import { OverlayIcon } from '@/views/OverlayIcon.tsx'
+import { OverlayIcon } from '@/components/overlay/OverlayIcon.tsx'
 
 /**
  * @Description: 开始记账页面
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:51:17
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 21:41:49
+ * @LastEditTime: 2026-10-22 21:44:37
  * @FilePath: src/views/StartAccountsView.tsx
  */
 export const StartAccountsView = defineComponent({

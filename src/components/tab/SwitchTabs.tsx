@@ -1,7 +1,7 @@
 import { defineComponent, type PropType, } from 'vue'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 import { cn } from 'cn'
-import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
+import { genDefaultSlotTabs } from '@/components/tab/genDefaultSlotTabs.ts'
 
 /**
  * @Description: 切换标签Tab列表组件
@@ -10,7 +10,7 @@ import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 20:49:11
+ * @LastEditTime: 2026-10-22 21:44:04
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
