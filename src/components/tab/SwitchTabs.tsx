@@ -10,7 +10,7 @@ import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 20:23:44
+ * @LastEditTime: 2026-10-22 20:49:11
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -33,6 +33,10 @@ export const SwitchTabs = defineComponent({
           )
         : ''
 
+    const onSwitchTab = (tabName: string) => {
+      _ctx.emit('update:selected', tabName)
+    }
+
     return () => {
       const defaultSlotTabs = genDefaultSlotTabs(_ctx.slots?.default?.() ?? [])
       const ifAllItemTab = defaultSlotTabs
@@ -53,9 +57,7 @@ export const SwitchTabs = defineComponent({
                     'where:(text-center grow-1 shrink-0 px-1em py-12px)',
                     selectedClass(slot?.props?.tabName),
                   )}
-                  onClick={() => {
-                    _ctx.emit('update:selected', slot?.props?.tabName)
-                  }}>
+                  onClick={() => onSwitchTab(slot?.props?.tabName)}>
                   {slot?.props?.tabName}
                 </li>
               ))}
