@@ -10,7 +10,7 @@ import { genDefaultSlotTabs } from '@/views/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 17:53:40
+ * @LastEditTime: 2026-10-22 20:23:44
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -20,6 +20,10 @@ export const SwitchTabs = defineComponent({
       type: String as PropType<string>,
     },
   },
+  emits: [
+    // 由点击事件触发
+    'update:selected',
+  ],
   setup(_props, _ctx) {
     const selectedClass = (tabName: string) =>
       _props.selected === tabName

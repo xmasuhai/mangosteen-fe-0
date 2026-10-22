@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref, watchEffect } from 'vue'
+import { defineComponent, reactive, ref, } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 19:46:27
+ * @LastEditTime: 2026-10-22 20:44:52
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
@@ -37,18 +37,18 @@ export const ItemList = defineComponent({
       {start: currentDate.firstDayOfYear().format(), end: currentDate.lastDayOfYear().format(),},
     ] as const
 
-    const refOverlayVisible = ref(false)
-    watchEffect(() => {
-      refOverlayVisible.value = selectedDateRef.value === '自定义日期范围'
-    })
-
+    const customDateRangeOverlayVisibleRef = ref(false)
     const onSubmitCustomDateRange = (e: SubmitEvent) => {
       e.preventDefault()
-      refOverlayVisible.value = false
+      customDateRangeOverlayVisibleRef.value = false
     }
-    const onCnacelCustomDateRange = () => {
-      refOverlayVisible.value = false
+    const onCancelCustomDateRange = () => {
+      customDateRangeOverlayVisibleRef.value = false
     }
+    const openCustomDateRange = () => {
+      customDateRangeOverlayVisibleRef.value = selectedDateRef.value === '自定义日期范围'
+    }
+
     return () => (
       <MainLayout>
         {{
@@ -59,6 +59,7 @@ export const ItemList = defineComponent({
               <SwitchTabs
                 selected={selectedDateRef.value}
                 v-model:selected={selectedDateRef.value}
+                onUpdate:selected={openCustomDateRange}
                 class="[&>nav>menu>li]:(text-start grow-0)">
                 <ItemTab tabName="本月" tabId="thisMonth">
                   <ItemSummary
@@ -84,8 +85,8 @@ export const ItemList = defineComponent({
 
               {/* 自定义日期范围弹出层 */}
               <Overlay
-                show={refOverlayVisible.value}
-                onClick={() => (refOverlayVisible.value = false)}
+                show={customDateRangeOverlayVisibleRef.value}
+                onClick={onCancelCustomDateRange}
                 class="flex items-center justify-center bg-[var(--overlay-mask-bg)]" >
                 <div
                   onClick={(e: MouseEvent) => e.stopPropagation()}
@@ -98,7 +99,7 @@ export const ItemList = defineComponent({
                       <FormItem type="date" label="开始时间" v-model={customDate.start} />
                       <FormItem type="date" label="结束时间" v-model={customDate.end} />
                       <footer class="flex justify-between mt-1em children:(w-[calc(50%-.25em)])">
-                        <FormItem type="button" onClick={onCnacelCustomDateRange} buttonConfig={{level: 'default', text: '取 消' }}/>
+                        <FormItem type="button" onClick={onCancelCustomDateRange} buttonConfig={{level: 'default', text: '取 消' }}/>
                         <FormItem type="submit-button" buttonConfig={{level: 'primary', text: '确 认' }}/>
                       </footer>
                     </FormContainer>
