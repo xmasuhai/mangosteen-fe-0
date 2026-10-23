@@ -9,18 +9,20 @@ import { Overlay } from 'vant'
 import { FormContainer } from '@/components/form/FormContainer.tsx'
 import { FormItem } from '@/components/form/FormItem.tsx'
 import { OverlayIcon } from '@/components/overlay/OverlayIcon.tsx'
+import cssVars from '@/assets/styles/vars.module.scss';
 
 /**
  * @Description: 记账项目列表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 22:35:51
+ * @LastEditTime: 2026-10-23 16:30:15
  * @FilePath: src/views/ItemList.tsx
  */
 export const ItemList = defineComponent({
   name: 'ItemList',
   setup(/* _props, _ctx */) {
+    const {zIndexFloatOverlay,} = cssVars
     const selectedDateRef = ref('本月')
     const currentDate = new DateTime()
     const customDate = reactive<{ start: string; end: string }>({
@@ -88,6 +90,7 @@ export const ItemList = defineComponent({
 
               {/* 自定义日期范围弹出层-仅和有对应的ItemTab关联待重构 */}
               <Overlay
+                z-index={zIndexFloatOverlay}
                 show={customDateRangeOverlayVisibleRef.value}
                 onClick={onCancelCustomDateRange}
                 class="flex items-center justify-center bg-[var(--overlay-mask-bg)]" >
@@ -103,7 +106,7 @@ export const ItemList = defineComponent({
                       <FormItem type="date" label="结束时间" v-model={customDate.end} v-model:visibleValue={endDateVisibleRef.value} />
                       <footer class="flex justify-between mt-1em children:(w-[calc(50%-.25em)])">
                         <FormItem type="button" onClick={onCancelCustomDateRange} buttonConfig={{level: 'default', text: '取 消' }}/>
-                        <FormItem type="submit-button" buttonConfig={{level: 'primary', text: '确 认' }}/>
+                        <FormItem type="submit" buttonConfig={{level: 'primary', text: '确 认' }}/>
                       </footer>
                     </FormContainer>
                   </main>

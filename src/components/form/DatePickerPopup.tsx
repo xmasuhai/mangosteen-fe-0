@@ -8,14 +8,15 @@ import { genDateStr } from '@/const/genDateStr.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-22 14:44:36
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 15:55:32
+ * @LastEditTime: 2026-10-23 17:08:21
  * @FilePath: src/components/form/DatePickerPopup.tsx
  */
 export const DatePickerPopup = defineComponent({
   name: 'DatePickerPopup',
   props: {
     popupVisible: { type: Boolean as PropType<boolean>, default: false, },
-    dateStr: { type: String as PropType<string>, default: () => genDateStr(), }
+    dateStr: { type: String as PropType<string>, default: () => genDateStr(), },
+    ifCloseOnClickOverlay: { type: Boolean as PropType<boolean>, default: true, },
   },
   emits: ['update:popupVisible', 'update:dateStr',],
   setup( _props, _ctx ) {
@@ -39,7 +40,9 @@ export const DatePickerPopup = defineComponent({
       getDateStrArrayTransfer.value = selectedValues // [2026, 10, 22]
       getPopupVisible.value = false
     }
-    const cancelDate = () => {
+    const cancelDate = (e: MouseEvent) => {
+      e?.preventDefault?.()
+      e?.stopPropagation?.()
       getDateStrArrayTransfer.value = lastDateStrRef.value.split('-') // [2026, 10, 22]
       getPopupVisible.value = false
     }
@@ -47,7 +50,8 @@ export const DatePickerPopup = defineComponent({
       <Popup
         position="bottom"
         round
-        close-on-click-overlay={false}
+        close-on-click-overlay={_props.ifCloseOnClickOverlay}
+        onClickOverlay={cancelDate}
         v-model:show={getPopupVisible.value}
         onClose={cancelDate}>
         <DatePicker
