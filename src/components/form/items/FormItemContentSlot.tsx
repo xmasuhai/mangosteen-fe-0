@@ -6,7 +6,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 16:48:16
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 16:54:57
+ * @LastEditTime: 2026-10-23 20:46:47
  * @FilePath: src/components/form/items/FormItemContentSlot.tsx
  */
 export const FormItemContentSlot = defineComponent({
@@ -40,7 +40,7 @@ export const FormItemContentSlot = defineComponent({
         {/* 错误 */}
         {(_props.error || _props.hasErrorPlaceholder) && (
           <div class={cn('error-hint min-h-18px m-t-.25em text-12px color-[var(--error-color)]')}>
-            <span>{_props.error}</span>
+            <span>{_props.error ?? '　'}</span>
           </div>
         )}
       </>
