@@ -8,7 +8,7 @@ interface BarButtonProps {
   onClick?: (e: MouseEvent) => void
   type?: ButtonFeatType
   level?: ButtonLevelType
-  id?: string // 无需明确声明
+  forId?: string // 无需明确声明
   text?: string
 }
 
@@ -17,7 +17,7 @@ interface BarButtonProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:44:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 11:28:17
+ * @LastEditTime: 2026-10-23 14:27:15
  * @FilePath: src/components/BarButton.tsx
  */
 export const BarButton = defineComponent<BarButtonProps>({

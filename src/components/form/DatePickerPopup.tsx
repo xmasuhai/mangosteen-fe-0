@@ -8,7 +8,7 @@ import { genDateStr } from '@/const/genDateStr.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-22 14:44:36
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 17:30:04
+ * @LastEditTime: 2026-10-23 15:55:32
  * @FilePath: src/components/form/DatePickerPopup.tsx
  */
 export const DatePickerPopup = defineComponent({
@@ -43,10 +43,11 @@ export const DatePickerPopup = defineComponent({
       getDateStrArrayTransfer.value = lastDateStrRef.value.split('-') // [2026, 10, 22]
       getPopupVisible.value = false
     }
-
     return () => (
       <Popup
         position="bottom"
+        round
+        close-on-click-overlay={false}
         v-model:show={getPopupVisible.value}
         onClose={cancelDate}>
         <DatePicker
