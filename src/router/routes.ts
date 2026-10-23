@@ -6,7 +6,7 @@ import { Welcome3rdPage } from '@/modules/welcome/Welcome3rdPage.tsx'
 import { Welcome4thPage } from '@/modules/welcome/Welcome4thPage.tsx'
 import { StartAccountsView } from '@/views/StartAccountsView.tsx'
 import { ItemsView } from '@/views/ItemsView.tsx'
-import { ItemList } from '@/views/ItemList.tsx'
+import { ItemListView } from '@/views/ItemListView.tsx'
 import { ItemCreate } from '@/views/ItemCreate.tsx'
 import { TagView } from '@/views/TagView.tsx'
 import { TagDetailEditView } from '@/views/TagDetailEditView.tsx'
@@ -18,7 +18,7 @@ import { SignInView } from '@/views/SignInView.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 22:18:04
+ * @LastEditTime: 2026-10-23 17:48:23
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -53,8 +53,8 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        name: 'itemList',
-        component: ItemList,
+        name: 'ItemListView',
+        component: ItemListView,
       },
       {
         path: 'create',

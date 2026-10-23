@@ -16,11 +16,11 @@ import cssVars from '@/assets/styles/vars.module.scss';
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 16:30:15
- * @FilePath: src/views/ItemList.tsx
+ * @LastEditTime: 2026-10-23 17:48:01
+ * @FilePath: src/views/ItemListView.tsx
  */
-export const ItemList = defineComponent({
-  name: 'ItemList',
+export const ItemListView = defineComponent({
+  name: 'ItemListView',
   setup(/* _props, _ctx */) {
     const {zIndexFloatOverlay,} = cssVars
     const selectedDateRef = ref('本月')
