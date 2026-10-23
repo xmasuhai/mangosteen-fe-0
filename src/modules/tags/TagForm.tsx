@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 14:57:38
+ * @LastEditTime: 2026-10-23 22:24:00
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -59,7 +59,6 @@ export const TagForm = defineComponent({
         <FormItem>
           <p class="tips text-center py-1em px-0 min-h-[var(--input-min-height)]">
             记账时长按即可进行编辑
-            {errors.name?.join(', ')}
           </p>
         </FormItem>
         <FormItem type="submit" buttonConfig={{ level: 'primary', text: '保存' }} />
