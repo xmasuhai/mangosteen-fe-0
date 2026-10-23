@@ -7,7 +7,7 @@ import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 14:20:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 15:38:26
+ * @LastEditTime: 2026-10-23 16:59:03
  * @FilePath: src/components/form/items/InputDatePickerPopup.tsx
  */
 export const InputDatePickerPopup = defineComponent({
@@ -31,6 +31,7 @@ export const InputDatePickerPopup = defineComponent({
     return () => (
       <>
         <input
+          type="date"
           id={_props.forId}
           value={getModelValue.value}
           readonly={true}
