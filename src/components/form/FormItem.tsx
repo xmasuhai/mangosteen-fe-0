@@ -20,6 +20,7 @@ interface FormItemProps {
   hasLabelColon?: boolean
   buttonConfig?: { level?: ButtonLevelType, text?: string }
   onClick?: () => void
+  placeholder?: string
 }
 
 /**
@@ -27,7 +28,7 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 20:39:58
+ * @LastEditTime: 2026-10-23 22:29:59
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
@@ -43,6 +44,7 @@ export const FormItem = defineComponent<FormItemProps>({
     visibleValue: { type: Boolean as PropType<boolean>, default: false, },
     error: { type: String as PropType<string>, },
     hasErrorPlaceholder: { type: Boolean as PropType<boolean>, default: false, },
+    placeholder: { type: String as PropType<string>, default: '', },
     buttonConfig: {
       type: Object as PropType<{ level?: ButtonLevelType, text?: string }>,
       default: () => ({ level: 'default', text: '确认' }),
@@ -52,7 +54,7 @@ export const FormItem = defineComponent<FormItemProps>({
   setup( _props, _ctx ) {
     const extraHint = ref('')
     const getModelValue = computed({
-      get() {return _props.modelValue?.toString()},
+      get() {return _props.modelValue},
       set(value) {_ctx.emit('update:modelValue', value)}
     })
     const getVisibleValue = computed({
@@ -72,6 +74,7 @@ export const FormItem = defineComponent<FormItemProps>({
             <InputText
               error={_props.error}
               v-model={getModelValue.value}
+              placeholder={_props.placeholder}
               forId={getLabelFor.value} />
           )
         case 'emojiSelector':
@@ -91,6 +94,7 @@ export const FormItem = defineComponent<FormItemProps>({
         case 'date':
           return (
             <InputDatePickerPopup
+              placeholder={_props.placeholder}
               forId={getLabelFor.value}
               v-model={getModelValue.value}
               v-model:visibleValue={getVisibleValue.value}
@@ -102,7 +106,8 @@ export const FormItem = defineComponent<FormItemProps>({
               error={_props.error}
               v-model={getModelValue.value}
               forId={getLabelFor.value}
-              class={cn('w-[6em]')} />
+              placeholder={_props.placeholder}
+              class={cn('w-[9.5em]')} />
             <BarButton text="发送验证码" class={cn('ml-1em')}/>
           </>
         case undefined:

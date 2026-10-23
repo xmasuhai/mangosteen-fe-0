@@ -7,7 +7,7 @@ import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 14:20:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 16:59:03
+ * @LastEditTime: 2026-10-23 22:27:15
  * @FilePath: src/components/form/items/InputDatePickerPopup.tsx
  */
 export const InputDatePickerPopup = defineComponent({
@@ -17,6 +17,7 @@ export const InputDatePickerPopup = defineComponent({
     forId: { type: String as PropType<string>, },
     modelValue: { type: String as PropType<string>, default: '', },
     visibleValue: { type: Boolean as PropType<boolean>, default: false, },
+    placeholder: { type: String as PropType<string>, default: '', },
   },
   setup( _props, _ctx ) {
     const getModelValue = computed({
@@ -36,6 +37,7 @@ export const InputDatePickerPopup = defineComponent({
           value={getModelValue.value}
           readonly={true}
           onClick={toggleDatePickerPopup}
+          placeholder={_props.placeholder}
           class={
             cn(
               'p-x-1em text-18px',

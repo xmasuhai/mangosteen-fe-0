@@ -11,7 +11,7 @@ import { formValidate } from '@/shared/validator/formValidate.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-22 22:17:33
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 20:56:51
+ * @LastEditTime: 2026-10-23 22:29:21
  * @FilePath: src/views/SignInView.tsx
  */
 export const SignInView = defineComponent({
@@ -38,23 +38,29 @@ export const SignInView = defineComponent({
           icon: () =>  <SvgIcon name="back-arrow" size="1.5em" onClick={() => {}} />,
           default: () => (
             <div>
+              <div class="flex flex-col justify-center items-center pt-42px">
+                <SvgIcon name="mangosteen" class="w-64px h-68px"/>
+                <h1 class="text-[var(--app-name-text)] text-2em font-bold">山竹记账</h1>
+              </div>
               <FormContainer onSubmit={onSubmit}>
                 <FormItem
                   label="邮箱地址"
                   type="text"
                   v-model={formData.email}
                   hasErrorPlaceholder
+                  placeholder="请输入邮箱，然后点击发送验证码"
                   error={errors.email?.join('，')} />
                 <FormItem
                   label="验证码"
                   type="validationCode"
                   v-model={formData.validationCode}
                   hasErrorPlaceholder
+                  placeholder="请输入六位数字"
                   error={errors.validationCode?.join('，')} />
                 <FormItem
                   type="submit"
                   buttonConfig={{ text: '登录' }}
-                  class={cn('mt-1em')} />
+                  class={cn('mt-2em')} />
               </FormContainer>
             </div>
           )

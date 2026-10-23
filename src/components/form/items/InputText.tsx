@@ -6,7 +6,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 13:53:20
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 14:20:41
+ * @LastEditTime: 2026-10-23 22:26:34
  * @FilePath: src/components/form/items/InputText.tsx
  */
 export const InputText = defineComponent({
@@ -15,6 +15,7 @@ export const InputText = defineComponent({
     error: { type: String as PropType<string>, },
     forId: { type: String as PropType<string>, },
     modelValue: { type: String as PropType<string>, default: '', },
+    placeholder: { type: String as PropType<string>, default: '', },
   },
   setup(_props, _ctx) {
     const getModelValue = computed({
@@ -29,6 +30,7 @@ export const InputText = defineComponent({
       <input
         id={_props.forId}
         v-model={getModelValue.value}
+        placeholder={_props.placeholder}
         class={cn(
           'p-x-1em text-18px',
           'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
