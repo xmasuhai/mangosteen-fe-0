@@ -4,6 +4,7 @@ import {
   transformerVariantGroup,
   transformerDirectives,
   type PresetWind4Theme,
+  PresetOrFactoryAwaitable,
 } from 'unocss'
 import {presetWind4} from '@unocss/preset-wind4'
 
@@ -12,12 +13,12 @@ import {presetWind4} from '@unocss/preset-wind4'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 22:27:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-20 20:57:23
+ * @LastEditTime: 2026-10-23 16:07:25
  * @FilePath: uno.config.ts
  */
 export const unoConfig = defineConfig({
   presets: [
-    presetWind4(),
+    presetWind4() as PresetOrFactoryAwaitable<object>,
     presetAttributify(),
   ],
   transformers: [

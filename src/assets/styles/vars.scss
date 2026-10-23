@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 11:32:03
+ * @LastEditTime: 2026-10-23 16:29:28
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -41,9 +41,8 @@
   --navbar-min-height: 88px;
   --z-index-button-nav: 10;
   --z-index-navbar: 30;
-  --van-overlay-z-index: 40;
   // 划出浮层 遮罩层
-  --z-index-float-overlay: 20;
+  --z-index-float-overlay: 40;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
   --overlay-bg: var(--main-light-bg);
   --overlay-user-bg: var(--button-bg);
@@ -79,9 +78,18 @@
   --dialog-header-text: white;
 }
 
+// 覆盖第三方变量
+:root {
+  --van-overlay-z-index: 40;
+}
+
 /* semantic color variables for this project */
 //:root {}
 
 @media (prefers-color-scheme: dark) {
   //:root {}
 }
+
+// z-index 层数系列，不可以写成css变量，无法编译成最终值
+$z-index-float-overlay: 40 !default;
+$z-index-navbar: 30 !default;
