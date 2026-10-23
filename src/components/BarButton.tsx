@@ -8,7 +8,7 @@ interface BarButtonProps {
   onClick?: (e: MouseEvent) => void
   type?: ButtonFeatType
   level?: ButtonLevelType
-  forId?: string // 无需明确声明
+  forId?: string
   text?: string
 }
 
@@ -17,7 +17,7 @@ interface BarButtonProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-13 11:44:28
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 14:27:15
+ * @LastEditTime: 2026-10-23 17:42:55
  * @FilePath: src/components/BarButton.tsx
  */
 export const BarButton = defineComponent<BarButtonProps>({
@@ -26,6 +26,7 @@ export const BarButton = defineComponent<BarButtonProps>({
     type: {type: String as PropType<ButtonFeatType>, default: 'button' as const,},
     level: {type: String as PropType<ButtonLevelType>, default: 'primary' as const,},
     text: {type: String as PropType<string>, default: undefined,},
+    forId: {type: String as PropType<string>, default: undefined,},
   },
   setup(_props, _ctx) {
     const levelHashClassHash: Record<ButtonLevelType, string> = {
@@ -37,6 +38,7 @@ export const BarButton = defineComponent<BarButtonProps>({
     }
     return () => (
       <button
+        {..._props.forId ? {id: _props.forId} : {}}
         type={_props.type}
         class={cn(
           `bar-button ${levelHashClassHash[_props.level ?? 'primary']}`,
