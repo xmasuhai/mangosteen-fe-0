@@ -12,13 +12,17 @@ import { TagView } from '@/views/TagView.tsx'
 import { TagDetailEditView } from '@/views/TagDetailEditView.tsx'
 import { TagCreateView } from '@/views/TagCreateView.tsx'
 import { SignInView } from '@/views/SignInView.tsx'
+import { StatisticsView } from '@/views/StatisticsView.tsx'
+import { ExportView } from '@/views/ExportView.tsx'
+import { NotifyView } from '@/views/NotifyView.tsx'
+import { TechStackView } from '@/views/TechStackView.tsx'
 
 /**
  * @Description: 路由表
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-22 20:47:37
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 17:48:23
+ * @LastEditTime: 2026-10-23 22:45:41
  * @FilePath: src/router/routes.ts
  */
 export const routes: RouteRecordRaw[] = [
@@ -41,10 +45,10 @@ export const routes: RouteRecordRaw[] = [
   },
   { path: '/sign_in', name: 'signIn', component: SignInView, },
   { path: '/start', name: 'startAccounts', component: StartAccountsView },
-  { path: '/statistics', name: 'statistics', redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
-  { path: '/export', name: 'export',redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
-  { path: '/notify', name: 'notify',redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
-  { path: '/tech_stack', name: 'techStack', redirect: '/welcome/1', /*component: () => (<div></div>)*/ },
+  { path: '/statistics', name: 'statistics', component:  StatisticsView ,},
+  { path: '/export', name: 'export', component:  ExportView, },
+  { path: '/notify', name: 'notify', component:  NotifyView, },
+  { path: '/tech_stack', name: 'techStack', component:  TechStackView, },
   /* 记账项目相关：项目列表页、创建页 */
   {
     path: '/items',
