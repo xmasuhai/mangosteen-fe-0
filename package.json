@@ -1,7 +1,9 @@
 {
   "name": "mangosteen-fe-0",
+  "license": "MIT",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
+  "repository": "https://github.com/xmasuhai/mangosteen-fe-0.git",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -58,6 +60,7 @@
     "npm-run-all2": "9.0.4",
     "oxfmt": "0.74.0",
     "oxlint": "1.89.0",
+    "oxlint-tsgolint": "7.0.2004",
     "sass-embedded": "1.106.1",
     "start-server-and-test": "3.0.13",
     "typescript": "npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2",
