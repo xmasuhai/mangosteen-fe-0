@@ -15,7 +15,7 @@ import { FormItem } from '@/components/form/FormItem.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-17 15:55:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 16:25:37
+ * @LastEditTime: 2026-10-23 14:57:38
  * @FilePath: src/modules/tags/TagForm.tsx
  */
 export const TagForm = defineComponent({
@@ -62,7 +62,7 @@ export const TagForm = defineComponent({
             {errors.name?.join(', ')}
           </p>
         </FormItem>
-        <FormItem type="submit-button" />
+        <FormItem type="submit" buttonConfig={{ level: 'primary', text: '保存' }} />
       </FormContainer>
     )
   },
