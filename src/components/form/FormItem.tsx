@@ -6,8 +6,9 @@ import { LabelOrDivWrapper } from '@/components/form/items/LabelOrDivWrapper.tsx
 import { InputText } from '@/components/form/items/InputText.tsx'
 import { InputDatePickerPopup } from '@/components/form/items/InputDatePickerPopup.tsx'
 import { FormItemContentSlot } from '@/components/form/items/FormItemContentSlot.tsx'
+import { cn } from 'cn'
 
-export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit' | 'button'
+export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit' | 'button' | 'validationCode'
 
 interface FormItemProps {
   type?: FormItemType
@@ -26,7 +27,7 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 16:58:44
+ * @LastEditTime: 2026-10-23 20:39:58
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
@@ -95,6 +96,15 @@ export const FormItem = defineComponent<FormItemProps>({
               v-model:visibleValue={getVisibleValue.value}
               error={_props.error}/>
           )
+        case 'validationCode':
+          return <>
+            <InputText
+              error={_props.error}
+              v-model={getModelValue.value}
+              forId={getLabelFor.value}
+              class={cn('w-[6em]')} />
+            <BarButton text="发送验证码" class={cn('ml-1em')}/>
+          </>
         case undefined:
           return _ctx.slots.default?.()
       }
