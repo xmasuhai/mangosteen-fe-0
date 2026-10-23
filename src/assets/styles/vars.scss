@@ -3,7 +3,7 @@
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-25 15:53:59
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 22:03:54
+ * @LastEditTime: 2026-10-23 11:32:03
  * @FilePath: src/assets/styles/vars.scss
  */
 
@@ -28,7 +28,7 @@
   --button-bg-success: #67C23A;
   --button-bg-warning: #E6A23C;
   --button-bg-danger: var(--error-color);
-  --button-text-color: white;
+  --button-text-color: contrast-color(var(--main));
   --button-text-size: 18px;
   --button-radius: 8px;
   --button-height: 48px;
