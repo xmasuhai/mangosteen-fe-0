@@ -13,7 +13,7 @@ import { CustomDateRangeOverlay } from '@/modules/items/CustomDateRangeOverlay.t
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:32
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 20:23:22
+ * @LastEditTime: 2026-10-23 22:53:03
  * @FilePath: src/views/ItemListView.tsx
  */
 export const ItemListView = defineComponent({
@@ -64,7 +64,6 @@ export const ItemListView = defineComponent({
           default: () => (
             <div class="h-full flex flex-col">
               <SwitchTabs
-                selected={selectedDateRef.value}
                 v-model:selected={selectedDateRef.value}
                 onUpdate:selected={openCustomDateRange}
                 class="[&>nav>menu>li]:(text-start grow-0)">

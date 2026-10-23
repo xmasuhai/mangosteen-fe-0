@@ -6,7 +6,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-19 22:52:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 20:57:19
+ * @LastEditTime: 2026-10-23 22:58:52
  * @FilePath: src/modules/items/ItemSummary.tsx
  */
 export const ItemSummary = defineComponent({
@@ -36,6 +36,7 @@ export const ItemSummary = defineComponent({
           <li class="p-1em flex flex-col text-center color-[var(--total-expenses)]"><span>支出</span><span>¥ 99.00</span></li>
           <li class="p-1em flex flex-col text-center color-[var(--total-text)]"><span>净收入</span><span>¥ 39.00</span></li>
         </ul>
+
         <div class="max-h-[calc(100%-112px)] grow-1 shrink-1 overflow-auto scrollbar-hide">
           <ul class="[&>li]:[--sibling-idx:calc(1*sibling-index())] [&>li>div:first-child]:bg-[oklch(70%_0.15_calc(var(--sibling-idx)*70))]">
             <li class="flex justify-between items-start py-12px px-1em b-b-1px b-b-[var(--button-border-color)]">
