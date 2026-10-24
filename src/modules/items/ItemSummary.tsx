@@ -1,12 +1,13 @@
 import { defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
+import { FloatButton } from '@/components/FloatButton.tsx'
 
 /**
  * @Description: 记账总览组件
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-19 22:52:49
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 22:58:52
+ * @LastEditTime: 2026-10-24 15:11:14
  * @FilePath: src/modules/items/ItemSummary.tsx
  */
 export const ItemSummary = defineComponent({
@@ -27,6 +28,9 @@ export const ItemSummary = defineComponent({
 
     return () => (
       <div class="flex flex-col h-[calc(100vh-136px)] scrollbar-hide relative">
+        {_props?.startDate}
+        <br/>
+        {_props?.endDate}
         <ul class={cn(
           'bg-[var(--total-bg)] text-[var(--total-text)]',
           'grow-0 shrink-0 flex justify-between',
@@ -170,6 +174,8 @@ export const ItemSummary = defineComponent({
 
           <div class="pt-2em mb-2em text-center">向下滑动加载更多</div>
         </div>
+
+        <FloatButton class="fixed bottom-1em right-1em" iconName="add" />
       </div>
     )
   },
