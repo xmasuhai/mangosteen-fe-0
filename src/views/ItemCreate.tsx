@@ -11,13 +11,13 @@ import { IconTag } from '@/modules/tags/IconTag.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:00:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 20:32:41
+ * @LastEditTime: 2026-10-24 21:34:59
  * @FilePath: src/views/ItemCreate.tsx
  */
 export const ItemCreate = defineComponent({
   name: 'ItemCreate',
   setup(/* _props, _ctx */) {
-    const kindRef = ref('支出')
+    const kindRef = ref('expenses')
     const refExpensesTags = ref([
       { id: 1, name: '餐费', sign: '￥', category: 'expenses' },
       { id: 2, name: '打车', sign: '￥', category: 'expenses' },
@@ -76,8 +76,7 @@ export const ItemCreate = defineComponent({
           default: () => (
             <div class="h-full flex flex-col">
               <SwitchTabs
-                selected={kindRef.value}
-                v-model:selected={kindRef.value}>
+                v-model:selectedTabId={kindRef.value}>
                 {
                   itemTabList.value
                     .map(itemTab => (
