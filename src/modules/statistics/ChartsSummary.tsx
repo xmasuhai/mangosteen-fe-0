@@ -1,11 +1,12 @@
-import { defineComponent, type PropType, } from 'vue'
+import { defineComponent, type PropType, ref } from 'vue'
+import { FormItem } from '@/components/form/FormItem.tsx'
 
 /**
  * @Description: 组件描述
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 22:55:11
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 23:00:12
+ * @LastEditTime: 2026-10-24 23:02:02
  * @FilePath: src/modules/statistics/ChartsSummary.tsx
  */
 export const ChartsSummary = defineComponent({
@@ -21,9 +22,18 @@ export const ChartsSummary = defineComponent({
     },
   },
   setup( _props, _ctx ) {
+    const kindOptions = Object.freeze([
+      { value: 'expenses', label: '支出' },
+      { value: 'incomes', label: '收入' },
+    ])
+    const kindRef = ref('expenses')
     return () => (
-      <div>
-        {_props.startDate} <br/> {_props.endDate}
+      <div class="mx-1em">
+        <FormItem
+          label="类型"
+          type="select"
+          v-model={kindRef.value}
+          options={kindOptions}/>
       </div>
     )
   },

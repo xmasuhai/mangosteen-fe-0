@@ -7,8 +7,10 @@ import { InputText } from '@/components/form/items/InputText.tsx'
 import { InputDatePickerPopup } from '@/components/form/items/InputDatePickerPopup.tsx'
 import { FormItemContentSlot } from '@/components/form/items/FormItemContentSlot.tsx'
 import { cn } from 'cn'
+import { SelectOrigin } from '@/components/form/SelectOrigin.tsx'
 
-export type FormItemType = 'text' | 'emojiSelector' | 'date' | 'submit' | 'button' | 'validationCode'
+export type FormItemType = 'text' | 'emojiSelector' | 'date' |
+  'submit' | 'button' | 'validationCode' | 'select'
 
 interface FormItemProps {
   type?: FormItemType
@@ -18,9 +20,16 @@ interface FormItemProps {
   hasErrorPlaceholder?: boolean
   label?: string
   hasLabelColon?: boolean
-  buttonConfig?: { level?: ButtonLevelType, text?: string }
   onClick?: () => void
+  onChange?: () => void
   placeholder?: string
+  // 以下类型待使用泛型 体操动态控制
+  buttonConfig?: { level?: ButtonLevelType, text?: string }
+  options: Readonly<{ label: string, value: string }[]>
+}
+interface ButtonConfig {
+  level?: ButtonLevelType
+  text?: string
 }
 
 /**
@@ -28,7 +37,7 @@ interface FormItemProps {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 22:29:59
+ * @LastEditTime: 2026-10-24 23:06:03
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
@@ -45,9 +54,14 @@ export const FormItem = defineComponent<FormItemProps>({
     error: { type: String as PropType<string>, },
     hasErrorPlaceholder: { type: Boolean as PropType<boolean>, default: false, },
     placeholder: { type: String as PropType<string>, default: '', },
+    // 以下类型待使用泛型 体操动态控制
     buttonConfig: {
-      type: Object as PropType<{ level?: ButtonLevelType, text?: string }>,
+      type: Object as PropType<ButtonConfig>,
       default: () => ({ level: 'default', text: '确认' }),
+    },
+    options: {
+      type: Array as PropType<{ label: string, value: string }[]>,
+      default: () => [],
     },
   },
   emit: ['update:modelValue', 'update:visibleValue',],
@@ -62,7 +76,7 @@ export const FormItem = defineComponent<FormItemProps>({
       set(value) {_ctx.emit('update:visibleValue', value)}
     })
     const getIfNeedLabelFor = computed(() =>
-      ['text', 'submit', 'button', 'date'].includes(_props?.type ?? ''))
+      ['text', 'submit', 'button', 'date', 'select',].includes(_props?.type ?? ''))
     const forId = useId()
     const getLabelFor = computed(() => getIfNeedLabelFor.value
         ? `form-item-${_props.type}-${forId}`
@@ -76,6 +90,15 @@ export const FormItem = defineComponent<FormItemProps>({
               v-model={getModelValue.value}
               placeholder={_props.placeholder}
               forId={getLabelFor.value} />
+          )
+        case 'select':
+          return (
+            <SelectOrigin
+              forId={getLabelFor.value}
+              v-model={getModelValue.value}
+              options={_props.options}
+              error={_props.error}
+              placeholder={_props.placeholder} />
           )
         case 'emojiSelector':
           return (
