@@ -10,63 +10,75 @@ import { genDefaultSlotTabs } from '@/components/tab/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 21:44:04
+ * @LastEditTime: 2026-10-24 14:50:58
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
   name: 'SwitchTabs',
   props: {
-    selected: {
+    selectedTabId: {
       type: String as PropType<string>,
     },
   },
   emits: [
     // 由点击事件触发
-    'update:selected',
+    'update:selectedTabId',
   ],
   setup(_props, _ctx) {
-    const selectedClass = (tabName: string) =>
-      _props.selected === tabName
-        ? cn(
-            'relative',
-            `after:(content-[""] block absolute bottom-0 left-0 w-full h-4px bg-[var(--tabs-indicator-bg)])`,
-          )
-        : ''
-
-    const onSwitchTab = (tabName: string) => {
-      _ctx.emit('update:selected', tabName)
+    const selectedClass = (tabId: string) => _props.selectedTabId === tabId
+      ? cn(
+          'relative',
+          `after:(content-[""] block absolute bottom-0 left-0 w-full h-4px bg-[var(--tabs-indicator-bg)])`,
+        )
+      : ''
+    const onSwitchTab = (tabId: string) => {
+      _ctx.emit('update:selectedTabId', tabId)
     }
 
     return () => {
-      const defaultSlotTabs = genDefaultSlotTabs(_ctx.slots?.default?.() ?? [])
+      // 支持插槽使用map遍历生成的文档片段
+      const defaultSlotTabs =
+        genDefaultSlotTabs(_ctx.slots?.default?.() ?? [])
       const ifAllItemTab = defaultSlotTabs
-        .every((slot) => slot.type === ItemTab && !!slot.props?.tabName)
+        .every((slot) =>
+          slot.type === ItemTab &&
+          slot.props &&
+          Object.hasOwn(slot.props,'tabId') &&
+          Object.hasOwn(slot.props,'tabName')
+        )
       if (!ifAllItemTab) {
-        throw new Error(`SwitchTabs: 子组件必须是 ItemTab，且必须有 tabName 属性`)
+        throw new Error(`SwitchTabs: 子组件必须是 ItemTab 组件，且必须有 tabId 和 tabName 属性`)
       }
 
       return (
         <div class="grow-1 shrink-1 overflow-auto scrollbar-hide relative">
-          {/* 切换标签 */}
+          {/* 切换标签导航 */}
           <nav class="sticky left-0 top-0 z-1 bg-[var(--navbar-bg-end)]">
             <menu class="flex justify-start items-center text-color-[var(--navbar-text-color)]">
-              {defaultSlotTabs.map((slot, index) => (
-                <li
-                  key={index + slot?.props?.tabName}
-                  class={cn(
-                    'where:(text-center grow-1 shrink-0 px-1em py-12px)',
-                    selectedClass(slot?.props?.tabName),
-                  )}
-                  onClick={() => onSwitchTab(slot?.props?.tabName)}>
-                  {slot?.props?.tabName}
-                </li>
-              ))}
+              {
+                defaultSlotTabs
+                  .map((slot, index) => (
+                    <li
+                      key={`${index}-${slot?.props?.tabId}`}
+                      class={cn(
+                        'where:(text-center grow-1 shrink-0 px-1em py-12px)',
+                        selectedClass(slot?.props?.tabId),
+                      )}
+                      onClick={() => onSwitchTab(slot?.props?.tabId)}>
+                      {slot?.props?.tabName}
+                    </li>
+                  ))
+              }
             </menu>
           </nav>
 
           {/* 标签内容-插槽-数组 */}
           <section class="max-h-[calc(100vh-136px)] overflow-auto scrollbar-hide">
-            {defaultSlotTabs.find((slot) => slot.props?.tabName === _props.selected)}
+            {
+              defaultSlotTabs
+                .find((slot) =>
+                  slot.props?.tabId === _props.selectedTabId)
+            }
           </section>
         </div>
       )
