@@ -24,6 +24,7 @@
   "dependencies": {
     "@vueuse/core": "15.0.0",
     "cn": "0.5.0",
+    "echarts": "6.1.0",
     "pinia": "4.1.0",
     "svgo": "4.1.0",
     "svgstore": "3.0.1",
@@ -60,7 +61,7 @@
     "npm-run-all2": "9.0.4",
     "oxfmt": "0.74.0",
     "oxlint": "1.89.0",
-    "oxlint-tsgolint": "7.0.2004",
+    "oxlint-tsgolint": "7.0.2005",
     "sass-embedded": "1.106.1",
     "start-server-and-test": "3.0.13",
     "typescript": "npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2",
