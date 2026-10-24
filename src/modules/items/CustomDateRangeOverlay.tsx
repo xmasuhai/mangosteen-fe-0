@@ -9,15 +9,15 @@ import cssVars from '@/assets/styles/vars.module.scss'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 18:16:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 20:19:59
+ * @LastEditTime: 2026-10-24 20:51:25
  * @FilePath: src/modules/items/CustomDateRangeOverlay.tsx
  */
 export const CustomDateRangeOverlay = defineComponent({
   name: 'CustomDateRangeOverlay',
   props: {
     visibleValue: { type: Boolean as PropType<boolean>, default: false, },
-    customStartDate: { type: String as PropType<string>, },
-    customEndDate: { type: String as PropType<string>, },
+    customStartDate: { type: String as PropType<string>, default: '', },
+    customEndDate: { type: String as PropType<string>, default: '', },
   },
   emits: ['update:visibleValue', 'update:customStartDate', 'update:customEndDate',],
   setup( _props, _ctx ) {
@@ -26,6 +26,8 @@ export const CustomDateRangeOverlay = defineComponent({
       get() {return _props.visibleValue},
       set(value) {_ctx.emit('update:visibleValue', value)}
     })
+    const lastStarDate = ref(_props.customStartDate)
+    const lastEndDate = ref(_props.customEndDate)
     const getCustomStartDate = computed({
       get() {return _props.customStartDate},
       set(value) {_ctx.emit('update:customStartDate', value)}
@@ -35,15 +37,20 @@ export const CustomDateRangeOverlay = defineComponent({
       set(value) {_ctx.emit('update:customEndDate', value)}
     })
     const onSubmitCustomDateRange = (e: SubmitEvent) => {
-      e.preventDefault()
+        e.preventDefault()
         _ctx.emit('update:visibleValue', false)
+        _ctx.emit('update:customStartDate', getCustomStartDate.value)
+        _ctx.emit('update:customEndDate', getCustomEndDate.value)
+        lastStarDate.value = getCustomStartDate.value
+        lastEndDate.value = getCustomEndDate.value
       }
     const onCancelCustomDateRange = () => {
       _ctx.emit('update:visibleValue', false)
+      getCustomStartDate.value = lastStarDate.value
+      getCustomEndDate.value = lastEndDate.value
     }
     const startDateVisibleRef = ref(false)
     const endDateVisibleRef = ref(false)
-
     return () => (
       <Overlay
         z-index={zIndexFloatOverlay}
@@ -52,7 +59,7 @@ export const CustomDateRangeOverlay = defineComponent({
         class="flex items-center justify-center bg-[var(--overlay-mask-bg)]" >
         <div
           onClick={(e: MouseEvent) => e.stopPropagation()}
-          class="bg-[var(--overlay-bg)] w-80vw h-35vh">
+          class="bg-[var(--overlay-bg)] w-80vw h-[clamp(340px,35vh,400px)]">
           <header class="bg-[var(--main)] text-[var(--dialog-header-text)] py-12px px-1em">
             请选择时间
           </header>
