@@ -8,7 +8,7 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 22:55:11
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-26 13:40:22
+ * @LastEditTime: 2026-10-26 13:50:09
  * @FilePath: src/modules/statistics/ChartsSummary.tsx
  */
 export const ChartsSummary = defineComponent({
@@ -83,13 +83,6 @@ export const ChartsSummary = defineComponent({
           }
         ]
       })
-
-      console.log('ChartsSummary_______________________')
-      console.log("%c 2 --> lineChart: ","color:#58c4dc;", lineChart);
-      console.log("%c 2 --> pieChart: ","color:#58c4dc;", pieChart);
-      console.log("%c 3 --> lineChartRef: ","color:#ff0;", lineChartRef.value);
-      console.log("%c 3 --> pieChartRef: ","color:#ff0;", pieChartRef.value);
-      console.log('_______________________ChartsSummary')
     })
 
     return () => (
