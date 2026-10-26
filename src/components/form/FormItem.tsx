@@ -31,7 +31,7 @@ interface FormItemProps {
   placeholder?: string
   // 以下类型待使用泛型 体操动态控制
   buttonConfig?: { level?: ButtonLevelType; text?: string }
-  options: Readonly<{ label: string; value: string }[]>
+  options?: Readonly<{ label: string; value: string }[]>
 }
 interface ButtonConfig {
   level?: ButtonLevelType
@@ -43,7 +43,7 @@ interface ButtonConfig {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-26 14:30:03
+ * @LastEditTime: 2026-10-26 15:00:10
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
