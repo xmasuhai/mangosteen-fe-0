@@ -2,8 +2,8 @@
   "extends": "./tsconfig.app.json",
 
   // Override to include only test files and clear exclusions.
-  // Application code imported in tests is automatically included via module resolution.
-  "include": ["src/**/__tests__/*", "env.d.ts"],
+  // Include application declarations required by code imported in tests.
+  "include": ["src/**/__tests__/*", "src/**/*.d.ts", "env.d.ts"],
   "exclude": [],
 
   "compilerOptions": {
