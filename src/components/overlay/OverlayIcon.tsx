@@ -15,10 +15,10 @@ import type { SvgIconNames } from '@svgoStore'
  */
 export const OverlayIcon = defineComponent({
   name: 'OverlayIcon',
-  props:{
-    iconName: { type: String as PropType<SvgIconNames>, default: 'menu', },
+  props: {
+    iconName: { type: String as PropType<SvgIconNames>, default: 'menu' },
   },
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     const { overlayVisible } = storeToRefs(useOverlayStore())
     const { toggleOverlay } = useOverlayStore()
     const onClickMenu = () => {

@@ -1,4 +1,4 @@
-import { computed, defineComponent, type PropType, } from 'vue'
+import { computed, defineComponent, type PropType } from 'vue'
 import { cn } from 'cn'
 
 /**
@@ -12,10 +12,10 @@ import { cn } from 'cn'
 export const InputText = defineComponent({
   name: 'InputText',
   props: {
-    error: { type: String as PropType<string>, },
-    forId: { type: String as PropType<string>, },
-    modelValue: { type: String as PropType<string>, default: '', },
-    placeholder: { type: String as PropType<string>, default: '', },
+    error: { type: String as PropType<string> },
+    forId: { type: String as PropType<string> },
+    modelValue: { type: String as PropType<string>, default: '' },
+    placeholder: { type: String as PropType<string>, default: '' },
   },
   setup(_props, _ctx) {
     const getModelValue = computed({

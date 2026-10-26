@@ -12,9 +12,9 @@ import { defineComponent } from 'vue'
 export const LabelOrDivWrapper = defineComponent({
   name: 'LabelOrDivWrapper',
   props: {
-    ifUseLabelTag: { type: Boolean, default: false, },
+    ifUseLabelTag: { type: Boolean, default: false },
     // for 属性，用于内部 input 标签 id 属性联动
-    labelFor: { type: String, default: '', },
+    labelFor: { type: String, default: '' },
   },
   setup(_props, _ctx) {
     return () =>

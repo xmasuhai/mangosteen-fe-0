@@ -7,19 +7,19 @@ import { DatePickerPopup } from '@/components/form/DatePickerPopup.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-23 14:20:07
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 22:27:15
+ * @LastEditTime: 2026-10-26 14:36:17
  * @FilePath: src/components/form/items/InputDatePickerPopup.tsx
  */
 export const InputDatePickerPopup = defineComponent({
   name: 'InputDatePickerPopup',
   props: {
-    error: { type: String as PropType<string>, },
-    forId: { type: String as PropType<string>, },
-    modelValue: { type: String as PropType<string>, default: '', },
-    visibleValue: { type: Boolean as PropType<boolean>, default: false, },
-    placeholder: { type: String as PropType<string>, default: '', },
+    error: { type: String as PropType<string> },
+    forId: { type: String as PropType<string> },
+    modelValue: { type: String as PropType<string>, default: '' },
+    visibleValue: { type: Boolean as PropType<boolean>, default: false },
+    placeholder: { type: String as PropType<string>, default: '' },
   },
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     const getModelValue = computed({
       get() {return _props.modelValue?.toString()},
       set(value) {_ctx.emit('update:modelValue', value)}
@@ -28,7 +28,9 @@ export const InputDatePickerPopup = defineComponent({
       get() {return _props.visibleValue},
       set(value) {_ctx.emit('update:visibleValue', value)}
     })
-    const toggleDatePickerPopup = () => {getVisibleValue.value = !getVisibleValue.value}
+    const toggleDatePickerPopup = () => {
+      getVisibleValue.value = !getVisibleValue.value
+    }
     return () => (
       <>
         <input
@@ -38,16 +40,16 @@ export const InputDatePickerPopup = defineComponent({
           readonly={true}
           onClick={toggleDatePickerPopup}
           placeholder={_props.placeholder}
-          class={
-            cn(
-              'p-x-1em text-18px',
-              'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
-              _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
-            )
-          }/>
+          class={cn(
+            'p-x-1em text-18px',
+            'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
+            _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
+          )}
+        />
         <DatePickerPopup
           v-model:popupVisible={getVisibleValue.value}
-          v-model:dateStr={getModelValue.value} />
+          v-model:dateStr={getModelValue.value}
+        />
       </>
     )
   },

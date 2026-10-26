@@ -19,7 +19,7 @@ export const EmojiSelector = defineComponent({
     hasError: { type: Boolean, default: false },
     // extraHint: { type: String, default: '' },
   },
-  emits: ['update:extraHint', 'update:modelValue',],
+  emits: ['update:extraHint', 'update:modelValue'],
   setup(_props, _ctx) {
     const selectedMainTopic = ref<EmojiMainTopic>('表情')
     const selectedEmoji = ref('')

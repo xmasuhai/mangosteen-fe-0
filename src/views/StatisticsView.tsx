@@ -1,4 +1,4 @@
-import { defineComponent, } from 'vue'
+import { defineComponent } from 'vue'
 import { ChartsSummary } from '@/modules/statistics/ChartsSummary.tsx'
 import { DateTabsLayout } from '@/components/layout/DateTabsLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'

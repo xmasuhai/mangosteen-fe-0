@@ -1,11 +1,4 @@
-import {
-  type ComputedRef,
-  type PropType,
-  defineComponent,
-  reactive,
-  computed,
-  ref,
-} from 'vue'
+import { type ComputedRef, type PropType, defineComponent, reactive, computed, ref } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
@@ -33,9 +26,9 @@ interface DateTab {
 export const DateTabsLayout = defineComponent({
   name: 'DateTabsLayout',
   props: {
-    title: { type: String as PropType<string>, default: '', },
+    title: { type: String as PropType<string>, default: '' },
   },
-  setup( _props, _ctx ) {
+  setup(_props, _ctx) {
     const currentDate = new DateTime()
     const customDate = reactive({
       start: currentDate.getOriginDate()?.format() || '',
@@ -83,21 +76,19 @@ export const DateTabsLayout = defineComponent({
                 v-model:selectedTabId={selectedTabIdRef.value}
                 onUpdate:selectedTabId={openCustomDateRange}
                 class="[&>nav>menu>li]:(text-start grow-0)">
-                {
-                  itemTabList.value
-                    .map(tabItem => (
-                      <ItemTab key={tabItem.tabId} tabName={tabItem.tabName} tabId={tabItem.tabId}>
-                        {_ctx.slots?.default?.({ start: tabItem.start, end: tabItem.end })}
-                      </ItemTab>
-                    ))
-                }
+                {itemTabList.value.map((tabItem) => (
+                  <ItemTab key={tabItem.tabId} tabName={tabItem.tabName} tabId={tabItem.tabId}>
+                    {_ctx.slots?.default?.({ start: tabItem.start, end: tabItem.end })}
+                  </ItemTab>
+                ))}
               </SwitchTabs>
 
               {/* 自定义日期范围弹出层 */}
               <CustomDateRangeOverlay
                 v-model:customStartDate={customDate.start}
                 v-model:customEndDate={customDate.end}
-                v-model:visibleValue={overlayVisibleRef.value} />
+                v-model:visibleValue={overlayVisibleRef.value}
+              />
             </div>
           ),
         }}

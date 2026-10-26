@@ -75,14 +75,7 @@ export class DateTime {
         const currentDate = date.getDate()
         date.setDate(1)
         date.setFullYear(date.getFullYear() + amount)
-        const targetDate = new Date(
-          date.getFullYear(),
-          date.getMonth() + 1,
-          0,
-          0,
-          0,
-          0,
-        ).getDate()
+        const targetDate = new Date(date.getFullYear(), date.getMonth() + 1, 0, 0, 0, 0).getDate()
         date.setDate(Math.min(currentDate, targetDate))
         break
       case 'month':

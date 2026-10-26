@@ -18,11 +18,7 @@ export const FormContainer = defineComponent({
   },
   setup(_props, _ctx) {
     return () => (
-      <form
-        onSubmit={_props.onSubmit}
-        class={cn(
-          'where:(p-1em min-h-720px)',
-        )}>
+      <form onSubmit={_props.onSubmit} class={cn('where:(p-1em min-h-720px)')}>
         {_ctx.slots?.default?.()}
       </form>
     )

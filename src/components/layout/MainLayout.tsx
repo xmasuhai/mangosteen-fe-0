@@ -27,10 +27,7 @@ export const MainLayout = defineComponent({
             icon: () => _ctx.slots?.icon?.(),
           }}
         </NavBar>
-        <main
-          class="h-[calc(100vh-var(--navbar-min-height))]">
-          {_ctx.slots?.default?.()}
-        </main>
+        <main class="h-[calc(100vh-var(--navbar-min-height))]">{_ctx.slots?.default?.()}</main>
       </div>
     )
   },

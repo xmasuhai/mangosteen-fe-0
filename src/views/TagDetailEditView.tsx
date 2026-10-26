@@ -1,4 +1,4 @@
-import { defineComponent, } from 'vue'
+import { defineComponent } from 'vue'
 import { MainLayout } from '@/components/layout/MainLayout.tsx'
 import { SvgIcon } from '@/components/icons/SvgIcon.tsx'
 import { TagForm } from '@/modules/tags/TagForm.tsx'
@@ -24,7 +24,9 @@ export const TagDetailEditView = defineComponent({
             <>
               <TagForm />
               <div class="p-1em">
-                <BarButton level="danger" onClick={() => {}}>删除标签</BarButton>
+                <BarButton level="danger" onClick={() => {}}>
+                  删除标签
+                </BarButton>
               </div>
             </>
           ),

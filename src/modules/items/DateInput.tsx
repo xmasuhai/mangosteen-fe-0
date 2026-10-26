@@ -21,15 +21,13 @@ export const DateInput = defineComponent({
     }
     return () => (
       <span class="flex justify-start items-center">
-        <SvgIcon
-          onClick={toggleDatePicker}
-          name="date"
-          class="size-2em mx-1 fill-[var(--main)]" />
+        <SvgIcon onClick={toggleDatePicker} name="date" class="size-2em mx-1 fill-[var(--main)]" />
         <span class="animation-rainbow text-14px font-mono color-[var(--vp-c-brand-next)]">
           <span onClick={toggleDatePicker}>{currentDateStrRef.value}</span>
           <DatePickerPopup
             v-model:popupVisible={datePickerVisibleRef.value}
-            v-model:dateStr={currentDateStrRef.value} />
+            v-model:dateStr={currentDateStrRef.value}
+          />
         </span>
       </span>
     )

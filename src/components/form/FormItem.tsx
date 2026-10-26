@@ -9,8 +9,14 @@ import { FormItemContentSlot } from '@/components/form/items/FormItemContentSlot
 import { cn } from 'cn'
 import { SelectOrigin } from '@/components/form/SelectOrigin.tsx'
 
-export type FormItemType = 'text' | 'emojiSelector' | 'date' |
-  'submit' | 'button' | 'validationCode' | 'select'
+export type FormItemType =
+  | 'text'
+  | 'emojiSelector'
+  | 'date'
+  | 'submit'
+  | 'button'
+  | 'validationCode'
+  | 'select'
 
 interface FormItemProps {
   type?: FormItemType
@@ -24,8 +30,8 @@ interface FormItemProps {
   onChange?: () => void
   placeholder?: string
   // 以下类型待使用泛型 体操动态控制
-  buttonConfig?: { level?: ButtonLevelType, text?: string }
-  options: Readonly<{ label: string, value: string }[]>
+  buttonConfig?: { level?: ButtonLevelType; text?: string }
+  options: Readonly<{ label: string; value: string }[]>
 }
 interface ButtonConfig {
   level?: ButtonLevelType
@@ -37,35 +43,35 @@ interface ButtonConfig {
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-21 17:14:39
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-24 23:06:03
+ * @LastEditTime: 2026-10-26 14:30:03
  * @FilePath: src/components/form/FormItem.tsx
  */
 export const FormItem = defineComponent<FormItemProps>({
   name: 'FormItem',
   props: {
-    type: { type: String as PropType<FormItemType>, },
-    label: { type: String as PropType<string>, default: '', },
-    hasLabelColon: { type: Boolean as PropType<boolean>, default: true, },
+    type: { type: String as PropType<FormItemType> },
+    label: { type: String as PropType<string>, default: '' },
+    hasLabelColon: { type: Boolean as PropType<boolean>, default: true },
     modelValue: {
-      type: [String, Number, null, undefined,] as PropType<FormDataType[string]>,
+      type: [String, Number, null, undefined] as PropType<FormDataType[string]>,
       default: '',
     },
-    visibleValue: { type: Boolean as PropType<boolean>, default: false, },
-    error: { type: String as PropType<string>, },
-    hasErrorPlaceholder: { type: Boolean as PropType<boolean>, default: false, },
-    placeholder: { type: String as PropType<string>, default: '', },
+    visibleValue: { type: Boolean as PropType<boolean>, default: false },
+    error: { type: String as PropType<string> },
+    hasErrorPlaceholder: { type: Boolean as PropType<boolean>, default: false },
+    placeholder: { type: String as PropType<string>, default: '' },
     // 以下类型待使用泛型 体操动态控制
     buttonConfig: {
       type: Object as PropType<ButtonConfig>,
       default: () => ({ level: 'default', text: '确认' }),
     },
     options: {
-      type: Array as PropType<{ label: string, value: string }[]>,
+      type: Array as PropType<{ label: string; value: string }[]>,
       default: () => [],
     },
   },
-  emit: ['update:modelValue', 'update:visibleValue',],
-  setup( _props, _ctx ) {
+  emit: ['update:modelValue', 'update:visibleValue'],
+  setup(_props, _ctx) {
     const extraHint = ref('')
     const getModelValue = computed({
       get() {return _props.modelValue},
@@ -76,11 +82,12 @@ export const FormItem = defineComponent<FormItemProps>({
       set(value) {_ctx.emit('update:visibleValue', value)}
     })
     const getIfNeedLabelFor = computed(() =>
-      ['text', 'submit', 'button', 'date', 'select',].includes(_props?.type ?? ''))
+      ['text', 'submit', 'button', 'date', 'select'].includes(_props?.type ?? ''),
+    )
     const forId = useId()
-    const getLabelFor = computed(() => getIfNeedLabelFor.value
-        ? `form-item-${_props.type}-${forId}`
-        : '')
+    const getLabelFor = computed(() =>
+      getIfNeedLabelFor.value ? `form-item-${_props.type}-${forId}` : '',
+    )
     const itemTypeSwitchContent = computed(() => {
       switch (_props.type) {
         case 'text':
@@ -89,7 +96,8 @@ export const FormItem = defineComponent<FormItemProps>({
               error={_props.error}
               v-model={getModelValue.value}
               placeholder={_props.placeholder}
-              forId={getLabelFor.value} />
+              forId={getLabelFor.value}
+            />
           )
         case 'select':
           return (
@@ -98,22 +106,27 @@ export const FormItem = defineComponent<FormItemProps>({
               v-model={getModelValue.value}
               options={_props.options}
               error={_props.error}
-              placeholder={_props.placeholder} />
+              placeholder={_props.placeholder}
+            />
           )
         case 'emojiSelector':
           return (
             <EmojiSelector
               v-model={getModelValue.value}
               v-model:extraHint={extraHint.value}
-              hasError={!!_props.error} />
+              hasError={!!_props.error}
+            />
           )
         case 'submit':
         case 'button':
-          return <BarButton
-                  level={_props.buttonConfig?.level}
-                  forId={getLabelFor.value}
-                  type={_props.type}
-                  text={_props.buttonConfig?.text}/>
+          return (
+            <BarButton
+              level={_props.buttonConfig?.level}
+              forId={getLabelFor.value}
+              type={_props.type}
+              text={_props.buttonConfig?.text}
+            />
+          )
         case 'date':
           return (
             <InputDatePickerPopup
@@ -121,27 +134,29 @@ export const FormItem = defineComponent<FormItemProps>({
               forId={getLabelFor.value}
               v-model={getModelValue.value}
               v-model:visibleValue={getVisibleValue.value}
-              error={_props.error}/>
+              error={_props.error}
+            />
           )
         case 'validationCode':
-          return <>
-            <InputText
-              error={_props.error}
-              v-model={getModelValue.value}
-              forId={getLabelFor.value}
-              placeholder={_props.placeholder}
-              class={cn('w-[9.5em]')} />
-            <BarButton text="发送验证码" class={cn('ml-1em')}/>
-          </>
+          return (
+            <>
+              <InputText
+                error={_props.error}
+                v-model={getModelValue.value}
+                forId={getLabelFor.value}
+                placeholder={_props.placeholder}
+                class={cn('w-[9.5em]')}
+              />
+              <BarButton text="发送验证码" class={cn('ml-1em')} />
+            </>
+          )
         case undefined:
           return _ctx.slots.default?.()
       }
     })
     return () => (
       <div class="mt-.5em">
-        <LabelOrDivWrapper
-          ifUseLabelTag={getIfNeedLabelFor.value}
-          labelFor={getLabelFor.value}>
+        <LabelOrDivWrapper ifUseLabelTag={getIfNeedLabelFor.value} labelFor={getLabelFor.value}>
           <FormItemContentSlot
             label={_props.label}
             hasLabelColon={_props.hasLabelColon}

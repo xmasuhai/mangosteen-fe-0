@@ -12,16 +12,17 @@ import { cn } from 'cn'
 export const SelectOrigin = defineComponent({
   name: 'SelectOrigin',
   props: {
-    forId: { type: String as PropType<string>, },
-    modelValue: { type: String as PropType<string>, default: '', },
-    placeholder: { type: String as PropType<string>, default: '', },
+    forId: { type: String as PropType<string> },
+    modelValue: { type: String as PropType<string>, default: '' },
+    placeholder: { type: String as PropType<string>, default: '' },
     options: {
-      type: Array as PropType<Readonly<{ label: string, value: string }[]>>, default: () => [],
+      type: Array as PropType<Readonly<{ label: string; value: string }[]>>,
+      default: () => [],
     },
-    error: { type: String as PropType<string>, },
+    error: { type: String as PropType<string> },
   },
-  emit: ['update:modelValue',],
-  setup( _props, _ctx ) {
+  emit: ['update:modelValue'],
+  setup(_props, _ctx) {
     const selectValue = useModel(_props, 'modelValue')
     return () => (
       <select
@@ -32,17 +33,12 @@ export const SelectOrigin = defineComponent({
           'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
           _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
         )}
-        placeholder={_props.placeholder} >
-        {
-          _props.options
-            ?.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}>
-                {option.label}
-              </option>
-            ))
-        }
+        placeholder={_props.placeholder}>
+        {_props.options?.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
     )
   },

@@ -18,7 +18,6 @@
     min-width: 390px;
     min-height: 844px;
   }
-
 }
 
 @media (hover: hover) {
@@ -33,6 +32,8 @@
   }
 }
 @screen lt-iPhone16ProMax {
-  #app {}
+  #app {
+  }
 }
-@screen ipadMini {}
+@screen ipadMini {
+}

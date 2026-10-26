@@ -62,7 +62,7 @@ function toPascalCase(str: string): string {
     .split(/\s+/)
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join('')
-  return /^[0-9]/.test(cleaned) ? `Icon${cleaned}` : (cleaned || 'Icon')
+  return /^[0-9]/.test(cleaned) ? `Icon${cleaned}` : cleaned || 'Icon'
 }
 
 export function scanSvgIcons(inputFolder: string, symbolIdPattern: string): SvgIconInfo[] {

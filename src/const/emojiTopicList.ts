@@ -95,13 +95,7 @@ export const emojiTopicList = Object.freeze([
   },
   {
     mainTopic: '交通',
-    topics: [
-      'transport-ground',
-      'transport-water',
-      'transport-air',
-      'transport-sign',
-      'warning',
-    ],
+    topics: ['transport-ground', 'transport-water', 'transport-air', 'transport-sign', 'warning'],
   },
   {
     mainTopic: '节日',

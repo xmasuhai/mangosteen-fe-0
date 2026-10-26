@@ -23,10 +23,10 @@ interface BarButtonProps {
 export const BarButton = defineComponent<BarButtonProps>({
   name: 'BarButton',
   props: {
-    type: {type: String as PropType<ButtonFeatType>, default: 'button' as const,},
-    level: {type: String as PropType<ButtonLevelType>, default: 'primary' as const,},
-    text: {type: String as PropType<string>, default: undefined,},
-    forId: {type: String as PropType<string>, default: undefined,},
+    type: { type: String as PropType<ButtonFeatType>, default: 'button' as const },
+    level: { type: String as PropType<ButtonLevelType>, default: 'primary' as const },
+    text: { type: String as PropType<string>, default: undefined },
+    forId: { type: String as PropType<string>, default: undefined },
   },
   setup(_props, _ctx) {
     const levelHashClassHash: Record<ButtonLevelType, string> = {
@@ -38,7 +38,7 @@ export const BarButton = defineComponent<BarButtonProps>({
     }
     return () => (
       <button
-        {..._props.forId ? {id: _props.forId} : {}}
+        {...(_props.forId ? { id: _props.forId } : {})}
         type={_props.type}
         class={cn(
           `bar-button ${levelHashClassHash[_props.level ?? 'primary']}`,

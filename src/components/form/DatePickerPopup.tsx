@@ -14,14 +14,14 @@ import { genDateStr } from '@/const/genDateStr.ts'
 export const DatePickerPopup = defineComponent({
   name: 'DatePickerPopup',
   props: {
-    popupVisible: { type: Boolean as PropType<boolean>, default: false, },
-    dateStr: { type: String as PropType<string>, default: () => genDateStr(), },
-    ifCloseOnClickOverlay: { type: Boolean as PropType<boolean>, default: true, },
+    popupVisible: { type: Boolean as PropType<boolean>, default: false },
+    dateStr: { type: String as PropType<string>, default: () => genDateStr() },
+    ifCloseOnClickOverlay: { type: Boolean as PropType<boolean>, default: true },
   },
-  emits: ['update:popupVisible', 'update:dateStr',],
-  setup( _props, _ctx ) {
+  emits: ['update:popupVisible', 'update:dateStr'],
+  setup(_props, _ctx) {
     const lastDateStrRef = ref<string>(_props.dateStr ?? genDateStr())
-    const [minDate, maxDate,] = [
+    const [minDate, maxDate] = [
       new DateTime(new Date()).add(-1, 'year').getRawDate(),
       new DateTime(new Date()).add(1, 'year').getRawDate(),
     ]
@@ -60,7 +60,8 @@ export const DatePickerPopup = defineComponent({
           minDate={minDate}
           maxDate={maxDate}
           onConfirm={confirmDate}
-          onCancel={cancelDate}/>
+          onCancel={cancelDate}
+        />
       </Popup>
     )
   },

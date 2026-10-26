@@ -11,7 +11,7 @@ import { type EmojiMainTopic, type EmojiSubTopic, emojiTopicList } from '@/const
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 19:54:04
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-21 20:04:42
+ * @LastEditTime: 2026-10-26 14:25:17
  * @FilePath: src/modules/tags/emoji/EmojiUnicodeList.tsx
  */
 export const EmojiUnicodeList = defineComponent({
@@ -22,7 +22,7 @@ export const EmojiUnicodeList = defineComponent({
       default: '表情',
     },
   },
-  emits: ['update:emoji', 'update:emojiHint',],
+  emits: ['update:emoji', 'update:emojiHint'],
   setup(_props, _ctx) {
     const selectedTopicList: ComputedRef<readonly EmojiSubTopic[]> = computed(
       () =>
@@ -49,11 +49,14 @@ export const EmojiUnicodeList = defineComponent({
       _ctx.emit('update:emoji', unicode)
       _ctx.emit('update:emojiHint', selectedEmojiHint.value)
     }
-    watch(() => _props.selectedMainTopic, () => {
+    watch(
+      () => _props.selectedMainTopic,
+      () => {
         selectedEmojiUnicode.value = ''
         _ctx.emit('update:emoji', '')
         _ctx.emit('update:emojiHint', '')
-      },)
+      },
+    )
 
     return () => (
       <ul

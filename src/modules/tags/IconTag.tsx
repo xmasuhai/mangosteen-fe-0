@@ -20,11 +20,12 @@ export const IconTag = defineComponent({
   setup(_props, _ctx) {
     return () => (
       <div class="relative w-20vw h-[calc(20vw*1.14)] flex flex-col items-center">
-        <div class={cn(
-          'size-12vw max-w-50px max-h-50px rounded-[50%] ',
-          'bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)]',
-          'flex justify-center items-center',
-        )}>
+        <div
+          class={cn(
+            'size-12vw max-w-50px max-h-50px rounded-[50%] ',
+            'bg-[var(--tag-bg)] b-1 b-solid b-[var(--tag-bg)]',
+            'flex justify-center items-center',
+          )}>
           {_ctx.slots?.default?.() ? _ctx.slots?.default?.() : _props.tagSign}
         </div>
         <div class="text-12px mt-.25em">{_props.tagName}</div>

@@ -27,7 +27,7 @@ export const StartAccountsView = defineComponent({
       <MainLayout>
         {{
           title: () => '山竹记账',
-          icon: () => <OverlayIcon/>,
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
               <PlaceCenter class="p-y-10em">

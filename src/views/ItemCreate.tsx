@@ -64,10 +64,10 @@ export const ItemCreate = defineComponent({
       { id: 17, name: '彩票', sign: '￥', category: 'incomes' },
       { id: 19, name: '滴滴', sign: '￥', category: 'incomes' },
     ])
-    const itemTabList = computed(() => ([
-      { tabId: 'expenses', tabName: '支出', tagList: refExpensesTags.value, },
-      { tabId: 'incomes', tabName: '收入', tagList: refIncomeTags.value, },
-    ]))
+    const itemTabList = computed(() => [
+      { tabId: 'expenses', tabName: '支出', tagList: refExpensesTags.value },
+      { tabId: 'incomes', tabName: '收入', tagList: refIncomeTags.value },
+    ])
     return () => (
       <MainLayout>
         {{
@@ -75,28 +75,21 @@ export const ItemCreate = defineComponent({
           icon: () => <SvgIcon name="back-arrow" class="w-2em h-2em" />,
           default: () => (
             <div class="h-full flex flex-col">
-              <SwitchTabs
-                v-model:selectedTabId={kindRef.value}>
-                {
-                  itemTabList.value
-                    .map(itemTab => (
-                      <ItemTab
-                        key={itemTab.tabId}
-                        tabId={itemTab.tabId}
-                        tabName={itemTab.tabName}
-                        class="flex flex-wrap pt-1em">
-                        <IconTag tagName="新增">
-                          <SvgIcon name="add" class="fill-[var(--main)]" />
-                        </IconTag>
-                        {
-                          itemTab.tagList
-                            .map(tag =>
-                              <IconTag tagName={tag.name} tagSign={tag.sign}/>
-                            )
-                        }
-                      </ItemTab>
-                    ))
-                }
+              <SwitchTabs v-model:selectedTabId={kindRef.value}>
+                {itemTabList.value.map((itemTab) => (
+                  <ItemTab
+                    key={itemTab.tabId}
+                    tabId={itemTab.tabId}
+                    tabName={itemTab.tabName}
+                    class="flex flex-wrap pt-1em">
+                    <IconTag tagName="新增">
+                      <SvgIcon name="add" class="fill-[var(--main)]" />
+                    </IconTag>
+                    {itemTab.tagList.map((tag) => (
+                      <IconTag tagName={tag.name} tagSign={tag.sign} />
+                    ))}
+                  </ItemTab>
+                ))}
               </SwitchTabs>
 
               <section class="w-full grow-0 shrink-0">

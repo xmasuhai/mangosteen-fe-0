@@ -8,4 +8,4 @@
  */
 // 获取数组项类型
 type GetArrayItem<T> = T extends (infer U)[] ? U : never
-type ArrayOf<T> = T extends Array<infer U> ? U : never;
+type ArrayOf<T> = T extends Array<infer U> ? U : never

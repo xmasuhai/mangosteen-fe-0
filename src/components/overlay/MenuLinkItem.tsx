@@ -9,8 +9,8 @@ import type { SvgIconName } from '@svgoStore'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 14:35:51
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-22 21:30:08
- * @FilePath: src/modules/overlay/MenuLinkItem.tsx
+ * @LastEditTime: 2026-10-26 14:37:02
+ * @FilePath: src/components/overlay/MenuLinkItem.tsx
  */
 export const MenuLinkItem = defineComponent({
   name: 'MenuLinkItem',
