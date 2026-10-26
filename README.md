@@ -8,22 +8,39 @@
 
 ### 1. 检查 Node.js 版本
 请确保你的本地 Node.js 版本符合项目要求：
-* **要求版本**：`>=22.23.2`
+* **要求版本**：`>=26.12.1`
 * **检查命令**：`node -v`
 
 ### 2. 开启官方 Corepack
 本项目利用 Node.js 自带的 Corepack 来管理包管理器版本，无需你全局手动安装 pnpm。请在终端执行以下命令开启它：
 
 ```bash
-corepack enable
-corepack prepare pnpm@11.27.0 --active
+npm install -g corepack@latest &&
+corepack enable &&
+corepack prepare pnpm@12.15.0 --active
+# 在项目路径下执行
+corepack use pnpm@12.15.0
 ```
 
 ---
 
-## 📦 依赖安装与启动
+## 📦 主要依赖版本
 
-配置完成后，你可以直接在项目根目录下执行以下命令：
+项目主依赖及版本如下（见 `package.json` 锁定）：
+
+| 依赖包 | 版本 |
+|---|---|
+| vue | 3.5.44 |
+| vue-router | 5.4.0 |
+| pinia | 4.1.0 |
+| @vueuse/core | 15.0.0 |
+| vant | 4.10.2 |
+| echarts | 6.1.0 |
+| @js-temporal/polyfill | 0.5.1 |
+| cn | 0.5.0 |
+| svgo | 4.1.0 |
+| svgstore | 3.0.1 |
+| vite-plugin-console-banner | 0.1.1 |
 
 ### 安装依赖
 
