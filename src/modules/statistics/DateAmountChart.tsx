@@ -6,15 +6,13 @@ import * as echarts from 'echarts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-26 13:52:08
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-26 14:10:46
+ * @LastEditTime: 2026-10-26 15:23:24
  * @FilePath: src/modules/statistics/DateAmountChart.tsx
  */
 export const DateAmountChart = defineComponent({
   name: 'DateAmountChart',
-  props: {},
   setup(_props, _ctx) {
     const lineChartRef = ref<HTMLDivElement>()
-
     onMounted(() => {
       const lineChart = echarts.init(lineChartRef.value)
       lineChart.setOption({

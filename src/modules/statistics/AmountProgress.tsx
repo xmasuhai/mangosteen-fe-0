@@ -6,12 +6,11 @@ import { cn } from 'cn'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-26 13:54:47
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-26 14:11:06
+ * @LastEditTime: 2026-10-26 15:23:32
  * @FilePath: src/modules/statistics/AmountProgress.tsx
  */
 export const AmountProgress = defineComponent({
   name: 'AmountProgress',
-  props: {},
   setup(_props, _ctx) {
     const barProgressList = ref([
       { id: '1', tag: { sign: '😄', name: '房租', id: '1' }, amount: '3112', percent: '11' },
@@ -21,7 +20,7 @@ export const AmountProgress = defineComponent({
 
     return () => (
       <div
-        class={cn('bar-progress mb-8em', '[&>.top-item]:[--sibling-idx:calc(1*sibling-index())]')}>
+        class={cn('bar-progress mb-8em', '[&>.top-item]:[--sibling-idx:calc(1*sibling-index())]',)}>
         {barProgressList.value.map(({ id, tag, amount, percent }) => (
           <div
             key={id}
@@ -37,7 +36,6 @@ export const AmountProgress = defineComponent({
             <div class="bar-wrapper ml-1em grow-1 shrink-1">
               <div class="bar_text text-[var(--text-muted)] flex items-center justify-between">
                 <span>
-                  {' '}
                   {tag.name} - {percent}%
                 </span>
                 <span> ¥ {amount}</span>

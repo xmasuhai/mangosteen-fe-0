@@ -6,15 +6,13 @@ import * as echarts from 'echarts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-26 13:54:13
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-26 14:11:01
+ * @LastEditTime: 2026-10-26 15:23:21
  * @FilePath: src/modules/statistics/AmountProportionChart.tsx
  */
 export const AmountProportionChart = defineComponent({
   name: 'AmountProportionChart',
-  props: {},
   setup(_props, _ctx) {
     const pieChartRef = ref<HTMLDivElement>()
-
     onMounted(() => {
       const pieChart = echarts.init(pieChartRef.value)
       pieChart.setOption({
