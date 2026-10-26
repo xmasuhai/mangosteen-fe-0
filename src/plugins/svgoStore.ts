@@ -1,11 +1,14 @@
 import path from 'node:path'
 import fs from 'node:fs'
+// svgstore 没有可用的类型声明，因此只在这个导入处跳过模块类型检查。
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import svgstore from 'svgstore' // 用于制作 SVG Sprites
+import svgstore from 'svgstore'
 import { optimize, type Config as SvgoConfig } from 'svgo' // 用于优化 SVG 文件
+// `import type` 只在编译期间提供类型，不会把 Vite 的开发服务器代码打进浏览器模块。
 import type { Plugin, ViteDevServer } from 'vite'
 
+/** 透传给 svgstore 的选项；问号表示调用者可以只配置需要覆盖的项目。 */
 export interface SvgStoreOptions {
   cleanDefs?: boolean | string[]
   cleanSymbols?: boolean | string[]
@@ -17,6 +20,10 @@ export interface SvgStoreOptions {
   [key: string]: unknown
 }
 
+/**
+ * svgoStore 插件的配置。
+ * 可选字段会在 resolveOptions 中补默认值；dts 的联合类型允许关闭声明，或自定义输出路径。
+ */
 export interface SvgoStoreOptions extends SvgStoreOptions {
   /**
    * SVG 图标源文件夹路径
@@ -49,12 +56,48 @@ export interface SvgoStoreOptions extends SvgStoreOptions {
   typeName?: string
 }
 
+/** 单个 SVG 文件的标准化信息：图标名、sprite 中的 symbol ID 和磁盘路径。 */
 export interface SvgIconInfo {
   name: string
   id: string
   filepath: string
 }
 
+/**
+ * 把用户传入的部分配置补齐为插件内部始终可以直接使用的完整配置。
+ * 这里单独保留 sourceOptions，是因为 svgstore 仍需接收调用者提供的原始插件选项。
+ */
+interface ResolvedSvgoStoreOptions {
+  sourceOptions: SvgoStoreOptions
+  inputFolder: string
+  symbolIdPattern: string
+  dtsPath: false | string
+  enumName: string
+  typeName: string
+}
+
+/**
+ * resolveId 钩子会把用户代码中的模块名转换为 Vite 内部使用的 ID。
+ * `\0` 是 Vite/Rollup 约定的虚拟模块标记，表示这个 ID 不对应磁盘上的真实文件。
+ */
+const virtualModuleResolutions: Record<string, string> = {
+  '@svgoStore': '\0@svgoStore',
+  // 兼容项目早期使用过的模块名，避免升级插件时要求同步修改所有导入。
+  'svg_bundle.ts': '\0@svgoStore',
+  'virtual:svgoStore': '\0virtual:svgoStore',
+  'virtual:svg-icons/names': '\0virtual:svg-icons/names',
+  'virtual:svg-icons/ids': '\0virtual:svg-icons/ids',
+}
+
+/** 只有规范化后的模块 ID 需要失效；历史别名已经映射到相同的主模块。 */
+const resolvedVirtualModuleIds = [...new Set(Object.values(virtualModuleResolutions))]
+
+/** 从映射表中安全取值；hasOwnProperty 避免误读对象原型上的同名属性。 */
+function getOwnRecordValue<T>(record: Record<string, T>, key: string): T | undefined {
+  return Object.prototype.hasOwnProperty.call(record, key) ? record[key] : undefined
+}
+
+/** 将文件名转换为适合用作枚举成员的 PascalCase 标识符。 */
 function toPascalCase(str: string): string {
   const cleaned = str
     .replace(/[^a-zA-Z0-9_]+/g, ' ')
@@ -65,6 +108,10 @@ function toPascalCase(str: string): string {
   return /^[0-9]/.test(cleaned) ? `Icon${cleaned}` : cleaned || 'Icon'
 }
 
+/**
+ * 扫描指定目录的第一层 SVG 文件，并按文件名生成图标名和 sprite ID。
+ * `[name]` 会被文件名替换；这里保留原有的非递归扫描行为。
+ */
 export function scanSvgIcons(inputFolder: string, symbolIdPattern: string): SvgIconInfo[] {
   const iconsDir = path.resolve(process.cwd(), inputFolder)
   if (!fs.existsSync(iconsDir)) {
@@ -85,6 +132,10 @@ export function scanSvgIcons(inputFolder: string, symbolIdPattern: string): SvgI
   return icons.sort((a, b) => a.name.localeCompare(b.name))
 }
 
+/**
+ * 根据图标清单拼出 TypeScript 声明文本。
+ * 有图标时名称类型是字面量联合类型（例如 `'add' | 'chart'`），没有图标时退化为 string。
+ */
 export function generateDtsContent(
   icons: SvgIconInfo[],
   options: { enumName?: string; typeName?: string } = {},
@@ -146,161 +197,156 @@ declare module 'virtual:svg-icons/ids' {
 }
 
 /**
- * @Description: vite SVG 插件
- * @Description: 将所有 svg 图标文件都加载到同一个 <SVG> 中
- * @Description: 添加功能：将图标文件名称作为 id，导出名称列表，并动态生成枚举类型
- * @Description: 类似 vite-plugin-svg-icon
- * @Author: xmasuhai <xmasuhai@163.com>
- * @Date: 2026-10-08 18:04:16
- * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-13 15:44:35
- * @FilePath: src/plugins/svgoStore.ts
+ * 为每个插件实例生成一份独立的配置快照。
+ * `||` 用于保留原有的空字符串回退语义，`??` 则允许 symbolId 显式配置为空字符串。
  */
-export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
-  const inputFolder = options.inputFolder || 'src/assets/icons'
-  const symbolIdPattern = options.symbolId ?? 'icon-[name]'
-  const dtsPath =
-    options.dts === false
-      ? false
-      : typeof options.dts === 'string'
-        ? options.dts
-        : 'src/types/svg-icons.d.ts'
-  const enumName = options.enumName || 'SvgIconEnum'
-  const typeName = options.typeName || 'SvgIconName'
+function resolveOptions(options: SvgoStoreOptions): ResolvedSvgoStoreOptions {
+  return {
+    sourceOptions: options,
+    inputFolder: options.inputFolder || 'src/assets/icons',
+    symbolIdPattern: options.symbolId ?? 'icon-[name]',
+    dtsPath:
+      options.dts === false
+        ? false
+        : typeof options.dts === 'string'
+          ? options.dts
+          : 'src/types/svg-icons.d.ts',
+    enumName: options.enumName || 'SvgIconEnum',
+    typeName: options.typeName || 'SvgIconName',
+  }
+}
 
-  const virtualModuleIds = [
-    '@svgoStore',
-    'virtual:svgoStore',
-    'virtual:svg-icons/names',
-    'virtual:svg-icons/ids',
-  ]
-  const resolvedVirtualModuleIds = virtualModuleIds.map((id) => `\0${id}`)
-
+/**
+ * 创建写入声明文件的函数。
+ * `lastDtsContent` 是闭包中的局部状态：每次调用 svgoStore 都拥有自己的缓存，
+ * 因此多个 Vite 插件实例之间不会互相跳过对方需要的首次写入。
+ */
+function createDtsWriter(options: ResolvedSvgoStoreOptions): () => void {
   let lastDtsContent = ''
 
-  const writeDts = () => {
-    if (!dtsPath) return
-    const icons = scanSvgIcons(inputFolder, symbolIdPattern)
-    const content = generateDtsContent(icons, { enumName, typeName })
+  return () => {
+    if (options.dtsPath === false) return
+
+    const icons = scanSvgIcons(options.inputFolder, options.symbolIdPattern)
+    const content = generateDtsContent(icons, {
+      enumName: options.enumName,
+      typeName: options.typeName,
+    })
+
+    // 开发服务器启动时和构建开始时都可能调用写入函数；内容没变化就不重复写磁盘。
     if (content === lastDtsContent) return
-    const targetFile = path.resolve(process.cwd(), dtsPath)
+
+    const targetFile = path.resolve(process.cwd(), options.dtsPath)
     const targetDir = path.dirname(targetFile)
-    if (!fs.existsSync(targetDir)) {
-      fs.mkdirSync(targetDir, { recursive: true })
-    }
+    fs.mkdirSync(targetDir, { recursive: true })
     fs.writeFileSync(targetFile, content, 'utf-8')
     lastDtsContent = content
   }
+}
 
-  return {
-    name: 'svgoStore',
+/**
+ * 通知 Vite 重新加载图标模块。
+ * Vite 会缓存模块；先让模块图中的缓存失效，再发送 full-reload，浏览器才能拿到新图标。
+ */
+function reloadVirtualModules(server: ViteDevServer, writeDts: () => void): void {
+  writeDts()
 
-    buildStart() {
-      writeDts()
-    },
+  for (const id of resolvedVirtualModuleIds) {
+    const module = server.moduleGraph.getModuleById(id)
+    if (module) {
+      server.moduleGraph.invalidateModule(module)
+    }
+  }
 
-    configureServer(server: ViteDevServer) {
-      writeDts()
-      const iconsDir = path.resolve(process.cwd(), inputFolder)
-      server.watcher.add(iconsDir)
+  server.ws.send({ type: 'full-reload' })
+}
 
-      const reloadVirtualModules = () => {
-        writeDts()
-        for (const id of resolvedVirtualModuleIds) {
-          const mod = server.moduleGraph.getModuleById(id)
-          if (mod) {
-            server.moduleGraph.invalidateModule(mod)
-          }
-        }
-        server.ws.send({
-          type: 'full-reload',
-        })
-      }
+/**
+ * 注册图标目录的开发期监听器。
+ * add、change 和 unlink 都复用同一个回调，避免三处逻辑日后出现行为不一致。
+ */
+function watchIconDirectory(
+  server: ViteDevServer,
+  options: ResolvedSvgoStoreOptions,
+  writeDts: () => void,
+): void {
+  const iconsDir = path.resolve(process.cwd(), options.inputFolder)
+  server.watcher.add(iconsDir)
 
-      server.watcher.on('add', (file) => {
-        if (file.startsWith(iconsDir) && file.endsWith('.svg')) {
-          reloadVirtualModules()
-        }
-      })
-      server.watcher.on('unlink', (file) => {
-        if (file.startsWith(iconsDir) && file.endsWith('.svg')) {
-          reloadVirtualModules()
-        }
-      })
-      server.watcher.on('change', (file) => {
-        if (file.startsWith(iconsDir) && file.endsWith('.svg')) {
-          reloadVirtualModules()
-        }
-      })
-    },
+  // 回调会被文件系统事件稍后执行，因此用闭包记住本次插件实例的路径和 server。
+  const onIconChange = (file: string) => {
+    if (file.startsWith(iconsDir) && file.endsWith('.svg')) {
+      reloadVirtualModules(server, writeDts)
+    }
+  }
 
-    resolveId(id: string) {
-      if (id === '@svgoStore' || id === 'svg_bundle.ts') {
-        return '\0@svgoStore'
-      }
-      if (id === 'virtual:svgoStore') {
-        return '\0virtual:svgoStore'
-      }
-      if (id === 'virtual:svg-icons/names') {
-        return '\0virtual:svg-icons/names'
-      }
-      if (id === 'virtual:svg-icons/ids') {
-        return '\0virtual:svg-icons/ids'
-      }
-      return null
-    },
+  const iconFileEvents = ['add', 'unlink', 'change'] as const
+  for (const event of iconFileEvents) {
+    server.watcher.on(event, onIconChange)
+  }
+}
 
-    load(id: string) {
-      if (id === '\0virtual:svg-icons/names') {
-        const icons = scanSvgIcons(inputFolder, symbolIdPattern)
-        const names = icons.map((item) => item.name)
-        return `export default ${JSON.stringify(names)}`
-      }
+/** 返回 SVGO 配置；用户提供配置时完全沿用，否则应用插件的默认优化规则。 */
+function getSvgoConfig(options: SvgoStoreOptions): SvgoConfig {
+  return options.svgoConfig ?? {
+    plugins: [
+      'cleanupAttrs',
+      'removeDoctype',
+      'removeComments',
+      'removeTitle',
+      'removeDesc',
+      'removeEmptyAttrs',
+      {
+        name: 'removeAttrs',
+        params: {
+          attrs: '(data-name|data-xxx)',
+        },
+      },
+    ],
+  }
+}
 
-      if (id === '\0virtual:svg-icons/ids') {
-        const icons = scanSvgIcons(inputFolder, symbolIdPattern)
-        const ids = icons.map((item) => item.id)
-        return `export default ${JSON.stringify(ids)}`
-      }
+/**
+ * 在 Node.js 的插件执行阶段读取、合并并优化 SVG 文件，返回最终的 sprite 标记。
+ * 这一步不是浏览器中的操作；浏览器端插入 DOM 的 JavaScript 会在下方另行生成。
+ */
+function createOptimizedSprite(
+  options: ResolvedSvgoStoreOptions,
+  icons: SvgIconInfo[],
+): string {
+  const sprites = svgstore(options.sourceOptions)
 
-      if (id === '\0@svgoStore' || id === '\0virtual:svgoStore') {
-        const sprites = svgstore(options)
-        const icons = scanSvgIcons(inputFolder, symbolIdPattern)
+  for (const icon of icons) {
+    const content = fs.readFileSync(icon.filepath, { encoding: 'utf-8' })
+    sprites.add(icon.id, content)
+  }
 
-        for (const icon of icons) {
-          const code = fs.readFileSync(icon.filepath, { encoding: 'utf-8' })
-          sprites.add(icon.id, code)
-        }
+  const { data } = optimize(
+    sprites.toString({ inline: options.sourceOptions.inline }),
+    getSvgoConfig(options.sourceOptions),
+  )
+  return data
+}
 
-        const svgoConfig: SvgoConfig = options.svgoConfig ?? {
-          plugins: [
-            'cleanupAttrs',
-            'removeDoctype',
-            'removeComments',
-            'removeTitle',
-            'removeDesc',
-            'removeEmptyAttrs',
-            {
-              name: 'removeAttrs',
-              params: {
-                attrs: '(data-name|data-xxx)',
-              },
-            },
-          ],
-        }
+/**
+ * 生成将由浏览器执行的模块源码。
+ * 此函数在构建工具的 Node.js 进程中运行，但返回的字符串稍后才会在页面中执行，
+ * 因此字符串里的 document、DOM 节点和事件监听器属于浏览器端，而非插件端。
+ */
+function generateBrowserModule(
+  svgCode: string,
+  icons: SvgIconInfo[],
+  enumName: string,
+): string {
+  const names = icons.map((item) => item.name)
+  const ids = icons.map((item) => item.id)
+  const enumEntries = icons
+    .map((item) => `  ${toPascalCase(item.name)}: '${item.name}',`)
+    .join('\n')
 
-        const { data: code } = optimize(sprites.toString({ inline: options.inline }), svgoConfig)
-
-        const names = icons.map((item) => item.name)
-        const ids = icons.map((item) => item.id)
-
-        const enumObjectEntries = icons
-          .map((item) => `  ${toPascalCase(item.name)}: '${item.name}',`)
-          .join('\n')
-
-        return `
+  return `
           const div = document.createElement('div')
-          div.innerHTML = \`${code}\`
+          div.innerHTML = \`${svgCode}\`
           const svg = div.getElementsByTagName('svg')[0]
           if (svg) {
             svg.style.position = 'absolute'
@@ -330,13 +376,81 @@ export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
           export const ids = svgIconIds
 
           export const ${enumName} = Object.freeze({
-            ${enumObjectEntries}
+            ${enumEntries}
           })
 
           export default svgIconNames
         `
-      }
-      return null
+}
+
+/** 构造虚拟模块的 ID 到加载函数的映射，以查表代替多个重复的 if 分支。 */
+function createVirtualModuleLoaders(
+  options: ResolvedSvgoStoreOptions,
+): Record<string, () => string> {
+  const loadNames = () => {
+    const icons = scanSvgIcons(options.inputFolder, options.symbolIdPattern)
+    return `export default ${JSON.stringify(icons.map((item) => item.name))}`
+  }
+
+  const loadIds = () => {
+    const icons = scanSvgIcons(options.inputFolder, options.symbolIdPattern)
+    return `export default ${JSON.stringify(icons.map((item) => item.id))}`
+  }
+
+  const loadSprite = () => {
+    const icons = scanSvgIcons(options.inputFolder, options.symbolIdPattern)
+    const sprite = createOptimizedSprite(options, icons)
+    return generateBrowserModule(sprite, icons, options.enumName)
+  }
+
+  return {
+    '\0virtual:svg-icons/names': loadNames,
+    '\0virtual:svg-icons/ids': loadIds,
+    '\0@svgoStore': loadSprite,
+    '\0virtual:svgoStore': loadSprite,
+  }
+}
+
+/**
+ * @Description: vite SVG 插件
+ * @Description: 将所有 svg 图标文件都加载到同一个 <SVG> 中
+ * @Description: 添加功能：将图标文件名称作为 id，导出名称列表，并动态生成枚举类型
+ * @Description: 类似 vite-plugin-svg-icon
+ * @Author: xmasuhai <xmasuhai@163.com>
+ * @Date: 2026-10-08 18:04:16
+ * @LastEditors: xmasuhai <xmasuhai@163.com>
+ * @LastEditTime: 2026-10-13 15:44:35
+ * @FilePath: src/plugins/svgoStore.ts
+ */
+export const svgoStore = (options: SvgoStoreOptions = {}): Plugin => {
+  // 插件选项在创建时规范化一次，使后续各 Vite 钩子共享同一份明确配置。
+  const resolvedOptions = resolveOptions(options)
+  const writeDts = createDtsWriter(resolvedOptions)
+  const virtualModuleLoaders = createVirtualModuleLoaders(resolvedOptions)
+
+  return {
+    name: 'svgoStore',
+
+    // 构建开始前生成声明文件，确保 TypeScript 能看到当前图标列表及类型。
+    buildStart() {
+      writeDts()
+    },
+
+    configureServer(server: ViteDevServer) {
+      writeDts()
+      watchIconDirectory(server, resolvedOptions, writeDts)
+    },
+
+    resolveId(id: string) {
+      // 通过映射解析模块；不存在的键返回 undefined，再统一转换为 Vite 的 null。
+      return getOwnRecordValue(virtualModuleResolutions, id) ?? null
+    },
+
+    load(id: string) {
+      // Vite 调用 load 时传入的是 resolveId 处理后的 ID；映射也因此使用 `\0` 前缀键。
+      // 只加载映射表自身的条目，避免原型链上的同名属性被当作模块加载器。
+      const loader = getOwnRecordValue(virtualModuleLoaders, id)
+      return loader ? loader() : null
     },
   }
 }
