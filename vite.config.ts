@@ -35,7 +35,9 @@ export default defineConfig({
         VantResolver(),
       ],
     }),
-    vueDevTools(),
+    vueDevTools({
+      launchEditor: 'webstorm',
+    }),
 
     // svg精灵图标方案
     svgoStore(),
