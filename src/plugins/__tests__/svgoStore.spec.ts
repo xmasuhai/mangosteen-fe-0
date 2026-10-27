@@ -243,12 +243,9 @@ describe('svgoStore plugin', () => {
     expect(document.body.firstElementChild).toBeNull()
 
     document.dispatchEvent(new Event('DOMContentLoaded'))
-    expect(document.body.firstElementChild?.querySelector('svg')?.getAttribute('aria-hidden')).toBe(
-      'true',
-    )
-    expect((document.body.firstElementChild?.querySelector('svg') as SVGElement).style.position).toBe(
-      'absolute',
-    )
+    const insertedSvg = document.body.firstElementChild?.querySelector('svg') as SVGElement | null
+    expect(insertedSvg?.getAttribute('aria-hidden')).toBe('true')
+    expect(insertedSvg?.style.position).toBe('absolute')
   })
 
   it('inserts the SVG immediately when the document is already ready', async () => {

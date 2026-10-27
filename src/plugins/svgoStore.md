@@ -174,16 +174,59 @@ svgoStore({
 
 ## 回归测试覆盖
 
-`src/plugins/__tests__/svgoStore.spec.ts` 当前有 11 项测试，覆盖：
+测试文件 [`src/plugins/__tests__/svgoStore.spec.ts`](./__tests__/svgoStore.spec.ts) 包含 11 项完整的单元测试，覆盖插件的各项核心功能、配置分支、热更新与浏览器运行时行为。
 
-- 图标扫描、文件名和默认 symbol ID。
-- 声明文本中的枚举、字面量联合类型和虚拟模块声明。
-- 主虚拟模块及所有支持别名的解析，未知名称的处理。
-- 自定义 symbol ID 模板、独立名称 / ID 模块及空目录。
-- 自定义枚举与类型名称、关闭声明生成。
-- 同一插件实例避免重复写入声明，不同实例仍各自执行首次写入。
-- 图标新增 / 修改 / 删除后的声明更新、模块失效和页面刷新；忽略无关文件。
-- 生成的浏览器模块导出内容，以及 DOMContentLoaded 前后两种 SVG 插入时机。
+### 1. 测试工具与辅助函数
+
+- **`createIconDirectory(icons)`**：在 `node_modules/.tmp/svgoStore-test-*` 下创建隔离的临时目录并写入测试用的 SVG 文件，避免污染项目源码。
+- **`afterEach` 清理钩子**：每次测试结束后，自动递归删除本用例创建的所有临时目录。
+- **`createFakeServer()`**：模拟 Vite 开发服务器环境：
+  - `watcher`：通过 `listeners` Map 收集事件监听函数，支持随时手动派发 `add`、`change`、`unlink`。
+  - `moduleGraph`：模拟 `getModuleById` 与 `invalidateModule`，记录被失效的虚拟模块。
+  - `ws`：提供 `send` 方法用于接收 HMR 消息。
+- **`getHook(plugin, name)`**：泛型辅助函数，安全获取并收窄插件对象上的各个生命周期钩子类型。
+
+### 2. 详细测试场景与断言
+
+1. **图标扫描与 ID 生成**（`scans svg icons properly...`）：
+   - 调用 `scanSvgIcons('src/assets/icons', 'icon-[name]')`。
+   - 验证扫描到的图标数量、包含 `add`、`mangosteen`、`pig` 等图标，且 `id` 格式为 `icon-add`。
+2. **声明文件生成**（`generates DTS declaration content...`）：
+   - 调用 `generateDtsContent` 并传入自定义枚举与类型名称。
+   - 验证声明文本中包含 `export enum SvgIconEnum`、`export type SvgIconName = 'add' | 'chart'` 以及 `@svgoStore` 环境模块声明。
+3. **主虚拟模块解析与加载**（`provides virtual module resolve and load`）：
+   - 验证 `resolveId('@svgoStore')` 返回 `\0@svgoStore`。
+   - 验证 `load('\0@svgoStore')` 包含 `svgIconNames`、`SvgIconEnum` 与 `svgIconIds` 的 JavaScript 导出。
+4. **完整虚拟模块名称解析与安全过滤**（`resolves every supported module name...`）：
+   - 验证解析 `@svgoStore`、`svg_bundle.ts`、`virtual:svgoStore`、`virtual:svg-icons/names`、`virtual:svg-icons/ids` 均返回对应的 `\0` 内部 ID。
+   - 验证未知模块 `virtual:unknown` 和原型属性 `toString` 均返回 `null`。
+5. **名称/ID 独立模块加载与自定义 symbolId**（`loads icon names and ids...`）：
+   - 配置 `symbolId: 'custom-[name]-symbol'`。
+   - 验证 `load('\0virtual:svg-icons/names')` 返回 `export default ["add","chart"]`。
+   - 验证 `load('\0virtual:svg-icons/ids')` 返回 `export default ["custom-add-symbol","custom-chart-symbol"]`。
+   - 验证加载不存在的模块或 `toString` 返回 `null`。
+6. **空目录回退与自定义类型名称**（`supports empty icon folders...`）：
+   - 在空图标目录下测试，验证名称与 ID 模块导出 `export default []`。
+   - 验证生成的声明中 `type MyIconName` 正确回退为 `string`。
+7. **禁用声明生成**（`does not write declarations when...`）：
+   - 配置 `dts: false` 并执行 `buildStart()`，验证不会在文件系统中创建任何 `.d.ts` 文件。
+8. **闭包缓存与写入防重**（`deduplicates declaration writes...`）：
+   - 首次执行 `buildStart()` 生成声明，用 `fs.utimesSync` 将文件修改时间强制设为 2000 年。
+   - 第二次执行 `buildStart()`，内容未变，验证修改时间仍为 2000 年（跳过重复写入）。
+   - 创建新的插件实例执行 `buildStart()`，验证新实例独立执行首次写入。
+9. **文件变动热更新与缓存失效**（`updates declarations, invalidates virtual modules...`）：
+   - 执行 `configureServer`，验证监听器已注册且监听了图标目录。
+   - 模拟 `add` 事件：验证声明文件自动更新包含新图标，`ws.send` 触发整页刷新，4 个虚拟模块全部失效。
+   - 模拟 `change` 事件：验证再次触发整页刷新与模块失效。
+   - 模拟 `unlink` 事件：验证声明文件中新图标被移除，再次触发刷新与失效。
+   - 模拟非 SVG 文件（`notes.txt`）变更：验证不触发刷新。
+10. **浏览器端代码执行与延迟插入**（`generates executable browser code...`）：
+    - 使用 Base64 Data URI（`data:text/javascript;base64,...`）与 `await import()` 动态加载 `load('\0@svgoStore')` 生成的 JS 代码。
+    - 验证导出的 `svgIconNames`、`svgIconIds` 和枚举对象。
+    - 模拟 `document.readyState === 'loading'`，验证初始化时未插入 SVG。
+    - 派发 `DOMContentLoaded` 事件后，验证 SVG 被成功插入 `document.body`，且带有 `aria-hidden="true"` 与 `position: absolute` 样式。
+11. **文档已就绪时的立即插入**（`inserts the SVG immediately...`）：
+    - 模拟 `document.readyState === 'complete'` 并动态加载模块，验证 SVG 被立即插入 `document.body`。
 
 ## 已执行的验证记录
 

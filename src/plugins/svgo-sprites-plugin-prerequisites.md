@@ -4,6 +4,25 @@
 
 > 建议阅读顺序：先看「0. 背景概念」，再看 Node.js → TypeScript → Vite，最后用「5. 自检清单」检查掌握情况。
 
+### 依赖版本
+
+本文内容基于以下版本编写（来源：`package.json` 及 `node_modules` 中实际安装的版本，2026-10-27 核对）：
+
+| 依赖 | 版本 | 本文涉及的章节 |
+| --- | --- | --- |
+| Node.js | `26.12.1`（`engines.node: >=26.12.1`） | 1. Node.js 前置知识 |
+| pnpm | `12.15.0`（`packageManager`） | 4. 工程化与测试 |
+| `@types/node` | `26.6.5` | 1. Node.js 前置知识 |
+| `@tsconfig/node24` | `24.0.5` | 2.4 tsconfig |
+| TypeScript | `npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2` | 2. TypeScript 前置知识 |
+| `vue-tsc` | `3.3.13` | 2.4 tsconfig 与 Project References |
+| Vite | `8.3.5` | 3. Vite 前置知识 |
+| `svgo` | `4.1.0` | 0. 背景概念 |
+| `svgstore` | `3.0.1` | 0. 背景概念、2.6.1 |
+| Vitest | `5.0.5` | 4. 工程化与测试 |
+
+> ⚠️ **如果版本更新，请更新对应文档**：升级上述任一依赖后，请核对本文相关章节（API、钩子、配置项、类型声明等）是否仍然准确，并同步更新此表格中的版本号。
+
 ---
 
 ## 0. 背景概念
@@ -261,15 +280,91 @@ declare module 'virtual:svgoStore' {
 
 ---
 
-## 4. 工程化与测试（辅助知识）
+## 4. 工程化与测试
 
-| 知识点 | 用途 |
-| --- | --- |
-| pnpm 脚本与 `pnpm exec` | 执行 `pnpm build`、`pnpm exec vitest run ...`、`pnpm exec vue-tsc --build --force` |
-| Vitest 单元测试 | `src/plugins/__tests__/svgoStore.spec.ts`；直接调用钩子（如 `plugin.resolveId('@svgoStore')`），并模拟 `server.watcher`、`moduleGraph` 和 `ws` |
-| 测试临时目录与清理钩子 | 在 `node_modules/.tmp` 中创建临时图标，并在 `afterEach` / `afterAll` 中删除 |
-| ESLint 注释指令 | `eslint-disable-next-line`、`/* eslint-disable */` |
-| 锁文件一致性 | `pnpm-lock.yaml` 与 `package.json` 中的 `svgo` / `svgstore` 版本应保持一致 |
+测试文件 [`src/plugins/__tests__/svgoStore.spec.ts`](./__tests__/svgoStore.spec.ts) 覆盖了插件的全部核心行为与边界场景。理解该测试文件需要掌握以下 Vitest、Node.js 与 DOM 相关的测试技术与模式。
+
+### 4.1 Vitest 与插件单元测试核心理念
+
+- **直接调用插件钩子**：无需启动完整的 Vite 实例，直接调用 `plugin.resolveId`、`plugin.load`、`plugin.buildStart`、`plugin.configureServer`，执行速度快（毫秒级）且定位精确。
+- **泛型提取钩子类型**：
+  ```ts
+  function getHook<T extends (...args: never[]) => unknown>(
+    plugin: ReturnType<typeof svgoStore>,
+    name: string,
+  ) {
+    return plugin[name as keyof typeof plugin] as T
+  }
+  ```
+  通过 TypeScript 泛型收窄钩子函数的调用签名，解决插件对象索引访问时调用签名不明确的问题。
+- **Vitest 基础 API**：`describe`、`it`、`expect`、`afterEach`、`vi.spyOn`。
+
+### 4.2 Mock 技术与测试替身（Test Double）
+
+- **开发服务器模拟（`createFakeServer`）**：
+  ```ts
+  function createFakeServer() {
+    const listeners = new Map<string, (file: string) => void>()
+    const invalidatedModules: unknown[] = []
+    const moduleIds = [
+      '\0@svgoStore',
+      '\0virtual:svgoStore',
+      '\0virtual:svg-icons/names',
+      '\0virtual:svg-icons/ids',
+    ]
+
+    return {
+      listeners,
+      invalidatedModules,
+      watcher: {
+        add: (directory: string) => directory,
+        on: (event: string, listener: (file: string) => void) => {
+          listeners.set(event, listener)
+        },
+      },
+      moduleGraph: {
+        getModuleById: (id: string) => (moduleIds.includes(id) ? { id } : undefined),
+        invalidateModule: (module: unknown) => invalidatedModules.push(module),
+      },
+      ws: {
+        send: () => undefined,
+      },
+    }
+  }
+  ```
+  - 用 `Map` 收集 `watcher.on` 注册的监听器，在测试中可随时主动触发 `listeners.get('add')?.(filePath)`，精确模拟文件增删改。
+  - 模拟 `moduleGraph.getModuleById` 和 `moduleGraph.invalidateModule`，记录哪些虚拟模块被标记失效。
+  - 使用 `vi.spyOn(server.ws, 'send')` 追踪 HMR 刷新消息的发送次数与参数。
+
+### 4.3 动态执行生成代码与 DOM 仿真
+
+- **Data URI 动态导入（`data:text/javascript;base64,...`）**：
+  - `load` 钩子返回的是一段 JavaScript 源码字符串。为了验证其运行时行为，测试将其转为 Base64 编码的 Data URL，然后通过 `await import(moduleUrl)` 动态加载为真实模块。
+  - 这样既能验证生成的 ESM 语法合法，又能直接断言导出的 `svgIconNames`、`svgIconIds` 及枚举对象的值。
+- **DOM 就绪状态与事件模拟**：
+  - `document.body.replaceChildren()`：重置测试 DOM。
+  - `Object.defineProperty(document, 'readyState', { configurable: true, value: 'loading' | 'complete' })`：动态修改文档加载状态。
+  - `document.dispatchEvent(new Event('DOMContentLoaded'))`：模拟触发 DOM 就绪事件，验证等待事件后才插入 SVG 的逻辑。
+  - 对生成的 `<svg>` 元素断言 `aria-hidden="true"` 和 `style.position === 'absolute'`。
+
+### 4.4 文件系统隔离与测试清理
+
+- **隔离临时目录**：
+  ```ts
+  fs.mkdtempSync(path.join(process.cwd(), 'node_modules', '.tmp', 'svgoStore-test-'))
+  ```
+  将测试产生的临时目录限定在 `node_modules/.tmp` 中，避免污染源码目录或受并发影响。
+- **生命周期清理**：在 `afterEach` 钩子中取出所有临时目录并调用 `fs.rmSync(dir, { recursive: true, force: true })` 彻底删除。
+- **缓存写入验证（时间戳检查）**：
+  - 使用 `fs.utimesSync(dtsPath, new Date('2000-01-01'), new Date('2000-01-01'))` 将文件修改时间强制设为旧时间。
+  - 再次调用 `buildStart()`，若内容未改变，插件应跳过写入，此时 `fs.statSync(dtsPath).mtime` 仍为 2000 年，由此验证闭包缓存生效。
+  - 新建另一个插件实例执行 `buildStart()`，时间戳被更新，验证不同实例之间缓存隔离。
+
+### 4.5 边界用例覆盖策略
+
+- **原型属性注入防护**：测试调用 `resolveId('toString')` 和 `load('toString')`，确保返回 `null`，不会把 `Object.prototype` 上的属性误当成虚拟模块。
+- **空目录回退**：测试目录没有 SVG 时，导出的数组为空 `[]`，声明中的 `type MyIconName` 正确回退为 `string`。
+- **非 SVG 变更过滤**：测试向图标目录写入 `notes.txt` 并触发 `change` 事件，验证不触发 `ws.send` 与模块失效。
 
 ---
 
@@ -291,6 +386,10 @@ declare module 'virtual:svgoStore' {
 - [ ] 在 `env.d.ts` 顶层加一行 `import`，`declare module 'svgstore'` 的含义会怎样变化？
 - [ ] `svg-icons.d.ts` 中的 `export enum SvgIconEnum` 和运行时的 `Object.freeze({...})` 分别负责什么？
 - [ ] 为什么 `virtual:svgoStore` 写了 `export * from '@svgoStore'`，还要单独声明 `default`？
+- [ ] 在 Vitest 中如何对插件钩子进行单元测试而无需启动完整 Vite 实例？
+- [ ] 如何使用 Data URI（`data:text/javascript;base64,...`）与 `import()` 在 Node/Vitest 环境中动态执行 `load` 钩子生成的浏览器代码？
+- [ ] 为什么在测试声明文件写入防重时需要用 `fs.utimesSync` 修改时间戳？
+- [ ] 如何通过 Mock `server.watcher` 与 `server.moduleGraph` 来验证文件增删改时的模块失效与 HMR 刷新？
 
 ---
 
