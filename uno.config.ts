@@ -5,6 +5,7 @@ import {
   transformerDirectives,
   type PresetWind4Theme,
   PresetOrFactoryAwaitable,
+  transformerAttributifyJsx,
 } from 'unocss'
 import {presetWind4} from '@unocss/preset-wind4'
 
@@ -13,7 +14,7 @@ import {presetWind4} from '@unocss/preset-wind4'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-09-24 22:27:09
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 16:07:25
+ * @LastEditTime: 2026-11-03 21:27:32
  * @FilePath: uno.config.ts
  */
 export const unoConfig = defineConfig({
@@ -24,6 +25,9 @@ export const unoConfig = defineConfig({
   transformers: [
     // 支持 where:(a b c) 这种分组写法
     transformerVariantGroup(),
+    // 支持在 JSX 中使用属性化语法
+    transformerAttributifyJsx(),
+    // 支持 @apply、@screen、theme() 和 icon()
     transformerDirectives(),
   ],
   variants: [
