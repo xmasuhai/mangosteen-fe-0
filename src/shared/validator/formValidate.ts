@@ -14,7 +14,7 @@ export type FormErrorsType<T extends FormDataType> = { [k in keyof T]?: string[]
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-18 22:02:08
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-19 21:00:05
+ * @LastEditTime: 2026-11-03 18:29:00
  * @FilePath: src/shared/validator/formValidate.ts
  */
 export const formValidate = <T extends FormDataType>(
@@ -34,7 +34,7 @@ export const formValidate = <T extends FormDataType>(
         }
         break
       case 'pattern':
-        if (isEmpty(value) || !rule.regexp.test(value!.toString())) {
+        if (isEmpty(value) || !rule.regexp.test((value as string | number)?.toString())) {
           errors[key] ??= []
           errors[key].push(message)
         }
@@ -47,5 +47,5 @@ export const formValidate = <T extends FormDataType>(
 }
 
 export function isEmpty(value: FormDataType[string]) {
-  return [null, undefined, ''].includes(value?.toString())
+  return [null, undefined, ''].includes((value as string | number)?.toString())
 }
