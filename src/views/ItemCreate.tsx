@@ -5,13 +5,14 @@ import { SwitchTabs } from '@/components/tab/SwitchTabs.tsx'
 import { ItemTab } from '@/components/tab/ItemTab.tsx'
 import { InputPad } from '@/modules/items/InputPad.tsx'
 import { IconTag } from '@/modules/tags/IconTag.tsx'
+import { cn } from 'cn'
 
 /**
  * @Description: 记一笔
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:00:26
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-24 21:34:59
+ * @LastEditTime: 2026-11-04 21:09:18
  * @FilePath: src/views/ItemCreate.tsx
  */
 export const ItemCreate = defineComponent({
@@ -75,7 +76,9 @@ export const ItemCreate = defineComponent({
           icon: () => <SvgIcon name="back-arrow" class="w-2em h-2em" />,
           default: () => (
             <div class="h-full flex flex-col">
-              <SwitchTabs v-model:selectedTabId={kindRef.value}>
+              <SwitchTabs
+                v-model:selectedTabId={kindRef.value}
+                class={cn('grow-1 shrink-1')}>
                 {itemTabList.value.map((itemTab) => (
                   <ItemTab
                     key={itemTab.tabId}

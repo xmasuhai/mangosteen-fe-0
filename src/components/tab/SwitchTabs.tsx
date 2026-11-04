@@ -10,7 +10,7 @@ import { genDefaultSlotTabs } from '@/components/tab/genDefaultSlotTabs.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 17:39:38
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-24 14:50:58
+ * @LastEditTime: 2026-11-04 21:10:20
  * @FilePath: src/components/tab/SwitchTabs.tsx
  */
 export const SwitchTabs = defineComponent({
@@ -70,7 +70,7 @@ export const SwitchTabs = defineComponent({
           </nav>
 
           {/* 标签内容-插槽-数组 */}
-          <section class="max-h-[calc(100vh-136px)] overflow-auto scrollbar-hide">
+          <section class="overflow-auto scrollbar-hide">
             {defaultSlotTabs.find((slot) => slot.props?.tabId === _props.selectedTabId)}
           </section>
         </div>
