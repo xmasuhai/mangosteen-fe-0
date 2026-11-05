@@ -19,10 +19,11 @@ type ButtonItem<T extends boolean = boolean> = {
 
 /**
  * @Description: 数字按键列表
+ * @Description: 注意使用 cn 函数拼接类名，必须在 TSX 中使用
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-16 23:08:22
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 23:51:59
+ * @LastEditTime: 2026-11-05 18:28:52
  * @FilePath: src/modules/items/useNumpadButtons.tsx
  */
 export const useNumpadButtons = () => {
