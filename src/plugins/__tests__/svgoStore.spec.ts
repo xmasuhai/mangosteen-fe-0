@@ -6,9 +6,9 @@ import { scanSvgIcons, generateDtsContent, svgoStore } from '../svgoStore.ts'
 const temporaryDirectories: string[] = []
 
 function createIconDirectory(icons: Record<string, string> = {}) {
-  const temporaryDirectory = fs.mkdtempSync(
-    path.join(process.cwd(), 'node_modules', '.tmp', 'svgoStore-test-'),
-  )
+  const temporaryRoot = path.join(process.cwd(), 'node_modules', '.tmp')
+  fs.mkdirSync(temporaryRoot, { recursive: true })
+  const temporaryDirectory = fs.mkdtempSync(path.join(temporaryRoot, 'svgoStore-test-'))
   const inputFolder = path.join(temporaryDirectory, 'icons')
   fs.mkdirSync(inputFolder, { recursive: true })
   temporaryDirectories.push(temporaryDirectory)
