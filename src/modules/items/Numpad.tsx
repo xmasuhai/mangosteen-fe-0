@@ -11,7 +11,7 @@ import { useNumpadButtons } from '@/modules/items/useNumpadButtons.tsx'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-15 17:25:40
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-16 23:51:36
+ * @LastEditTime: 2026-11-05 12:17:53
  * @FilePath: src/modules/items/Numpad.tsx
  */
 export const Numpad = defineComponent({
@@ -24,7 +24,10 @@ export const Numpad = defineComponent({
       off(numberLimitListener)
       unsubscribe()
     })
-    const numberSizeClass = (text: string) => (/[0-9|dot]/g.test(text) ? cn('text-18px') : '')
+    const numberSizeClass = (text: string) =>
+      (/[0-9|dot]/g.test(text)
+        ? cn('text-18px')
+        : '')
     const { numpadButtons } = useNumpadButtons()
     return () => (
       <div
