@@ -25,7 +25,7 @@ minimumReleaseAgeExclude:
   - sass-embedded-win32-x64@1.106.1
   - sass-embedded@1.106.1
   - sass@1.106.1
-  - vite@8.3.5
+  - vite@8.3.5 || 8.3.6
   - '@unocss/autocomplete@66.12.0'
   - '@unocss/cli@66.12.0'
   - '@unocss/config@66.12.0'
@@ -95,5 +95,6 @@ minimumReleaseAgeExclude:
   - '@oxlint/binding-win32-ia32-msvc@1.91.0'
   - '@oxlint/binding-win32-x64-msvc@1.91.0'
   - oxlint@1.91.0
+  - eslint-plugin-cypress@7.0.3
 overrides:
   typescript: npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2
