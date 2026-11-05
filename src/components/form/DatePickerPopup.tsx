@@ -1,4 +1,4 @@
-import { computed, defineComponent, type PropType, ref } from 'vue'
+import { defineComponent, type PropType, ref, useModel } from 'vue'
 import { DatePicker, Popup } from 'vant'
 import { DateTime } from '@/shared/dateTime.ts'
 import { genDateStr } from '@/const/genDateStr.ts'
@@ -8,7 +8,7 @@ import { genDateStr } from '@/const/genDateStr.ts'
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-22 14:44:36
  * @LastEditors: xmasuhai <xmasuhai@163.com>
- * @LastEditTime: 2026-10-23 17:08:21
+ * @LastEditTime: 2026-11-05 22:27:52
  * @FilePath: src/components/form/DatePickerPopup.tsx
  */
 export const DatePickerPopup = defineComponent({
@@ -19,21 +19,18 @@ export const DatePickerPopup = defineComponent({
     ifCloseOnClickOverlay: { type: Boolean as PropType<boolean>, default: true },
   },
   emits: ['update:popupVisible', 'update:dateStr'],
-  setup(_props, _ctx) {
+  setup(_props,/* _ctx */) {
     const lastDateStrRef = ref<string>(_props.dateStr ?? genDateStr())
     const [minDate, maxDate] = [
       new DateTime(new Date()).add(-1, 'year').getRawDate(),
       new DateTime(new Date()).add(1, 'year').getRawDate(),
     ]
-    const getPopupVisible = computed({
-      get: () => _props.popupVisible,
-      set: (value) => _ctx.emit('update:popupVisible', value),
-    })
-    const getDateStrArrayTransfer = computed({
+    const getPopupVisible = useModel(_props, 'popupVisible')
+    const getDateStrArrayTransfer = useModel(_props, 'dateStr', {
       // '2026-10-22' -> [2026, 10, 22]
-      get: () => _props.dateStr.split('-'),
+      get: (value: string) => value.split('-'),
       // [2026, 10, 22] -> '2026-10-22'
-      set: (value: string[]) => _ctx.emit('update:dateStr', value.join('-')),
+      set: (value: string[]) => value.join('-'),
     })
     const confirmDate = ({ selectedValues }: { selectedValues: string[] }) => {
       lastDateStrRef.value = selectedValues.join('-') // '2026-10-22'
