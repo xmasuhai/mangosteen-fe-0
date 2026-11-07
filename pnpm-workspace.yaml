@@ -5,26 +5,26 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - vite-plugin-console-banner@0.0.1 || 0.1.1
   - npm-run-all2@9.0.4
-  - sass-embedded-all-unknown@1.106.1 || 1.108.0
-  - sass-embedded-android-arm64@1.106.1 || 1.108.0
-  - sass-embedded-android-arm@1.106.1 || 1.108.0
-  - sass-embedded-android-riscv64@1.106.1 || 1.108.0
-  - sass-embedded-android-x64@1.106.1 || 1.108.0
-  - sass-embedded-darwin-arm64@1.106.1 || 1.108.0
-  - sass-embedded-darwin-x64@1.106.1 || 1.108.0
-  - sass-embedded-linux-arm64@1.106.1 || 1.108.0
-  - sass-embedded-linux-arm@1.106.1 || 1.108.0
-  - sass-embedded-linux-musl-arm64@1.106.1 || 1.108.0
-  - sass-embedded-linux-musl-arm@1.106.1 || 1.108.0
-  - sass-embedded-linux-musl-riscv64@1.106.1 || 1.108.0
-  - sass-embedded-linux-musl-x64@1.106.1 || 1.108.0
-  - sass-embedded-linux-riscv64@1.106.1 || 1.108.0
-  - sass-embedded-linux-x64@1.106.1 || 1.108.0
-  - sass-embedded-unknown-all@1.106.1 || 1.108.0
-  - sass-embedded-win32-arm64@1.106.1 || 1.108.0
-  - sass-embedded-win32-x64@1.106.1 || 1.108.0
-  - sass-embedded@1.106.1 || 1.108.0
-  - sass@1.106.1 || 1.108.0
+  - sass-embedded-all-unknown@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-android-arm64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-android-arm@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-android-riscv64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-android-x64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-darwin-arm64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-darwin-x64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-arm64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-arm@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-musl-arm64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-musl-arm@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-musl-riscv64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-musl-x64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-riscv64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-linux-x64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-unknown-all@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-win32-arm64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded-win32-x64@1.106.1 || 1.108.0 || 1.108.1
+  - sass-embedded@1.106.1 || 1.108.0 || 1.108.1
+  - sass@1.106.1 || 1.108.0 || 1.108.1
   - vite@8.3.5 || 8.3.6
   - '@unocss/autocomplete@66.12.0'
   - '@unocss/cli@66.12.0'
@@ -52,49 +52,49 @@ minimumReleaseAgeExclude:
   - '@unocss/vite@66.12.0'
   - magic-string@1.4.4
   - unocss@66.12.0
-  - '@oxfmt/binding-android-arm-eabi@0.76.0'
-  - '@oxfmt/binding-android-arm64@0.76.0'
-  - '@oxfmt/binding-darwin-arm64@0.76.0'
-  - '@oxfmt/binding-darwin-x64@0.76.0'
-  - '@oxfmt/binding-freebsd-x64@0.76.0'
-  - '@oxfmt/binding-linux-arm-gnueabihf@0.76.0'
-  - '@oxfmt/binding-linux-arm-musleabihf@0.76.0'
-  - '@oxfmt/binding-linux-arm64-gnu@0.76.0'
-  - '@oxfmt/binding-linux-arm64-musl@0.76.0'
-  - '@oxfmt/binding-linux-ppc64-gnu@0.76.0'
-  - '@oxfmt/binding-linux-riscv64-gnu@0.76.0'
-  - '@oxfmt/binding-linux-riscv64-musl@0.76.0'
-  - '@oxfmt/binding-linux-s390x-gnu@0.76.0'
-  - '@oxfmt/binding-linux-x64-gnu@0.76.0'
-  - '@oxfmt/binding-linux-x64-musl@0.76.0'
-  - '@oxfmt/binding-openharmony-arm64@0.76.0'
-  - '@oxfmt/binding-win32-arm64-msvc@0.76.0'
-  - '@oxfmt/binding-win32-ia32-msvc@0.76.0'
-  - '@oxfmt/binding-win32-x64-msvc@0.76.0'
+  - '@oxfmt/binding-android-arm-eabi@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-android-arm64@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-darwin-arm64@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-darwin-x64@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-freebsd-x64@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-arm-gnueabihf@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-arm-musleabihf@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-arm64-gnu@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-arm64-musl@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-ppc64-gnu@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-riscv64-gnu@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-riscv64-musl@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-s390x-gnu@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-x64-gnu@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-linux-x64-musl@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-openharmony-arm64@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-win32-arm64-msvc@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-win32-ia32-msvc@0.76.0 || 0.77.0'
+  - '@oxfmt/binding-win32-x64-msvc@0.76.0 || 0.77.0'
   - '@vitest/mocker@5.1.0'
   - '@vitest/spy@5.1.0'
-  - oxfmt@0.76.0
+  - oxfmt@0.76.0 || 0.77.0
   - vitest@5.1.0
-  - '@oxlint/binding-android-arm-eabi@1.91.0'
-  - '@oxlint/binding-android-arm64@1.91.0'
-  - '@oxlint/binding-darwin-arm64@1.91.0'
-  - '@oxlint/binding-darwin-x64@1.91.0'
-  - '@oxlint/binding-freebsd-x64@1.91.0'
-  - '@oxlint/binding-linux-arm-gnueabihf@1.91.0'
-  - '@oxlint/binding-linux-arm-musleabihf@1.91.0'
-  - '@oxlint/binding-linux-arm64-gnu@1.91.0'
-  - '@oxlint/binding-linux-arm64-musl@1.91.0'
-  - '@oxlint/binding-linux-ppc64-gnu@1.91.0'
-  - '@oxlint/binding-linux-riscv64-gnu@1.91.0'
-  - '@oxlint/binding-linux-riscv64-musl@1.91.0'
-  - '@oxlint/binding-linux-s390x-gnu@1.91.0'
-  - '@oxlint/binding-linux-x64-gnu@1.91.0'
-  - '@oxlint/binding-linux-x64-musl@1.91.0'
-  - '@oxlint/binding-openharmony-arm64@1.91.0'
-  - '@oxlint/binding-win32-arm64-msvc@1.91.0'
-  - '@oxlint/binding-win32-ia32-msvc@1.91.0'
-  - '@oxlint/binding-win32-x64-msvc@1.91.0'
-  - oxlint@1.91.0
+  - '@oxlint/binding-android-arm-eabi@1.91.0 || 1.92.0'
+  - '@oxlint/binding-android-arm64@1.91.0 || 1.92.0'
+  - '@oxlint/binding-darwin-arm64@1.91.0 || 1.92.0'
+  - '@oxlint/binding-darwin-x64@1.91.0 || 1.92.0'
+  - '@oxlint/binding-freebsd-x64@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-arm-gnueabihf@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-arm-musleabihf@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-arm64-gnu@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-arm64-musl@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-ppc64-gnu@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-riscv64-gnu@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-riscv64-musl@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-s390x-gnu@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-x64-gnu@1.91.0 || 1.92.0'
+  - '@oxlint/binding-linux-x64-musl@1.91.0 || 1.92.0'
+  - '@oxlint/binding-openharmony-arm64@1.91.0 || 1.92.0'
+  - '@oxlint/binding-win32-arm64-msvc@1.91.0 || 1.92.0'
+  - '@oxlint/binding-win32-ia32-msvc@1.91.0 || 1.92.0'
+  - '@oxlint/binding-win32-x64-msvc@1.91.0 || 1.92.0'
+  - oxlint@1.91.0 || 1.92.0
   - eslint-plugin-cypress@7.0.3
   - '@oxlint-tsgolint/darwin-arm64@7.0.2006'
   - '@oxlint-tsgolint/darwin-x64@7.0.2006'
@@ -114,5 +114,7 @@ minimumReleaseAgeExclude:
   - jsdom@31.0.0
   - oxlint-tsgolint@7.0.2006
   - vue@3.5.45
+  - eslint-plugin-oxlint@1.92.0
+  - vue-eslint-parser@10.4.2
 overrides:
   typescript: npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2
