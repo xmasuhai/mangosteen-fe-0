@@ -154,9 +154,12 @@ export const FormItem = defineComponent<FormItemProps>({
           return _ctx.slots.default?.()
       }
     })
+
     return () => (
       <div class="mt-.5em">
-        <LabelOrDivWrapper ifUseLabelTag={getIfNeedLabelFor.value} labelFor={getLabelFor.value}>
+        <LabelOrDivWrapper
+          ifUseLabelTag={getIfNeedLabelFor.value}
+          labelFor={getLabelFor.value}>
           <FormItemContentSlot
             label={_props.label}
             hasLabelColon={_props.hasLabelColon}

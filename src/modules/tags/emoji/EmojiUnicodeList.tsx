@@ -59,14 +59,15 @@ export const EmojiUnicodeList = defineComponent({
     )
 
     return () => (
-      <ul
+      <ol
         class={cn(
           'scrollbar-hide overflow-auto h-[calc(1.65em_*_12)]',
           'flex flex-wrap content-start px-.5em py-2.5px',
           'text-22px line-height-1.5em',
         )}>
-        {selectedMainTopicEmojiUnicodeList.value.map((unicode) => (
+        {selectedMainTopicEmojiUnicodeList.value.map((unicode, index) => (
           <li
+            key={`${index}_${unicode}`}
             onClick={() => switchEmojiUnicode(unicode)}
             class={cn(
               'text-center grow-0 shrink-0 w-10% b-1 b-transparent',
@@ -76,7 +77,7 @@ export const EmojiUnicodeList = defineComponent({
             {unicode}
           </li>
         ))}
-      </ul>
+      </ol>
     )
   },
 })

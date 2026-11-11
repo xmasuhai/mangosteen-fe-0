@@ -32,8 +32,9 @@ export const EmojiMainTopicNav = defineComponent({
             'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
             '[&>li.selected]:(text-[var(--emoji-nav-text-selected)] font-bold)',
           )}>
-          {navList.value.map((item) => (
+          {navList.value.map((item, index) => (
             <li
+              key={`${index}_${item}`}
               onClick={() => selectMainTopic(item)}
               class={cn(
                 'shrink-0 inline-block p-.5em text-[var(--emoji-nav-text)] whitespace-nowrap',
