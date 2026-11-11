@@ -5,27 +5,27 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - vite-plugin-console-banner@0.0.1 || 0.1.1
   - npm-run-all2@9.0.4
-  - sass-embedded-all-unknown@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-android-arm64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-android-arm@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-android-riscv64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-android-x64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-darwin-arm64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-darwin-x64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-arm64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-arm@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-musl-arm64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-musl-arm@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-musl-riscv64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-musl-x64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-riscv64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-linux-x64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-unknown-all@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-win32-arm64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded-win32-x64@1.106.1 || 1.108.0 || 1.108.1
-  - sass-embedded@1.106.1 || 1.108.0 || 1.108.1
-  - sass@1.106.1 || 1.108.0 || 1.108.1
-  - vite@8.3.5 || 8.3.6 || 8.3.7
+  - sass-embedded-all-unknown@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-android-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-android-arm@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-android-riscv64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-android-x64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-darwin-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-darwin-x64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-arm@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-musl-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-musl-arm@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-musl-riscv64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-musl-x64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-riscv64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-linux-x64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-unknown-all@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-win32-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded-win32-x64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass-embedded@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - sass@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
+  - vite@8.3.5 || 8.3.6 || 8.3.7 || 8.3.8
   - '@unocss/autocomplete@66.12.0'
   - '@unocss/cli@66.12.0'
   - '@unocss/config@66.12.0'
@@ -132,5 +132,7 @@ minimumReleaseAgeExclude:
   - '@rolldown/binding-win32-arm64-msvc@1.2.18'
   - '@rolldown/binding-win32-x64-msvc@1.2.18'
   - rolldown@1.2.18
+  - cypress@16.3.0
+  - vue-router@5.5.0
 overrides:
   typescript: npm:typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2

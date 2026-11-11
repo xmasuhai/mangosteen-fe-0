@@ -17,30 +17,52 @@
 ```bash
 npm install -g corepack@latest &&
 corepack enable &&
-corepack prepare pnpm@12.15.0 --active
+corepack prepare pnpm@12.19.0 --active
 # 在项目路径下执行
-corepack use pnpm@12.15.0
+corepack use pnpm@12.19.0
+```
+
+### 3. 包管理器 `pnpm` 后续升级
+
+- 提示有新版本的 `pnpm@12.19.0`
+- 在项目内运行以下命令
+
+```bash
+corepack use pnpm@12.19.0
 ```
 
 ---
 
 ## 📦 主要依赖版本
 
-项目主依赖及版本如下（见 `package.json` 锁定）：
+项目主依赖及版本如下（见 `package.json` `dependencies` 锁定）：
 
 | 依赖包 | 版本 |
 |---|---|
-| vue | 3.5.44 |
-| vue-router | 5.4.0 |
+| vue | 3.5.45 |
+| vue-router | 5.5.0 |
 | pinia | 4.1.0 |
 | @vueuse/core | 15.0.0 |
 | vant | 4.10.2 |
 | echarts | 6.1.0 |
 | @js-temporal/polyfill | 0.5.1 |
-| cn | 0.5.0 |
-| svgo | 4.1.0 |
-| svgstore | 3.0.1 |
-| vite-plugin-console-banner | 0.1.1 |
+| cn | 0.5.2 |
+| vite-plugin-console-banner | 0.1.2 |
+
+## 🛠️ 主要开发依赖
+
+以下为常用开发依赖及版本（完整列表见 `package.json` `devDependencies`）：
+
+| 依赖包 | 版本 | 用途 |
+|---|---|---|
+| vite | 8.3.8 | 构建工具与开发服务器 |
+| vitest | 5.1.0 | 单元测试框架 |
+| cypress | 16.3.0 | 端到端测试 |
+| unocss | 66.12.0 | 原子化 CSS 引擎 |
+| vue-tsc | 3.3.14 | Vue 类型检查 |
+| eslint | 10.14.0 | 代码检查与格式化 |
+| sass-embedded | 1.108.2 | Sass 样式预处理器 |
+| start-server-and-test | 3.0.13 | E2E 测试服务器启动工具 |
 
 ### 安装依赖
 
