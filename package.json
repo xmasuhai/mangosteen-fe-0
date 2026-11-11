@@ -1,7 +1,7 @@
 {
   "name": "mangosteen-fe-0",
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "repository": "https://github.com/xmasuhai/mangosteen-fe-0.git",
   "type": "module",
