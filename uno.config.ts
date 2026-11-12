@@ -8,6 +8,7 @@ import {
   transformerAttributifyJsx,
 } from 'unocss'
 import {presetWind4} from '@unocss/preset-wind4'
+import { cn } from 'cn'
 
 /**
  * @Description: unoCss配置
@@ -73,6 +74,32 @@ export const unoConfig = defineConfig({
   shortcuts: {
     // 将 UnoCSS 的原子类映射到你 SCSS 里定义好的 .animation-rainbow 类
     'animate-rainbow': 'animation-rainbow',
+    'primary-btn': cn(
+      'w-100% h-48px b-none rounded-8px text-center',
+      'bg-[var(--button-primary-color)] color-[var(--button-primary-text-color)]'
+    ),
+    disabled: 'bg-[var(--button-bg-default)] pointer-events-none cursor-not-allowed',
+    /* 表单相关 */
+    'form-sc': 'mgst-form px-1em py-1em flex flex-col gap-y-16px children:(flex flex-col)',
+    'form-item-sc': 'mgst-form-item w-full gap-y-8px where:(flex flex-col)',
+    'form-label-sc': 'mgst-form-label vertical-mid text-16px block',
+    'form-item-content-sc': 'mgst-form-item-content flex w-full gap-x-[1em]',
+    'form-item-error-sc': cn(
+      'form-item-error',
+      'block w-full min-h-18px',
+      'vertical-mid text-12px color-[var(--error-color)]'
+    ),
+    'form-input-text-sc': cn(
+      'mgst-form-input',
+      'w-full h-[48px] px-1em leading-2em py-.5em',
+      'b-1 b-[var(--main)] rounded-.5em text-18px',
+      'focus:(shadow-[inset_0_0_3px_var(--main)] outline-none)'
+    ),
+    'form-btn-sc': cn(
+      'mgst-form-btn',
+      'h-[48px] w-full b-unset rounded-.5em',
+      'bg-[var(--main)] color-white text-18px'
+    ),
   },
   rules: [
     [/^scrollbar-hide$/, () => ({

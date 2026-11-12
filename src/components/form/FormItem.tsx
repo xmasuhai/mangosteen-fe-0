@@ -5,7 +5,6 @@ import { BarButton, type ButtonLevelType } from '@/components/BarButton.tsx'
 import { LabelOrDivWrapper } from '@/components/form/items/LabelOrDivWrapper.tsx'
 import { InputText } from '@/components/form/items/InputText.tsx'
 import { InputDatePickerPopup } from '@/components/form/items/InputDatePickerPopup.tsx'
-import { FormItemContentSlot } from '@/components/form/items/FormItemContentSlot.tsx'
 import { cn } from 'cn'
 import { SelectOrigin } from '@/components/form/SelectOrigin.tsx'
 
@@ -156,19 +155,30 @@ export const FormItem = defineComponent<FormItemProps>({
     })
 
     return () => (
-      <div class="mt-.5em">
-        <LabelOrDivWrapper
+      <div class="form-item-sc">
+        {/* 标签 */}
+        {_props.label && (<LabelOrDivWrapper
           ifUseLabelTag={getIfNeedLabelFor.value}
-          labelFor={getLabelFor.value}>
-          <FormItemContentSlot
-            label={_props.label}
-            hasLabelColon={_props.hasLabelColon}
-            error={_props.error}
-            hasErrorPlaceholder={_props.hasErrorPlaceholder}
-            extraHint={extraHint.value}>
-            {itemTypeSwitchContent.value}
-          </FormItemContentSlot>
-        </LabelOrDivWrapper>
+          labelFor={getLabelFor.value}
+          label={_props.label}
+          hasLabelColon={_props.hasLabelColon}
+          extraHint={extraHint.value}/>)}
+
+        {/* 内容 */}
+        <div
+          class={cn(
+            'form-item-content-sc',
+            'grow-1 children:grow-1',
+          )}>
+          {itemTypeSwitchContent.value}
+        </div>
+
+        {/* 错误 */}
+        {(_props.error || _props.hasErrorPlaceholder) && (
+          <div class={cn('form-item-error-sc')}>
+            <span>{_props.error ?? '　'}</span>
+          </div>
+        )}
       </div>
     )
   },

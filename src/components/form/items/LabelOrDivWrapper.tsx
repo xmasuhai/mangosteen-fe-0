@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent, type PropType, type VNode } from 'vue'
 
 /**
  * @Description: 表单label标签或div包装器
@@ -15,15 +15,25 @@ export const LabelOrDivWrapper = defineComponent({
     ifUseLabelTag: { type: Boolean, default: false },
     // for 属性，用于内部 input 标签 id 属性联动
     labelFor: { type: String, default: '' },
+    label: { type: String as PropType<string> },
+    hasLabelColon: { type: Boolean as PropType<boolean> },
+    extraHint: { type: [String, Object] as PropType<string | VNode>, default: '', },
   },
   setup(_props, _ctx) {
+    const labelContent = computed(() => (
+      <>
+        {_props.label}
+        {_props.hasLabelColon ? '：' : ''}
+        <span text-22px>{_props.extraHint}</span>
+      </>
+    ))
     return () =>
       _props.ifUseLabelTag ? (
-        <label {...(_props.labelFor ? { for: _props.labelFor } : {})} class="block">
-          {_ctx.slots.default?.()}
+        <label {...(_props.labelFor ? { for: _props.labelFor } : {})} class="form-label-sc">
+          {labelContent.value}
         </label>
       ) : (
-        <div>{_ctx.slots.default?.()}</div>
+        <div class="form-label-sc">{labelContent.value}</div>
       )
   },
 })

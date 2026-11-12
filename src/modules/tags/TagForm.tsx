@@ -54,7 +54,7 @@ export const TagForm = defineComponent({
           error={errors.sign?.join(', ')}
         />
         <FormItem>
-          <p class="tips text-center py-1em px-0 min-h-[var(--input-min-height)]">
+          <p class="flex justify-center items-center">
             记账时长按即可进行编辑
           </p>
         </FormItem>

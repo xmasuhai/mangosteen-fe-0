@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, type PropType, ref, type VNode, watch } from 'vue'
 import { cn } from 'cn'
 import { type EmojiMainTopic } from '@/const/emojiTopicList.ts'
 import { EmojiMainTopicNav } from '@/modules/tags/emoji/EmojiMainTopicNav.tsx'
@@ -17,16 +17,24 @@ export const EmojiSelector = defineComponent({
   props: {
     modelValue: { type: String, default: '' },
     hasError: { type: Boolean, default: false },
-    // extraHint: { type: String, default: '' },
+    extraHint: { type: [String, Object] as PropType<string | VNode> },
   },
   emits: ['update:extraHint', 'update:modelValue'],
   setup(_props, _ctx) {
     const selectedMainTopic = ref<EmojiMainTopic>('表情')
     const selectedEmoji = ref('')
     const selectedEmojiHint = ref('')
+    const extraHintNodeCompRef = computed<VNode>(() => (
+      <>
+        <span class="text-22px">{selectedEmoji.value}</span>
+        <span class="text-16px animation-rainbow color-[var(--vp-c-brand-next)]">
+          {selectedEmojiHint.value}
+        </span>
+      </>
+    ))
     watch([selectedEmoji, selectedEmojiHint], () => {
       _ctx.emit('update:modelValue', selectedEmoji.value)
-      _ctx.emit('update:extraHint', `${selectedEmoji.value} ${selectedEmojiHint.value}`)
+      _ctx.emit('update:extraHint', extraHintNodeCompRef.value)
     })
     const clearEmoji = () => {
       selectedEmoji.value = ''
