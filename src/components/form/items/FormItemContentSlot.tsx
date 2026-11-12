@@ -26,7 +26,9 @@ export const FormItemContentSlot = defineComponent({
           <span class="label_name">
             {_props.label}
             {_props.hasLabelColon ? '：' : ''}
-            {_props.extraHint}
+            <span class="animation-rainbow color-[var(--vp-c-brand-next)]">
+              {_props.extraHint}
+            </span>
           </span>
         )}
         {/* 内容 */}
