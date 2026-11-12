@@ -62,7 +62,10 @@ export const EmojiUnicodeList = defineComponent({
       <ol
         class={cn(
           'scrollbar-hide overflow-auto h-[calc(1.65em_*_12)]',
-          'flex flex-wrap content-start px-.5em py-2.5px',
+          // 'flex flex-wrap content-start',
+          'grid place-items-center',
+          'grid-cols-[repeat(auto-fit,minmax(10%,1fr))] grid-rows-[repeat(auto-fill,1.65em)]',
+          'px-.5em py-2.5px',
           'text-22px line-height-1.5em',
         )}>
         {selectedMainTopicEmojiUnicodeList.value.map((unicode, index) => (
@@ -71,8 +74,9 @@ export const EmojiUnicodeList = defineComponent({
             onClick={() => switchEmojiUnicode(unicode)}
             class={cn(
               'text-center grow-0 shrink-0 w-10% b-1 b-transparent',
+              'flex items-center justify-center',
               unicode === selectedEmojiUnicode.value &&
-                'bg-blue-300 outline-1px outline-solid outline-[var(--main)] rounded-[var(--input-radius)]',
+                'w-35px bg-blue-300 outline-1px outline-solid outline-[var(--main)] rounded-[var(--input-radius)]',
             )}>
             {unicode}
           </li>

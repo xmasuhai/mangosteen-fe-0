@@ -26,7 +26,7 @@ export const EmojiMainTopicNav = defineComponent({
       selectedMainTopic.value = topic
     }
     return () => (
-      <nav>
+      <nav class="min-h-35px">
         <menu
           class={cn(
             'flex flex-nowrap overflow-auto mx-1em py-0 scrollbar-hide',
