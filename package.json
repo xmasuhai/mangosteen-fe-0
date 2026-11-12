@@ -35,7 +35,7 @@
   "devDependencies": {
     "@10coding/vite-plugin-jsx-scoped": "0.6.0",
     "@antfu/eslint-config": "10.0.0",
-    "@tsconfig/node24": "24.0.5",
+    "@tsconfig/node24": "24.0.6",
     "@types/jsdom": "30.0.0",
     "@types/node": "26.6.6",
     "@unocss/eslint-plugin": "66.12.0",
