@@ -32,7 +32,7 @@ export const InputText = defineComponent({
         v-model={getModelValue.value}
         placeholder={_props.placeholder}
         class={cn(
-          'p-x-1em text-18px',
+          'min-h-[var(--input-min-height)] p-x-1em text-18px',
           'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
           _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
         )}
