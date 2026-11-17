@@ -2,7 +2,7 @@ import { defineComponent, type PropType, ref } from 'vue'
 import { FormItem } from '@/components/form/FormItem.tsx'
 import { DateAmountChart } from '@/modules/statistics/DateAmountChart.tsx'
 import { AmountProportionChart } from '@/modules/statistics/AmountProportionChart.tsx'
-import { AmountProgress } from '@/modules/statistics/AmountProgress.tsx'
+import { TagAmountRank } from '@/modules/statistics/TagAmountRank.tsx'
 
 /**
  * @Description: 组件描述
@@ -45,7 +45,7 @@ export const ChartsSummary = defineComponent({
 
         <AmountProportionChart />
 
-        <AmountProgress />
+        <TagAmountRank />
       </div>
     )
   },

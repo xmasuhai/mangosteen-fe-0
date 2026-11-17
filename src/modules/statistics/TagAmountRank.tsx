@@ -9,8 +9,8 @@ import { cn } from 'cn'
  * @LastEditTime: 2026-10-26 15:23:32
  * @FilePath: src/modules/statistics/AmountProgress.tsx
  */
-export const AmountProgress = defineComponent({
-  name: 'AmountProgress',
+export const TagAmountRank = defineComponent({
+  name: 'TagAmountRank',
   setup(_props, _ctx) {
     const barProgressList = ref([
       { id: '1', tag: { sign: '😄', name: '房租', id: '1' }, amount: '3112', percent: '11' },
@@ -20,7 +20,7 @@ export const AmountProgress = defineComponent({
 
     return () => (
       <div
-        class={cn('bar-progress mb-8em', '[&>.top-item]:[--sibling-idx:calc(1*sibling-index())]',)}>
+        class={cn('bar-progress mb-8em px-1em', '[&>.top-item]:[--sibling-idx:calc(1*sibling-index())]',)}>
         {barProgressList.value.map(({ id, tag, amount, percent }) => (
           <div
             key={id}
@@ -29,6 +29,7 @@ export const AmountProgress = defineComponent({
             <div
               class={cn(
                 'sign size-3em rounded-[50%] bg-[var(--tag-bg)]',
+                'border-1 border-color-[oklch(70%_0.15_calc(var(--sibling-idx)*70))]',
                 'grow-0 shrink-0 flex items-center justify-center',
               )}>
               {tag.sign}
