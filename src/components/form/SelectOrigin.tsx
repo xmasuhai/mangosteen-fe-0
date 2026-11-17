@@ -29,7 +29,7 @@ export const SelectOrigin = defineComponent({
         id={_props.forId}
         v-model={selectValue.value}
         class={cn(
-          'p-x-.5em text-18px',
+          'min-h-[var(--input-min-height)] p-x-.5em text-18px',
           'b-1 rounded-[var(--input-radius)] shadow-[inset_0_0_3px_var(--input-shadow)]',
           _props.error ? 'b-[var(--error-color)]' : 'b-[var(--input-border-color)]',
         )}
