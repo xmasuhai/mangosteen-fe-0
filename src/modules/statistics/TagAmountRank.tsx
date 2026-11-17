@@ -13,17 +13,16 @@ export const TagAmountRank = defineComponent({
   name: 'TagAmountRank',
   setup(_props, _ctx) {
     const barProgressList = ref([
-      { id: '1', tag: { sign: '😄', name: '房租', id: '1' }, amount: '3112', percent: '11' },
-      { id: '2', tag: { sign: '💰', name: '工资', id: '2' }, amount: '32112', percent: '56' },
-      { id: '3', tag: { sign: '💵', name: '奖金', id: '3' }, amount: '12323', percent: '33' },
+      { id: '1', tag: { sign: '😄', name: '房租', tag_id: '1' }, amount: 3112, percent: '11' },
+      { id: '2', tag: { sign: '💰', name: '工资', tag_id: '2' }, amount: 32112, percent: '56' },
+      { id: '3', tag: { sign: '💵', name: '奖金', tag_id: '3' }, amount: 12323, percent: '33' },
     ])
-
     return () => (
       <div
         class={cn('bar-progress mb-8em px-1em', '[&>.top-item]:[--sibling-idx:calc(1*sibling-index())]',)}>
         {barProgressList.value.map(({ id, tag, amount, percent }) => (
           <div
-            key={id}
+            key={`${id}-${tag.tag_id}`}
             style={{ '--width-percent': `${percent}%` }}
             class={cn('top-item mb-1em flex items-center justify-between')}>
             <div
@@ -32,14 +31,14 @@ export const TagAmountRank = defineComponent({
                 'border-1 border-color-[oklch(70%_0.15_calc(var(--sibling-idx)*70))]',
                 'grow-0 shrink-0 flex items-center justify-center',
               )}>
-              {tag.sign}
+              <span class="text-24px">{tag.sign}</span>
             </div>
             <div class="bar-wrapper ml-1em grow-1 shrink-1">
               <div class="bar_text text-[var(--text-muted)] flex items-center justify-between">
                 <span>
                   {tag.name} - {percent}%
                 </span>
-                <span> ¥ {amount}</span>
+                <span> ¥ {amount / 100}</span>
               </div>
               <div class="bar h-.5em rounded-.25em bg-[var(--bar-bg)] relative overflow-clip mt-.25em">
                 <div
