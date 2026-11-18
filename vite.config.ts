@@ -1,5 +1,5 @@
 import { fileURLToPath, pathToFileURL, URL } from 'node:url'
-import { ConfigEnv, defineConfig } from 'vite'
+import { type ConfigEnv, type UserConfigExport,  defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -55,11 +55,13 @@ export default defineConfig(({ command,}: ConfigEnv ) => ({
       mergeProps: true,
     }),
     AutoImport({
+      dts: './src/auto-imports.d.ts',
       resolvers: [
         VantResolver(),
       ],
     }),
     Components({
+       dts: './src/components.d.ts',
       resolvers: [
         VantResolver(),
       ],
@@ -125,4 +127,4 @@ export default defineConfig(({ command,}: ConfigEnv ) => ({
       },
     },
   },
-}))
+})) satisfies UserConfigExport

@@ -1,0 +1,75 @@
+/* TODO: 使用vite plugin 自动生成类型 */
+
+// 请求资源
+export interface Resource<T> {
+  resource: T
+}
+
+export interface Resources<T> {
+  resources: T[]
+  pager: {
+    page: number
+    per_page: number
+    count: number
+    page_size?: number
+    total?: number
+  }
+}
+
+export type User = {
+  id: number
+  email: string
+  name: string
+  created_at: ISOString
+  updated_at: ISOString
+}
+
+// 账目信息
+export type Item = {
+  id: number
+  user_id: string | number
+  kind: 'incomes' | 'expenses'
+  amount: number
+  note?: string
+  tag_ids: number[]
+  happened_at: ISOString
+  created_at: ISOString
+  updated_at: ISOString
+  deleted_at?: ISOString
+  // tags?: []
+}
+
+export type TabKind = Item['kind'] // 'incomes' | 'expenses'
+
+export type Tag = {
+  id: number
+  user_id: string | number
+  kind: TabKind
+  name: string
+  sign: string
+  sign_id: string
+  created_at: ISOString
+  updated_at: ISOString
+  deleted_at?: ISOString
+}
+export type PickedTag = Pick<Tag, 'name' | 'sign'>
+
+export interface ResponseData<T> {
+  code: number
+  data: T
+}
+
+export type JSONValue =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: JSONValue }
+  | JSONValue[]
+
+export declare module 'react' {
+  interface CSSProperties {
+    // 允许任意以 -- 开头的 CSS 变量 --date-item-height
+    [key: `--${string}`]: string | number | undefined
+  }
+}

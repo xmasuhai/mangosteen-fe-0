@@ -1,7 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts",
     "src/**/*",
     "src/**/*.vue"
   ],
@@ -9,30 +8,36 @@
     "src/**/__tests__/*",
   ],
   "compilerOptions": {
+    "composite": true,
     "target": "es2025",
     "lib": [
       "ES2025",
       "DOM"
     ],
-    "types": [
-      "vite/client",
-      "@10coding/vite-plugin-jsx-scoped/client",
-      "vite-plugin-svg-icons-ng/client"
-    ],
-    "allowArbitraryExtensions": true,
+    "module": "esnext",
+    "skipLibCheck": true,
+    /* mode */
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
     // Extra safety for array and object lookups, but may have false positives.
     "noUncheckedSideEffectImports": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
+    "allowArbitraryExtensions": true,
+    "allowImportingTsExtensions": true,
+    /* Linting */
+    "erasableSyntaxOnly": true,
     // Path mapping for cleaner imports.
     "paths": {
       "@/*": ["./src/*"]
     },
-    "jsx": "preserve",
-    "jsxImportSource": "vue",
+    "types": [
+      "vite/client",
+      "@10coding/vite-plugin-jsx-scoped/client",
+      "vite-plugin-svg-icons-ng/client"
+    ],
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
     // Specified here to keep it out of the root directory.
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
