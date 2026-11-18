@@ -61,5 +61,8 @@
     "pcss",
     "postcss"
   ],
-  "js/ts.experimental.useTsgo": false
+  "js/ts.experimental.useTsgo": false,
+  "cSpell.words": [
+    "tsgolint"
+  ]
 }
