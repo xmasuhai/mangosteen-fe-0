@@ -15,7 +15,7 @@ export const MainLayout = defineComponent({
   name: 'MainLayout',
   setup(_props, _ctx) {
     return () => (
-      <div class={cn('w-full h-full relative')}>
+      <div class={cn('w-full h-screen relative')}>
         <NavBar
           direct-scoped
           class={cn(

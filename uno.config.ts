@@ -23,6 +23,17 @@ export const unoConfig = defineConfig({
     presetWind4() as PresetOrFactoryAwaitable<object>,
     presetAttributify(),
   ],
+  preflights: [
+    {
+      getCSS: () => `
+        @property --sibling-idx {
+          syntax: '<integer>'; /* 核心：限制为整数类型，迫使浏览器立即求值 */
+          inherits: true;      /* 允许向下继承计算后的结果 */
+          initial-value: 1;
+        }
+      `
+    }
+  ],
   transformers: [
     // 支持 where:(a b c) 这种分组写法
     transformerVariantGroup(),
@@ -71,6 +82,22 @@ export const unoConfig = defineConfig({
       primaryColor: '#6035BF',
     },
   },
+  rules: [
+    ['animate-rainbow', { animation: 'rainbow 8s linear infinite' }],
+    [/^scrollbar-hide$/, () => ({
+      'scrollbar-width': 'none',
+    })],
+    [/^scrollbar-default$/, () => ({
+      'scrollbar-width': 'auto',
+    })],
+    [
+      'h-screen',
+      {
+        height:
+          'calc(var(--main-vh, 100vh) - var(--vh-offset, 0px) - env(safe-area-inset-bottom) - env(safe-area-inset-top))',
+      },
+    ],
+  ],
   shortcuts: {
     // 将 UnoCSS 的原子类映射到你 SCSS 里定义好的 .animation-rainbow 类
     'animate-rainbow': 'animation-rainbow',
@@ -98,25 +125,6 @@ export const unoConfig = defineConfig({
       'bg-[var(--main)] color-white text-18px'
     ),
   },
-  rules: [
-    [/^scrollbar-hide$/, () => ({
-      'scrollbar-width': 'none',
-    })],
-    [/^scrollbar-default$/, () => ({
-      'scrollbar-width': 'auto',
-    })],
-  ],
-  preflights: [
-    {
-      getCSS: () => `
-        @property --sibling-idx {
-          syntax: '<integer>'; /* 核心：限制为整数类型，迫使浏览器立即求值 */
-          inherits: true;      /* 允许向下继承计算后的结果 */
-          initial-value: 1;
-        }
-      `
-    }
-  ]
 })
 
 export default unoConfig
