@@ -17,18 +17,18 @@
 ```bash
 npm install -g corepack@latest &&
 corepack enable &&
-corepack prepare pnpm@12.21.0 --active
+corepack prepare pnpm@12.22.0 --active
 # 在项目路径下执行
-corepack use pnpm@12.21.0
+corepack use pnpm@12.22.0
 ```
 
 ### 3. 包管理器 `pnpm` 后续升级
 
-- 提示有新版本的 `pnpm@12.21.0`
+- 提示有新版本的 `pnpm@12.22.0`
 - 在项目内运行以下命令
 
 ```bash
-corepack use pnpm@12.21.0
+corepack use pnpm@12.22.0
 ```
 
 ---
