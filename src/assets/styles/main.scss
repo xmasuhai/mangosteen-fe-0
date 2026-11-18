@@ -3,13 +3,13 @@
 @use '@/assets/styles/animation/rainbow.scss' as *;
 
 #app {
+  @apply w-screen h-screen;
   max-width: 1280px;
   margin: 0 auto;
   font-weight: normal;
   overflow: hidden;
   &,
   & > .container {
-    //@apply w-screen h-screen;
     display: flex;
     place-items: center;
     justify-content: center;
@@ -31,9 +31,9 @@
     justify-content: center;
   }
 }
-@screen lt-iPhone16ProMax {
-  #app {
-  }
-}
-@screen ipadMini {
-}
+// @screen lt-iPhone16ProMax {
+//   #app {
+//   }
+// }
+// @screen ipadMini {
+// }
