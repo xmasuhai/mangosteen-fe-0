@@ -8,7 +8,7 @@
 
 ### 1. 检查 Node.js 版本
 请确保你的本地 Node.js 版本符合项目要求：
-* **要求版本**：`>=26.12.1`
+* **要求版本**：`>=26.13.1`
 * **检查命令**：`node -v`
 
 ### 2. 开启官方 Corepack
@@ -17,7 +17,7 @@
 ```bash
 npm install -g corepack@latest &&
 corepack enable &&
-corepack prepare pnpm@12.22.0 --active
+corepack prepare pnpm@12.22.0 --activate
 # 在项目路径下执行
 corepack use pnpm@12.22.0
 ```
@@ -47,7 +47,7 @@ corepack use pnpm@12.22.0
 | echarts | 6.1.0 |
 | @js-temporal/polyfill | 0.5.1 |
 | cn | 0.5.2 |
-| vite-plugin-console-banner | 0.1.2 |
+| vite-plugin-console-banner | 0.1.4 |
 
 ## 🛠️ 主要开发依赖
 
