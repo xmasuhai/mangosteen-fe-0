@@ -1,5 +1,5 @@
 import { defineComponent, type PropType } from 'vue'
-import s from '@/components/NavBar.module.scss'
+import s from './NavBar.module.scss'
 import { cn } from 'cn'
 
 /**
