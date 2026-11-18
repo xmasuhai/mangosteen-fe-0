@@ -1,5 +1,5 @@
 import { fileURLToPath, pathToFileURL, URL } from 'node:url'
-import { defineConfig } from 'vite'
+import { ConfigEnv, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -15,30 +15,12 @@ import { consoleBanner } from "vite-plugin-console-banner"
 // import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command,}: ConfigEnv ) => ({
   // base: '/mangosteen-fe-0-publish/', // pnpm deploy --base='/mangosteen-fe-0-publish/'
+  define: {
+    __IS_DEV__: command === 'serve',
+  },
   plugins: [
-    unoCSS(),
-    jsxScoped({ warnMultiScopedImport: true }),
-    vue(),
-    vueJsx({
-      transformOn: true,
-      mergeProps: true,
-    }),
-    AutoImport({
-      resolvers: [
-        VantResolver(),
-      ],
-    }),
-    Components({
-      resolvers: [
-        VantResolver(),
-      ],
-    }),
-    vueDevTools({
-      launchEditor: 'webstorm',
-    }),
-
     // svg精灵图标方案
     svgoStore(),
     /*
@@ -65,6 +47,27 @@ export default defineConfig({
     }),
     */
 
+    unoCSS(),
+    jsxScoped({ warnMultiScopedImport: true }),
+    vue(),
+    vueJsx({
+      transformOn: true,
+      mergeProps: true,
+    }),
+    AutoImport({
+      resolvers: [
+        VantResolver(),
+      ],
+    }),
+    Components({
+      resolvers: [
+        VantResolver(),
+      ],
+    }),
+    vueDevTools({
+      launchEditor: 'webstorm',
+    }),
+
     // 自动启用 TLS + HTTP/2 自动在主机中安装证书
     // mkcert(),
     // 自动启用 TLS + HTTP/2 自动在主机中安装假证书
@@ -80,17 +83,28 @@ export default defineConfig({
       certDir: '/Users/.../.devServer/cert',
     }),
     */
+
     consoleBanner({
+      enable: command === 'build',
       text: "xmasuhai.xyz",
       font: "big",
       color: "#476EE3",
       badges: [
+        { label: "山竹记账-vue版", url: "http://xmasuhai.github.io/mangosteen-fe-0-publish/" },
         { label: "徐帅的博客", url: "https://xmasuhai.xyz" },
         { label: "徐帅${year}简历", url: "https://xmasuhai.xyz/my-latest-resume/" },
       ],
     }),
   ],
+  server: {
+    host: true,
+    // proxy: {
+    //   '^/api': { target: '//192.168.0.104' },
+    // },
+  },
   resolve: {
+    // 开启 Vite 8 的原生 tsconfig 路径解析支持
+    tsconfigPaths: true,
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@src': fileURLToPath(new URL('./src', import.meta.url)),
@@ -111,4 +125,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))
