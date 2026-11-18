@@ -29,16 +29,40 @@ body {
   padding-left: calc(env(safe-area-inset-left));
 }
 
-#app,
-#root {
+#app {
+  width: 100vw;
   max-width: 1280px;
   margin: 0 auto;
   font-weight: normal;
+  overflow: hidden;
 
   &,
   &>.container {
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    flex: 1;
     // iPhone12Pro
     min-width: 390px;
     min-height: 844px;
   }
 }
+
+@media (hover: hover) {
+  //#app {}
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+    justify-content: center;
+  }
+}
+
+// @screen lt-iPhone16ProMax {
+//   #app {
+//   }
+// }
+// @screen ipadMini {
+// }
