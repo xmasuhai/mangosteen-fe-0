@@ -8,3 +8,4 @@ git commit -m deploy
 git remote add origin git@github.com:xmasuhai/mangosteen-fe-0-publish.git
 git push -f origin master:master
 cd -
+echo "http://xmasuhai.github.io/mangosteen-fe-0-publish/"
