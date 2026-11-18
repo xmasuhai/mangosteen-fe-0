@@ -4,6 +4,9 @@
     "vitest.explorer",
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
-    "oxc.oxc-vscode"
+    "oxc.oxc-vscode",
+    "seongwonseo.scss-alias-jump",
+    "wanderlima.vscode-scss-alias",
+    "christian-kohler.path-intellisense"
   ]
 }

@@ -62,6 +62,18 @@
     "postcss"
   ],
   "js/ts.experimental.useTsgo": false,
+
+  // SCSS 路径别名跳转（VS Code 扩展）
+  "scssAliasJump.aliases": {
+    "@": "${workspaceFolder}/src"
+  },
+  "vscodeScssAlias.aliases": {
+    "@": "src"
+  },
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src"
+  },
+
   "cSpell.words": [
     "tsgolint"
   ]
