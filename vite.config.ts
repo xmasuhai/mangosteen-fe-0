@@ -16,7 +16,7 @@ import { consoleBanner } from "vite-plugin-console-banner"
 
 // https://vite.dev/config/
 export default defineConfig({
-  // base: '/mangosteen-fe-0-publish/',
+  // base: '/mangosteen-fe-0-publish/', // pnpm deploy --base='/mangosteen-fe-0-publish/'
   plugins: [
     unoCSS(),
     jsxScoped({ warnMultiScopedImport: true }),

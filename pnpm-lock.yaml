@@ -196,9 +196,6 @@ importers:
       vant:
         specifier: 4.10.2
         version: 4.10.2(vue@3.5.45(typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2))
-      vite-plugin-console-banner:
-        specifier: 0.1.2
-        version: 0.1.2(figlet@1.12.0)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1))
       vue:
         specifier: 3.5.45
         version: 3.5.45(typescript-native-bridge@6.0.3-bridge.18.tsgo.7.0.2)
@@ -230,6 +227,9 @@ importers:
       '@unocss/preset-wind4':
         specifier: 66.13.0
         version: 66.13.0
+      '@unocss/vite':
+        specifier: 66.13.0
+        version: 66.13.0(cac@7.1.0)(srvx@1.0.5)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1))
       '@vant/auto-import-resolver':
         specifier: 1.3.0
         version: 1.3.0
@@ -317,6 +317,9 @@ importers:
       vite:
         specifier: 8.3.8
         version: 8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1)
+      vite-plugin-console-banner:
+        specifier: 0.1.4
+        version: 0.1.4(figlet@1.12.0)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1))
       vite-plugin-mkcert:
         specifier: 2.1.0
         version: 2.1.0(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1))
@@ -4689,9 +4692,9 @@ packages:
     peerDependencies:
       vite: ^2.6.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0 || ^8.0.0
 
-  vite-plugin-console-banner@0.1.2:
-    resolution: {integrity: sha512-8aZ75tMR0qJoEh+3nM9h/aDBmd+LQ6MMv9yXUx0e04sVVoInG9nsENXR5q+U0fylny61IhjqUS8OVYsjENtHpg==}
-    engines: {node: '>=26', pnpm: '>=12.16.1'}
+  vite-plugin-console-banner@0.1.4:
+    resolution: {integrity: sha512-EnnZ3XBiJ+S46v+/RLYiXj8gsiLLVl1eYnWJ7WavJTNQDhDc42hx8f/HOfQeyJdD/sV8RczNp/xGbLYhOJ7A5g==}
+    engines: {node: '>=26', pnpm: '>=12.22.0'}
     peerDependencies:
       figlet: ^1.12.0
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -6169,7 +6172,7 @@ snapshots:
       '@unocss/preset-mini': 66.13.0
       '@unocss/rule-utils': 66.13.0
       devframe: 1.2.6(cac@7.1.0)(srvx@1.0.5)
-      magic-string: 1.4.4
+      magic-string: 1.4.5
       tinyglobby: 0.2.17
       unplugin-utils: 0.3.2
     optionalDependencies:
@@ -6283,7 +6286,7 @@ snapshots:
       '@unocss/core': 66.13.0
       '@unocss/inspector': 66.13.0(cac@7.1.0)(srvx@1.0.5)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1))
       chokidar: 5.0.0
-      magic-string: 1.4.4
+      magic-string: 1.4.5
       pathe: 2.0.3
       tinyglobby: 0.2.17
       unplugin-utils: 0.3.2
@@ -9547,7 +9550,7 @@ snapshots:
     dependencies:
       vite: 8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1)
 
-  vite-plugin-console-banner@0.1.2(figlet@1.12.0)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1)):
+  vite-plugin-console-banner@0.1.4(figlet@1.12.0)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1)):
     dependencies:
       figlet: 1.12.0
       vite: 8.3.8(@types/node@26.6.6)(jiti@2.7.0)(sass-embedded@1.108.2)(sass@1.108.2)(yaml@2.9.1)
