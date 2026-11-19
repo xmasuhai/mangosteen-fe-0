@@ -41,7 +41,7 @@ export const TagForm = defineComponent({
       Object.assign(errors, formValidate(toRaw(formData), rules))
     }
     return () => (
-      <FormContainer onSubmit={onSubmit}>
+      <FormContainer onSubmit={onSubmit} class="py-.5em">
         <FormItem
           type="text"
           label="标签名称"
