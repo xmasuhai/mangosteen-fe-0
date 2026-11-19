@@ -3,7 +3,7 @@ import { NavBar } from '@/components/NavBar.tsx'
 import { cn } from 'cn'
 
 /**
- * @Description: 主布局
+ * @Description: 主要布局
  * @Description: 接受 title、icon、default 三个插槽
  * @Author: xmasuhai <xmasuhai@163.com>
  * @Date: 2026-10-14 16:07:09
@@ -28,7 +28,7 @@ export const MainLayout = defineComponent({
           }}
         </NavBar>
 
-        <main class="h-[calc(100vh-var(--navbar-min-height))]">
+        <main class="h-[calc(var(--safe-screen-height)-var(--navbar-min-height))]">
           {_ctx.slots?.default?.()}
         </main>
       </div>

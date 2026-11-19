@@ -1,4 +1,4 @@
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent, /*  type PropType */ } from 'vue'
 import s from './NavBar.module.scss'
 import { cn } from 'cn'
 
@@ -12,15 +12,11 @@ import { cn } from 'cn'
  */
 export const NavBar = defineComponent({
   name: 'NavBar',
-  props: {
-    propsName: {
-      type: String as PropType<string>,
-      required: false,
-    },
-  },
+  // props: {
+  //   propsName: { type: String as PropType<string>, required: false, },
+  // },
   setup(_props, _ctx) {
     const { slots } = _ctx
-
     return () => (
       <header class={cn(s.navbar, 'text-[var(--navbar-text-color)]')}>
         <span class={s.icon_wrapper}>{slots?.icon?.()}</span>
