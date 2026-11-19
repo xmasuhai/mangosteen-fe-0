@@ -76,5 +76,8 @@
 
   "cSpell.words": [
     "tsgolint"
-  ]
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
