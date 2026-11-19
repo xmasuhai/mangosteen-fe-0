@@ -1,7 +1,9 @@
-import { defineComponent, reactive, toRaw } from 'vue'
+import { defineComponent, reactive, toRaw, type PropType } from 'vue'
 import { type FormDataType, type FormRules, formValidate } from '@/shared/validator/formValidate.ts'
 import { FormContainer } from '@/components/form/FormContainer.tsx'
 import { FormItem } from '@/components/form/FormItem.tsx'
+
+type TagFormMode = 'create' | 'edit'
 
 /**
  * @Description: 标签表单组件
@@ -18,6 +20,7 @@ export const TagForm = defineComponent({
   name: 'TagForm',
   props: {
     /* 仅当编辑tag时，有表单默认数据，通过 props 传入；暂时占位 */
+    mode: { type: String as PropType<TagFormMode> , default: 'edit'}
   },
   setup(/* _props, _ctx */) {
     const formData = reactive<FormDataType>({
@@ -59,6 +62,7 @@ export const TagForm = defineComponent({
           </p>
         </FormItem>
         <FormItem type="submit" buttonConfig={{ level: 'primary', text: '保存' }} />
+        <FormItem type="button" buttonConfig={{ level: 'danger', text: '删除标签' }} />
       </FormContainer>
     )
   },

@@ -19,7 +19,7 @@ export const TagCreateView = defineComponent({
         {{
           title: () => '新建标签',
           icon: () => <SvgIcon name="back-arrow" size="1.5em" onClick={() => {}} />,
-          default: () => <TagForm />,
+          default: () => <TagForm mode="create" />,
         }}
       </MainLayout>
     )

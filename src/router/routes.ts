@@ -9,7 +9,7 @@ import { ItemsView } from '@/views/ItemsView.tsx'
 import { ItemListView } from '@/views/ItemListView.tsx'
 import { ItemCreate } from '@/views/ItemCreate.tsx'
 import { TagView } from '@/views/TagView.tsx'
-import { TagDetailEditView } from '@/views/TagDetailEditView.tsx'
+import { TagEditView } from '@/views/TagEditView'
 import { TagCreateView } from '@/views/TagCreateView.tsx'
 import { SignInView } from '@/views/SignInView.tsx'
 import { StatisticsView } from '@/views/StatisticsView.tsx'
@@ -74,7 +74,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       { path: '', name: 'tagDefault', redirect: '/tags/create' },
       { path: 'create', name: 'tagCreate', component: TagCreateView },
-      { path: 'edit/:id', name: 'tagEdit', component: TagDetailEditView },
+      { path: 'edit/:id', name: 'tagEdit', component: TagEditView },
     ],
   },
 ]
