@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  height: min(100svh, 100dvh, 100vh);
+  height: var(--safe-screen-height);
   /* color: var(--color-text); */
   /* background: var(--color-background); */
   transition:

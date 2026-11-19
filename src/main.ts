@@ -11,7 +11,9 @@ import 'uno.css'
 import 'vant/lib/index.css'
 import vhCheck from 'vh-check'
 
-vhCheck()
+vhCheck({
+  cssVarName: 'vh-offset', // default 注入 --vh-offset
+})
 
 const app = createApp(App)
 
