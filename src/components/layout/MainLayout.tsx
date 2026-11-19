@@ -1,6 +1,6 @@
 import { defineComponent /* type PropType */ } from 'vue'
-import { NavBar } from '@/components/NavBar.tsx'
 import { cn } from 'cn'
+import { NavBar } from '@/components/NavBar.tsx'
 
 /**
  * @Description: 主要布局
@@ -19,6 +19,7 @@ export const MainLayout = defineComponent({
         <NavBar
           direct-scoped
           class={cn(
+            'h-[var(--navbar-min-height)]',
             'sticky top-0 z-[var(--z-index-navbar)]',
             'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]',
           )}>
