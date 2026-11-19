@@ -1,11 +1,8 @@
 body {
   margin: 0;
-  height: var(--safe-screen-height);
+  height: var(--main-vh);
   /* color: var(--color-text); */
   /* background: var(--color-background); */
-  transition:
-    color 0.5s,
-    background-color 0.5s;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -36,10 +33,6 @@ body {
 
   &,
   &>.container {
-    display: flex;
-    place-items: center;
-    justify-content: center;
-    flex: 1;
     // iPhone12Pro
     min-width: 390px;
     min-height: 844px;

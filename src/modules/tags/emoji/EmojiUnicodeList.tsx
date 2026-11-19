@@ -60,7 +60,7 @@ export const EmojiUnicodeList = defineComponent({
 
     const fitScreenHeight = computed(() => {
       const height = window.innerHeight
-      return height <= 844 ? 'h-[calc(1.65em_*_10)]' : 'h-[calc(1.65em_*_12)]'
+      return height <= 844 ? 'h-[calc(1.65em_*_9)]' : 'h-[calc(1.65em_*_12)]'
     })
 
     return () => (

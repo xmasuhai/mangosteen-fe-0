@@ -15,11 +15,11 @@ export const MainLayout = defineComponent({
   name: 'MainLayout',
   setup(_props, _ctx) {
     return () => (
-      <div class={cn('w-full h-screen relative')}>
+      <div class={cn('grow-1 w-full h-full relative flex flex-col')}>
         <NavBar
           direct-scoped
           class={cn(
-            'h-[var(--navbar-min-height)]',
+            'h-[var(--navbar-min-height)] grow-0 shrink-0',
             'sticky top-0 z-[var(--z-index-navbar)]',
             'bg-gradient-to-b from-[var(--navbar-bg-start)] to-[var(--navbar-bg-end)]',
           )}>
@@ -29,7 +29,10 @@ export const MainLayout = defineComponent({
           }}
         </NavBar>
 
-        <main class="h-[calc(var(--safe-screen-height)-var(--navbar-min-height))]">
+        <main class={cn(
+          'grow-1 shrink-1 flex flex-col children:(grow-1 shrink-1)',
+          'h-[calc(var(--main-vh)-var(--navbar-min-height))]',
+        )}>
           {_ctx.slots?.default?.()}
         </main>
       </div>
