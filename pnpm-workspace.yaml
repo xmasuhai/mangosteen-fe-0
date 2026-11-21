@@ -4,7 +4,7 @@ allowBuilds:
   vite-plugin-console-banner: true
 minimumReleaseAgeExclude:
   - vite-plugin-console-banner@0.0.1 || 0.1.1 || 0.1.4
-  - npm-run-all2@9.0.4
+  - npm-run-all2@9.0.4 || 9.1.0
   - sass-embedded-all-unknown@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
   - sass-embedded-android-arm64@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
   - sass-embedded-android-arm@1.106.1 || 1.108.0 || 1.108.1 || 1.108.2
